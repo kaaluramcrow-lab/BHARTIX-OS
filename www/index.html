@@ -13447,6 +13447,19 @@ function stBuild(){const s=$('#start');s.className='st';s.innerHTML=`<div class=
  $('#orb').onclick=()=>{s.hidden=!s.hidden;if(!s.hidden){stAll=false;$('#q').value='';renderPL()}}}
 setTimeout(()=>{stBuild();renderPL()},50);
 
+/* ---- Start menu: your photo & name ---- */
+const stUG=()=>{try{return JSON.parse(localStorage.getItem('bx_user')||'{}')}catch(e){return{}}},stUS=u=>{try{localStorage.setItem('bx_user',JSON.stringify(u))}catch(e){toast('Could not save')}};
+function stUser(){const u=stUG(),i=document.querySelector('#start .st-u i'),b=document.querySelector('#start .st-u b');if(!i||!b)return;if(u.img){i.style.background='url('+u.img+') center/cover';i.innerHTML=''}b.textContent=u.name||'Student';i.style.cursor=b.style.cursor='pointer';i.title=b.title='Change photo / name'}
+function stUserEdit(){const u=stUG(),bg=document.createElement('div');bg.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center';
+ bg.innerHTML=`<div style="background:#1b2a47;color:#e9f0fb;border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:14px;width:min(300px,92%);font:14px system-ui,sans-serif;display:flex;flex-direction:column;gap:10px"><b>Your profile</b><div style="display:flex;align-items:center;gap:12px"><div id="ua" style="width:64px;height:64px;border-radius:50%;background:${u.img?'url('+u.img+') center/cover':'linear-gradient(145deg,#3d93ea,#1a62c4)'};flex:none"></div><div style="display:flex;flex-direction:column;gap:6px;flex:1"><button id="up" style="padding:7px;border-radius:7px;border:0;background:#2f7de1;color:#fff">📷 Choose photo</button><button id="ur" style="padding:6px;border-radius:7px;border:1px solid #4a5d80;background:none;color:#cbd8ee">Remove photo</button></div></div><input id="un" maxlength="20" value="${esc(u.name||'Student')}" style="padding:8px;border-radius:7px;border:1px solid #4a5d80;background:#0f1a30;color:#fff;font-size:14px"><div style="display:flex;gap:8px;justify-content:flex-end"><button id="uc" style="padding:7px 14px;border-radius:7px;border:1px solid #4a5d80;background:none;color:#cbd8ee">Cancel</button><button id="us" style="padding:7px 14px;border-radius:7px;border:0;background:#2f7de1;color:#fff">Save</button></div></div>`;
+ document.body.appendChild(bg);const g=s=>bg.querySelector(s);let img=u.img||'';
+ g('#up').onclick=()=>{const f=document.createElement('input');f.type='file';f.accept='image/*';f.onchange=()=>{const fl=f.files[0];if(!fl)return;const url=URL.createObjectURL(fl),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=160;const x=c.getContext('2d'),m=Math.min(im.width,im.height);x.drawImage(im,(im.width-m)/2,(im.height-m)/2,m,m,0,0,160,160);img=c.toDataURL('image/jpeg',.85);g('#ua').style.background='url('+img+') center/cover';URL.revokeObjectURL(url)};im.onerror=()=>toast('Could not read image');im.src=url};f.click()};
+ g('#ur').onclick=()=>{img='';g('#ua').style.background='linear-gradient(145deg,#3d93ea,#1a62c4)'};
+ g('#uc').onclick=()=>bg.remove();bg.addEventListener('pointerdown',e=>{if(e.target===bg)bg.remove()});
+ g('#us').onclick=()=>{stUS({img,name:g('#un').value.trim()||'Student'});bg.remove();stBuild();toast('Profile saved')}}
+{const _sb=stBuild;stBuild=function(){_sb.apply(this,arguments);stUser()}}
+document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('#start .st-u');if(t){e.stopPropagation();hideMenu&&0;stUserEdit()}},true);
+
 /* ---- per-app save folders in Files (Notes, BhartiX Writer, Word, Sheets, Presentations, Tally, Paint) ---- */
 const BX_APPDIR={notes:['documents','Notes'],wordpad:['documents','Writer'],word:['documents','Office'],sheets:['documents','Sheets'],ppt:['documents','Slides'],tally:['documents','Books'],paint:['pictures','Paint'],scan:['documents','Scan']};
 async function bxAppFolder(app){await BXFS.ready();const d=BX_APPDIR[app];if(!d)return'documents';
