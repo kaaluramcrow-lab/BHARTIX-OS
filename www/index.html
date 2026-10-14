@@ -2015,7 +2015,7 @@ const WP=['radial-gradient(ellipse at 28% 72%,#6fd6ff,transparent 45%),radial-gr
 'radial-gradient(ellipse at 50% 100%,#ffd36b,transparent 55%),linear-gradient(180deg,#2b2a6b,#c0467a 60%,#ff9a4d)',
 'linear-gradient(135deg,#050b1f,#142a5e 60%,#1f4a8f)'];
 let S={wp:0,perf:0,br:100,isz:1,gad:0,clip:null,bin:[],items:[{id:'pc',name:'My PC',x:6,y:Math.round(innerHeight*.012),sys:1},{id:'bin',name:'Recycle Bin',x:6,y:Math.round(innerHeight*.13),sys:1}]};
-const BX_REN={'BhartiX Calc':'BhartiX Grid','WordPad':'BhartiX Writer','Notepad':'BhartiX Notepad','Paint':'BhartiX Paint','BhartiX Word':'BhartiX Office','BhartiX Excel':'BhartiX Grid','BhartiX PowerPoint':'BhartiX Slides','BhartiX Tally':'BhartiX Books','BhartiX Srijan':'BhartiX Studio','BhartiX Pixel':'BhartiX Chitra','BhartiX Typing':'BhartiX Type','BhartiX Flashcards':'BhartiX Cards','BhartiX Study Timer':'BhartiX Focus','BhartiX Graph':'BhartiX Charts','BhartiX Tools':'BhartiX Toolkit','BhartiX Media Player':'BhartiX Play','BhartiX Browser':'BhartiX Web'};
+const BX_REN={'BhartiX Calc':'BhartiX Grid','WordPad':'BhartiX Writer','Notepad':'BhartiX Notepad','Paint':'BhartiX Paint','BhartiX Word':'BhartiX Writer','BhartiX Excel':'BhartiX Grid','BhartiX PowerPoint':'BhartiX Slides','BhartiX Tally':'BhartiX Books','BhartiX Srijan':'BhartiX Studio','BhartiX Pixel':'BhartiX Chitra','BhartiX Typing':'BhartiX Type','BhartiX Flashcards':'BhartiX Cards','BhartiX Study Timer':'BhartiX Focus','BhartiX Graph':'BhartiX Charts','BhartiX Tools':'BhartiX Toolkit','BhartiX Media Player':'BhartiX Play','BhartiX Browser':'BhartiX Web'};
 try{let raw=localStorage.getItem('bx3')||'{}';for(const k in BX_REN)raw=raw.split('"'+k+'"').join('"'+BX_REN[k]+'"');Object.assign(S,JSON.parse(raw))}catch(e){}
 const save=()=>{try{localStorage.setItem('bx3',JSON.stringify(S))}catch(e){}};
 const find=id=>S.items.find(i=>i.id===id);
@@ -6101,7 +6101,7 @@ function openBrowser(init){
  init=init||{};
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  const o=openWin('br'+(++wpSeq),'BhartiX Web',BR_ICON,'<div class="wpr brr"></div>',Math.min(900,cw0-16),Math.min(500,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<900||ch0<520)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<900||ch0<520)toggleMax(o);
  root.innerHTML=`<div class="btabs"><div class="btl"></div><button class="btn1 bnew" title="New tab">＋</button></div>
 <div class="bnav"><button class="bb bback" title="Back">‹</button><button class="bb bfwd" title="Forward">›</button><button class="bb brel" title="Reload">⟳</button><button class="bb bhome" title="Home">⌂</button><div class="bomni"><span class="blk">🔍</span><input class="baddr" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Search or type a web address"><button class="bb bstar" title="Bookmark this page">☆</button></div><button class="bb bext" title="Open this page in a full browser tab (works for every website)">↗</button><button class="bb bdl" title="Downloads">⬇<i class="bdn" hidden></i></button><button class="bb bmenu" title="Menu">⋮</button></div>
 <div class="bstrip" hidden><span>Page not showing? Some sites don’t allow being opened inside another app.</span><button class="bext">Open in phone browser ↗</button><button class="brd">Reader view</button><button class="bsx" title="Dismiss">✕</button></div>
@@ -8743,7 +8743,7 @@ function openTally(){
 let o=W.find(x=>x.id==='tally');if(o){openWin('tally');return o}
 const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
 o=openWin('tally','BhartiX Books',TY_ICON,'<div class="wpr tyr" tabindex="-1"></div>',Math.min(940,cw0-16),Math.min(540,ch0-10));
-const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<440)toggleMax(o);
+const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<440)toggleMax(o);
 root.innerHTML=`<div class="ty-title"></div><div class="ty-mbar" role="tablist"></div><div class="ty-tbar"></div><div class="ty-main"><nav class="ty-nav"></nav><div class="ty-col"><div class="ty-head"></div><div class="ty-body"></div></div></div><div class="ty-sbar"></div><input type="file" class="ty-hf" hidden><div class="ty-toast"></div>`;
 const q=s=>root.querySelector(s),qa=s=>root.querySelectorAll(s);
 const mbar=q('.ty-mbar'),tbar=q('.ty-tbar'),head=q('.ty-head'),body=q('.ty-body'),sbar=q('.ty-sbar');
@@ -9337,7 +9337,7 @@ function openMedia(files){
 let o=W.find(x=>x.id==='media');if(o){openWin('media');if(files&&files.length)o.mpAdd&&o.mpAdd(files);return o}
 const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
 o=openWin('media','BhartiX Play',MED_ICON,'<div class="wpr mp" tabindex="-1"></div>',Math.min(780,cw0-16),Math.min(500,ch0-10));
-const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<640||ch0<460)toggleMax(o);
+const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<640||ch0<460)toggleMax(o);
 root.innerHTML=`<div class="mp-mbar"></div><div class="mp-mid"><div class="mp-stage"><div class="mp-vw"></div><canvas class="mp-vis" hidden></canvas><div class="mp-sub"></div><div class="mp-osd"></div><div class="mp-idle"><div class="mp-logo">${MED_ICON.replace('width="16" height="16"','width="84" height="84"')}</div><b>BhartiX Play</b><small>Videos, music, photos &amp; documents — saved here, always available</small><div><button data-c="lib">📚 My Library <span class="mp-cnt"></span></button><button data-c="openf">📥 Import files</button><button data-c="openu">🔗 Open URL</button></div><small class="mp-dd">…or drag &amp; drop files here</small></div></div><div class="mp-pl" hidden><div class="mp-ph"><b>Playlist</b><span class="sp"></span><button data-c="openf" title="Add files">＋</button><button data-c="clearpl" title="Clear this list (files stay in My Library)">🗑</button></div><div class="mp-pli"></div></div></div>
 <div class="mp-ctl"><div class="mp-sk"><span class="mp-tc">0:00</span><input type="range" class="mp-seek" min="0" max="1000" value="0"><span class="mp-td">0:00</span></div><div class="mp-row"><button data-c="prev" title="Previous (P)">⏮</button><button data-c="back" title="Back 10s (←)">⏪</button><button data-c="play" class="mp-pp" title="Play / Pause (Space)">▶</button><button data-c="fwd" title="Forward 10s (→)">⏩</button><button data-c="next" title="Next (N)">⏭</button><button data-c="stop" title="Stop">⏹</button><span class="sp"></span><button data-c="rep" title="Repeat (L)" class="mp-rp">🔁</button><button data-c="shuf" title="Shuffle" class="mp-sh">🔀</button><button data-c="spd" class="mp-spd" title="Speed">1×</button><button data-c="mute" class="mp-mu" title="Mute (M)">🔊</button><input type="range" class="mp-vol" min="0" max="100" value="80" title="Volume"><button data-c="pl" title="Playlist" class="mp-plb">☰</button><button data-c="full" title="Fullscreen (F)">⛶</button></div></div>
 <input type="file" class="mp-hf" hidden><div class="mp-toast"></div>`;
@@ -9648,7 +9648,7 @@ async function libCount(){const o={};const all=(await BXFS.all()).filter(n=>n.t=
 async function appDocs(a){try{if(a==='word'){const d=WDDB.all();return Object.keys(d).map(k=>({id:'app:word:'+k,pseudo:1,app:'word',ref:k,t:'f',n:(d[k].name||'Document')+'.docx',mt:d[k].modified||0,s:(d[k].html||'').length,m:''}))}
  if(a==='excel'){const d=XLD.idx();return Object.keys(d).map(k=>({id:'app:excel:'+k,pseudo:1,app:'excel',ref:k,t:'f',n:(d[k].name||'Workbook')+'.xlsx',mt:d[k].mod||0,s:d[k].size||0,m:''}))}
  if(a==='ppt'){const d=await PPDB.all();return(d||[]).map(p=>({id:'app:ppt:'+p.id,pseudo:1,app:'ppt',ref:p.id,t:'f',n:(p.name||'Presentation')+'.pptx',mt:p.modified||0,s:JSON.stringify(p.slides||[]).length,m:''}))}}catch(e){}return[]}
-const APPF=[['word','BhartiX Office','📘'],['excel','Excel / Sheets','📗'],['ppt','PowerPoint','📙']];
+const APPF=[['word','BhartiX Writer','📘'],['excel','Excel / Sheets','📗'],['ppt','PowerPoint','📙']];
 async function load(){let L=[];if(cwd==='home'){L=(await BXFS.all()).filter(n=>n.t==='f'&&n.id!=='trash'&&n.p!=='trash'&&n.p!=='root'&&!n.hid).sort((a,b)=>(b.mt||0)-(a.mt||0)).slice(0,12)}else if(cwd==='pc'){L=(await BXFS.kids('root')).filter(k=>!k.hid&&!k.drv)}else if(cwd.startsWith('app:'))L=await appDocs(cwd.slice(4));else if(cwd.startsWith('drv:')){const d=DRV.find(x=>x[0]===cwd.slice(4));const ks=await BXFS.kids('root');L=ks.filter(k=>d&&(d[3].includes(k.id)||k.drv===d[0]))}else if(cwd.startsWith('lib:'))L=await libItems(cwd.slice(4));else if(cwd==='usb:')L=[];else L=await BXFS.kids(cwd);
  const f=qin.value.trim().toLowerCase();if(f){const all=await BXFS.all();L=all.filter(n=>n.t&&n.id!=='trash'&&n.p!=='root'&&n.n.toLowerCase().includes(f)&&(n.p!=='trash'));for(const a of ['word','excel','ppt'])(await appDocs(a)).forEach(x=>{if(x.n.toLowerCase().includes(f))L.push(x)})}
  const k=P.sort,dir=P.asc?1:-1;if(cwd!=='home'||f)L.sort((a,b)=>{if(a.t!==b.t)return a.t==='d'?-1:1;let r=0;if(k==='date')r=(a.mt||0)-(b.mt||0);else if(k==='size')r=(a.s||0)-(b.s||0);else if(k==='type')r=fmExt(a.n).localeCompare(fmExt(b.n))||a.n.localeCompare(b.n);else r=a.n.localeCompare(b.n,undefined,{numeric:true,sensitivity:'base'});return r*dir});items=L;
@@ -9900,7 +9900,7 @@ function openScan(init){
  let o=W.find(x=>x.id==='scan');if(o){openWin('scan');if(init&&init.files)o.snAdd(init.files);return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('scan','BhartiX Scan',SN_ICON,'<div class="wpr sn" tabindex="-1"></div>',Math.min(900,cw0-16),Math.min(560,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<700||ch0<440)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<700||ch0<440)toggleMax(o);
  root.innerHTML=`<div class="sn-bar"><button class="sn-b pri" data-c="cam">📷 Camera</button><button class="sn-b" data-c="gal">🖼 Gallery</button><button class="sn-b" data-c="files">📁 Files</button><span class="sp"></span><button class="sn-b" data-c="del" title="Delete page">🗑</button></div>
 <div class="sn-tools"></div><div class="sn-stage"><div class="sn-empty"><div>📄</div><b>Scan your notes</b><p>Take a photo of your handwritten page or book.<br>BhartiX Scan crops it, cleans the paper and makes a sharp PDF — each page stays separate and readable.</p><button class="sn-b pri" data-c="cam">📷 Take photo</button> <button class="sn-b" data-c="gal">🖼 Choose from gallery</button></div><div class="sn-cw" hidden><canvas class="sn-cv"></canvas><svg class="sn-ov" hidden></svg></div><div class="sn-busy" hidden>Working…</div></div>
 <div class="sn-strip"></div><div class="sn-act"></div><input type="file" class="sn-hf" hidden><div class="sn-toast"></div>`;
@@ -10607,7 +10607,7 @@ function openSrijan(init){
  let o=W.find(x=>x.id==='srijan');if(o){openWin('srijan');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('srijan','BhartiX Studio',SR_ICON,'<div class="wpr sr" tabindex="-1"></div>',Math.min(1000,cw0-16),Math.min(640,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  root.innerHTML=`<div class="sr-top"><button class="sr-b" data-a="home" title="Home">🏠</button><input class="sr-name" value="" spellcheck="false"><span class="sp"></span><button class="sr-b" data-a="undo" title="Undo">↶</button><button class="sr-b" data-a="redo" title="Redo">↷</button><button class="sr-b pri" data-a="export">⬇ Export</button></div>
 <div class="sr-sw0"><div class="sr-zoom"><button class="sr-b" data-a="zout">－</button><button class="sr-b sr-zl" data-a="fit">Fit</button><button class="sr-b" data-a="zin">＋</button></div><div class="sr-stage"><div class="sr-pad"><div class="sr-pg"><canvas class="sr-cv"></canvas><div class="sr-gv" hidden></div><div class="sr-gh" hidden></div><div class="sr-box" hidden></div></div></div><div class="sr-ted" hidden><textarea spellcheck="false" placeholder="Type your text…"></textarea><button class="sr-b pri" data-a="tdone">Done</button></div></div></div>
 <div class="sr-prop"></div><div class="sr-panel" hidden></div><div class="sr-tabs"></div>
@@ -10834,7 +10834,7 @@ function openPDFReader(init){
  if(o){openWin('pdfr');if(init.file)o.pdrOpen(init.file,init.fid);return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('pdfr','BhartiX PDF',PDR_ICON,'<div class="wpr pdr" tabindex="-1"></div>',Math.min(980,cw0-16),Math.min(640,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  root.innerHTML=`<div class="pdr-tabs"></div><div class="pdr-top"><button class="pdr-b" data-a="side" title="Pages & contents">☰</button><button class="pdr-b" data-a="open" title="Open PDF">📂</button><span class="pdr-ttl"></span><span class="sp"></span><span class="pdr-pn"><input class="pdr-pi" type="number" min="1" value="1"><span class="pdr-pt">/ 0</span></span><button class="pdr-b" data-a="zout">－</button><button class="pdr-b pdr-zl" data-a="fit" title="Fit width">100%</button><button class="pdr-b" data-a="zin">＋</button><button class="pdr-b" data-a="search" title="Search">🔍</button><button class="pdr-b" data-a="ann" title="Highlight & draw">✏️</button><button class="pdr-b" data-a="menu">⋯</button></div>
 <div class="pdr-anb" hidden></div>
 <div class="pdr-sbar" hidden><input class="pdr-si" type="search" placeholder="Search in this PDF…"><button class="pdr-b" data-a="sprev">▲</button><button class="pdr-b" data-a="snext">▼</button><span class="pdr-sc"></span><button class="pdr-b" data-a="sclose">✕</button></div>
@@ -11029,7 +11029,7 @@ function openCalendar(init){
  let o=W.find(x=>x.id==='cal');if(o){openWin('cal');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('cal','BhartiX Calendar',CAL_ICON,'<div class="wpr cl" tabindex="-1"></div>',Math.min(900,cw0-16),Math.min(620,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<720||ch0<480)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<720||ch0<480)toggleMax(o);
  root.innerHTML=`<div class="cl-top"><div class="cl-tabs"><button data-v="month" class="on">Month</button><button data-v="agenda">Agenda</button><button data-v="tt">Timetable</button><button data-v="exam">Exams</button></div><span class="sp"></span><button class="cl-b" data-a="set" title="Settings">⚙</button><button class="cl-b pri" data-a="add">＋ Add</button></div><div class="cl-view"></div><div class="cl-toast"></div>`;
  const q=s=>root.querySelector(s);const view=q('.cl-view');let v='month',today=clYMD(new Date()),cur=new Date(),sel=today,tT;
  cur.setDate(1);const S=()=>CLS.get(),hi=()=>S().set.hi;
@@ -11233,7 +11233,7 @@ function openChitra(init){
  init=init||{};let o=W.find(x=>x.id==='chitra');if(o){openWin('chitra');if(init.file)o.chOpenFile(init.file);return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('chitra','BhartiX Chitra',CH_ICON,'<div class="wpr ch" tabindex="-1"></div>',Math.min(1100,cw0-16),Math.min(660,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  root.innerHTML=`<div class="ch-menu"><span class="ch-logo" title="BhartiX Chitra">Ch</span><button class="ch-mb" data-m="file">File</button><button class="ch-mb" data-m="edit">Edit</button><button class="ch-mb" data-m="image">Image</button><button class="ch-mb" data-m="layer">Layer</button><button class="ch-mb" data-m="type">Type</button><button class="ch-mb" data-m="select">Select</button><button class="ch-mb" data-m="filter">Filter</button><button class="ch-mb" data-m="view">View</button><button class="ch-mb" data-m="window">Window</button><button class="ch-mb" data-m="help">Help</button><span class="sp"></span><button class="ch-mb ch-un" data-a="undo" title="Undo (Ctrl+Z)">${ICO.undo}</button><button class="ch-mb ch-un" data-a="redo" title="Redo (Ctrl+Shift+Z)">${ICO.redo}</button><button class="ch-mb ch-ps" data-a="panel" title="Show / hide panels">${ICO.panel}</button><button class="ch-shr" data-a="share" title="Share / save as JPG">${ICO.share}<span>Share</span></button></div>
 <div class="ch-opt"></div>
 <div class="ch-main"><div class="ch-tools"></div><div class="ch-center"><div class="ch-dtab" hidden><b><span></span><button class="ch-dtx" data-a="closedoc" title="Close">✕</button></b></div><div class="ch-stage"><canvas class="ch-cv"></canvas><canvas class="ch-ov"></canvas><div class="ch-empty"><div class="ch-hl">Ch</div><b>BhartiX Chitra</b><p>Photo editor — layers, masks, selections, 60+ tools, adjustments, filters &amp; paths.<br>Also makes exam-form photos, signatures and passport sheets.</p><div class="ch-eb"><button class="ch-b pri" data-a="new">＋ New file</button><button class="ch-b" data-a="open">📂 Open photo</button><button class="ch-b" data-a="openf">📁 From Files</button><button class="ch-b" data-a="form">🪪 Form photo / passport</button></div><div class="ch-rec"></div></div><div class="ch-busy" hidden>Working…</div></div></div>
@@ -12729,7 +12729,7 @@ function openNotes(init){
  let o=W.find(x=>x.id==='notes');if(o){openWin('notes');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('notes','BhartiX Notes',NT_ICON,'<div class="wpr nt" tabindex="-1"></div>',Math.min(980,cw0-16),Math.min(640,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  root.innerHTML=`<div class="nt-top"><div class="nt-tabs"><button data-tab="notes">📝 Notes</button><button data-tab="todo">✅ To-do</button><button data-tab="plan">🎯 Planner</button></div><input class="nt-s" type="search" placeholder="Search…"><button class="nt-bk" data-a="backup" title="Backup & Restore">💾</button><button class="nt-new" data-a="new">＋ New</button></div><div class="nt-chips"></div><div class="nt-body"></div><div class="nt-toast"></div>`;
  const q=s=>root.querySelector(s),body=q('.nt-body'),chips=q('.nt-chips');
  let N=[],T=[],PL=[],tT;const S={tab:'notes',q:'',filt:'all',tf:'all',showDone:0};
@@ -13082,7 +13082,7 @@ function openTyping(init){
  let o=W.find(x=>x.id==='typing');if(o){openWin('typing');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('typing','BhartiX Type',TP_ICON,'<div class="wpr tp" tabindex="-1"></div>',Math.min(1000,cw0-16),Math.min(680,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<520)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<520)toggleMax(o);
  const coarse=matchMedia('(pointer:coarse)').matches;
  let ST={lang:'en',hist:[],les:{en:{},hi:{}},keys:{en:{},hi:{}},game:{en:0,hi:0},ins:!coarse,kb:!coarse&&innerWidth>=760,size:22};
  try{const s=JSON.parse(localStorage.getItem('bxtype')||'null');if(s)ST=Object.assign(ST,s);ST.les=Object.assign({en:{},hi:{}},ST.les);ST.keys=Object.assign({en:{},hi:{}},ST.keys);ST.game=Object.assign({en:0,hi:0},ST.game)}catch(e){}
@@ -13244,7 +13244,7 @@ function openCards(init){
  let o=W.find(x=>x.id==='cards');if(o){openWin('cards');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('cards','BhartiX Cards',FC_ICON,'<div class="wpr fc" tabindex="-1"></div>',Math.min(900,cw0-16),Math.min(660,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  let D=[];try{D=JSON.parse(localStorage.getItem('bxfc')||'[]')}catch(e){}
  const save=()=>{try{localStorage.setItem('bxfc',JSON.stringify(D))}catch(e){say('Storage is full — export and delete some decks')}};
  root.innerHTML='<div class="fc-top"></div><div class="fc-body"></div><div class="fc-toast"></div>';
@@ -13349,7 +13349,7 @@ function openStudyTimer(){
  let o=W.find(x=>x.id==='sttimer');if(o){openWin('sttimer');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('sttimer','BhartiX Focus',STM_ICON,'<div class="wpr stm" tabindex="-1"></div>',Math.min(760,cw0-16),Math.min(640,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  const DEF={f:25,s:5,l:15,every:4,auto:0,snd:1,goal:120,subs:['Maths','Science','English','Hindi','Social Science','Other']};
  let S={set:{...DEF},log:[],sub:'Maths'};try{const s=JSON.parse(localStorage.getItem('bxstudy')||'null');if(s){S={...S,...s};S.set={...DEF,...s.set}}}catch(e){}
  let run=null;try{run=JSON.parse(localStorage.getItem('bxstrun')||'null')}catch(e){}
@@ -13569,7 +13569,7 @@ function openResume(init){
  let o=W.find(x=>x.id==='resume');if(o){openWin('resume');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('resume','BhartiX Resume',RM_ICON,'<div class="wpr rm" tabindex="-1"></div>',Math.min(1100,cw0-16),Math.min(700,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<900||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<900||ch0<500)toggleMax(o);
  let ST={list:[],cur:null};try{const s=JSON.parse(localStorage.getItem('bxresume')||'null');if(s&&s.list)ST=s}catch(e){}
  ST.list.forEach(rmMig);if(!ST.list.length){const r=rmBlank();ST.list.push(r);ST.cur=r.id}if(!ST.list.find(r=>r.id===ST.cur))ST.cur=ST.list[0].id;
  const R0=()=>ST.list.find(r=>r.id===ST.cur);let tT,sv,pv,tab='content',view='edit',openSet=new Set(['p']);
@@ -13712,7 +13712,7 @@ function openGraph(init){
  let o=W.find(x=>x.id==='graph');if(o){openWin('graph');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('graph','BhartiX Charts',GC_ICON,'<div class="wpr gc" tabindex="-1"></div>',Math.min(1000,cw0-16),Math.min(660,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<520)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<520)toggleMax(o);
  let S={fns:[{s:'',v:1}],P:{...GC_P},deg:0,cx:0,cy:0,sc:40,sel:0};try{const s=JSON.parse(localStorage.getItem('bxgraph')||'null');if(s&&s.fns&&s.fns.length){if(s.fns.length===3&&s.fns[0].s==='y=x^2'&&s.fns[1].s==='y=sin(x)'&&!s.fns[2].s)s.fns=[{s:'',v:1}];S={...S,...s};S.P={...GC_P,...s.P}}}catch(e){}
  Object.assign(GC_P,S.P);gcDeg=S.deg;
  const save=()=>{try{localStorage.setItem('bxgraph',JSON.stringify({fns:S.fns,P:{...GC_P},deg:S.deg,cx:S.cx,cy:S.cy,sc:S.sc,sel:S.sel}))}catch(e){}};
@@ -13835,7 +13835,7 @@ function openCode(){
  let o=W.find(x=>x.id==='bxcode');if(o){openWin('bxcode');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('bxcode','BhartiX Code',CE_ICON,'<div class="wpr ce" tabindex="-1"></div>',Math.min(980,cw0-16),Math.min(660,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<760||ch0<500)toggleMax(o);
  const q=s=>root.querySelector(s);let tT;
  const say=m=>{const t=q('.ce-toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2200)};
  const mkP=(n,t)=>({id:'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),name:n,h:t.h,c:t.c,j:t.j,t:Date.now()});
@@ -13956,7 +13956,7 @@ function openVoice(){
  let o=W.find(x=>x.id==='bxvoice');if(o){openWin('bxvoice');return o}
  const cw0=OS.clientWidth,ch0=OS.clientHeight-BAR;
  o=openWin('bxvoice','BhartiX Voice',VR_ICON,'<div class="wpr vr" tabindex="-1"></div>',Math.min(560,cw0-16),Math.min(660,ch0-10));
- const root=o.wb.firstChild;o.wb.style.overflow='hidden';if(cw0<600||ch0<520)toggleMax(o);
+ const root=o.wb.firstChild;o.agEval=s=>eval(s);o.wb.style.overflow='hidden';if(cw0<600||ch0<520)toggleMax(o);
  const q=s=>root.querySelector(s);let tT,tab='rec';
  const say=m=>{const t=q('.vr-toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2400)};
  let meta={};try{meta=JSON.parse(localStorage.getItem('bxvr')||'{}')}catch(e){}
@@ -15162,6 +15162,29 @@ textarea.code{width:100%;box-sizing:border-box;min-height:200px;font-family:"Rob
 ::highlight(bwsim){background-color:#e0d4ff}
 .app.touchy .tb{min-width:36px;height:34px}.app.touchy .panel{height:44px}
 @media (max-width:760px){.sbspane{width:100%;order:6;height:45%}.side.wide{width:240px}.rabar{flex-wrap:wrap;width:calc(100vw - 32px);justify-content:center}}
+/* ---- no dark title bar (like BhartiX Paint) ---- */
+.app.notitle .titlebar{display:none}
+.tabrow{display:flex;align-items:flex-end;background:var(--panel);flex:none;min-width:0}
+.tabrow .tabs{flex:1 1 auto;min-width:0}
+.tabright{display:flex;align-items:center;gap:6px;padding:0 8px 3px 6px;flex:none;max-width:52%}
+.tabright .docname{color:var(--ink);font-size:13px;flex:0 1 200px;min-width:60px;height:26px;text-overflow:ellipsis}
+.tabright .docname:hover{border-color:var(--line)}
+.tabright .docname:focus{outline:none;border-color:var(--saffron);background:var(--paper,#fff)}
+.tabright .savestate{margin-left:0;cursor:pointer}
+.tabright .savestate span{display:none}
+.tabright .tsearch{display:block!important;flex:none;margin:0;width:28px;height:26px;border-radius:6px;cursor:pointer;transition:width .15s}
+.tabright .tsearch:hover{background:rgba(127,127,127,.12)}
+.tabright .tsearch input{position:absolute;inset:0;width:100%;height:26px;opacity:0;pointer-events:none;border-color:var(--line);background:var(--panel);color:var(--ink)}
+.tabright .tsearch svg{left:7px;top:6px;color:var(--muted,#667)}
+.tabright .tsearch.open{width:min(200px,40vw)}
+.tabright:has(.tsearch.open) .docname{display:none}
+.tabright .tsearch.open input{opacity:1;pointer-events:auto}
+.tabright .ribopt{flex:none}
+.app.rib-auto .tabrow{display:none}.app.rib-auto.rib-peek .tabrow{display:flex}
+.app.focusv .tabrow{display:none}
+.tools .vstack{display:flex;flex-direction:column;gap:0}
+.tools .vstack .tb{height:22px;min-height:0}
+@media (max-width:520px){.tabright{max-width:42%;gap:3px;padding-right:4px}.tabright .docname{flex-basis:92px;min-width:48px}}
 
 </style>
 
@@ -18782,6 +18805,43 @@ document.addEventListener('keydown',e=>{const k=e.key,lk=k.toLowerCase(),c=e.ctr
 afterHooks.push(()=>{doc.spellcheck=OPT.spellType!==false;syncTrackUI();applyProtect();updAccessStatus();if(D.mm&&D.mm.preview)mmPreview(true);selectTab('home');});
 
 
+/* ---- 22_notitle.js ---- */
+/* ===================================================================
+   No dark title bar (like BhartiX Paint): the document name, save dot
+   and search sit at the right of the tab row; Save, Share, Undo, Redo
+   and Print are the first group of the Home tab.
+   =================================================================== */
+(function(){
+  const homePanel=PANELS.home;
+  PANELS.home=()=>G(
+    X('docsave',I('<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v6h8V3M8 21v-7h8v7"/>'),'Save','Save (Ctrl+S)'),
+    X('docshare',I('<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.4M8.2 13.2l7.6 4.4"/>'),'Share','Save as / Share (Ctrl+Shift+S)'),
+    `<span class="vstack">${X('docundo',I('<path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3"/>'),'','Undo (Ctrl+Z)')}${X('docredo',I('<path d="m15 14 5-5-5-5M20 9H10a6 6 0 0 0 0 12h3"/>'),'','Redo (Ctrl+Y)')}</span>`,
+    X('docprint',I('<path d="M7 8V3h10v5M7 17H4v-7h16v7h-3"/><rect x="7" y="14" width="10" height="7"/>'),'','Print (Ctrl+P)'))+homePanel();
+  XA.docsave=()=>saveDoc(true);
+  XA.docshare=()=>openShare();
+  XA.docundo=()=>undoAny();
+  XA.docredo=()=>redoAny();
+  XA.docprint=()=>openBackstage('print');
+
+  function mountRight(){const nav=$('.tabs');if(!nav)return;
+    let row=$id('tabRow');
+    if(!row){row=document.createElement('div');row.className='tabrow';row.id='tabRow';nav.before(row);row.appendChild(nav);
+      const r=document.createElement('div');r.className='tabright';r.id='tabRight';row.appendChild(r);}
+    const r=$id('tabRight');
+    const dn=$id('docName'),ss=$id('saveState'),ts=$('.tsearch');
+    if(ts&&!ts._bx){ts._bx=1;
+      const ib=ts.querySelector('svg');ts.addEventListener('mousedown',e=>e.stopPropagation(),true);ts.onclick=e=>{const inp=ts.querySelector('input');ts.classList.add('open');inp.focus();setTimeout(()=>inp.focus(),40);};
+      ts.querySelector('input').addEventListener('blur',e=>{setTimeout(()=>{if(!e.target.value)ts.classList.remove('open');},200);});}
+    [dn,ss,ts,$id('ribOpt')].forEach(e=>{if(e)r.appendChild(e);});
+    $('#app').classList.add('notitle');}
+  const _bt=buildTabs;buildTabs=function(){_bt.apply(this,arguments);mountRight();};
+  startHooks.push(mountRight);
+})();
+
+
+window.__ag=s=>eval(s);
+
 /* ================= start ================= */
 bwStart();buildPanel();applyGeo();if(desk.clientWidth<geo().W+40)fitWidth();updStatus();renderComments();bwAfterStart();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>paginate());
@@ -19018,7 +19078,7 @@ svg.i{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
+(function(){window.__ag=s=>eval(s);
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ta=$('#ta'),gutter=$('#gutter'),menu=$('#menu'),app=$('#app');
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
@@ -19540,7 +19600,7 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
+(function(){window.__ag=s=>eval(s);
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const cv=$('#cv'),ctx=cv.getContext('2d',{willReadFrequently:true}),ov=$('#ov'),octx=ov.getContext('2d'),stage=$('#stage'),desk=$('#desk'),pop=$('#pop');
@@ -20402,7 +20462,7 @@ svg.i{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
+(function(){window.__ag=s=>eval(s);
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const garea=$('#garea'),space=$('#space'),scroller=$('#scroller'),ed=$('#cellEd'),fx=$('#fxIn'),menu=$('#menu'),pop=$('#pop');
@@ -23911,7 +23971,7 @@ svg.i{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.9;stro
 <div class="toast" id="toast"></div>
 
 <script>
-(function(){
+(function(){window.__ag=s=>eval(s);
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const LS={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -24480,10 +24540,765 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{renderThu
 addEventListener('message',e=>{const d=e.data;if(!d||!d.bxOpen)return;const inp=document.getElementById('openFile');if(!inp)return;try{const dt=new DataTransfer();dt.items.add(d.bxOpen);inp.files=dt.files;inp.dispatchEvent(new Event('change'));}catch(err){}});
 try{parent.postMessage({bxReady:1},'*');}catch(e){}
 <\/script></body></html></script>
+<script type="text/plain" id="bxapp-agent"><!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>BhartiX Agent</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+:root{
+ --bg:#f6f7fb;--panel:#ffffff;--side:#eef1f7;--fg:#1b2333;--mu:#5d6779;--bd:#dde2ec;--hov:#e6eaf3;
+ --ac:#2453c9;--ac2:#e8742b;--acfg:#fff;--soft:#e8eefc;--code:#0f172a;--codefg:#e2e8f0;--warn:#fff4e5;--warnbd:#f2b45c;--warnfg:#7a4a06;
+ --user:#2453c9;--userfg:#fff;--shadow:0 1px 2px rgba(20,30,60,.06),0 4px 16px rgba(20,30,60,.06);
+ color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --bg:#11151d;--panel:#171c26;--side:#141922;--fg:#e6eaf2;--mu:#98a2b5;--bd:#2a3140;--hov:#222a38;
+ --ac:#6f98ff;--ac2:#ff9a52;--acfg:#0d1220;--soft:#1e2840;--code:#0b0f17;--codefg:#dbe3f0;--warn:#2b2214;--warnbd:#8a5d1c;--warnfg:#f5cf8f;
+ --user:#3a64d8;--userfg:#fff;--shadow:0 1px 2px rgba(0,0,0,.3);color-scheme:dark}}
+:root[data-theme="dark"]{
+ --bg:#11151d;--panel:#171c26;--side:#141922;--fg:#e6eaf2;--mu:#98a2b5;--bd:#2a3140;--hov:#222a38;
+ --ac:#6f98ff;--ac2:#ff9a52;--acfg:#0d1220;--soft:#1e2840;--code:#0b0f17;--codefg:#dbe3f0;--warn:#2b2214;--warnbd:#8a5d1c;--warnfg:#f5cf8f;
+ --user:#3a64d8;--userfg:#fff;--shadow:0 1px 2px rgba(0,0,0,.3);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font:14px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans Devanagari",sans-serif;overflow:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+.app{display:grid;grid-template-rows:auto 1fr;height:100%}
+/* top bar */
+.top{display:flex;align-items:center;gap:6px;height:42px;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px));background:var(--panel);border-bottom:1px solid var(--bd)}
+.logo{display:flex;align-items:center;gap:8px;font-weight:650;font-size:15px;white-space:nowrap}
+.logo i{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--ac2),#d9417a 50%,var(--ac));display:grid;place-items:center;flex:none}
+.logo i svg{width:15px;height:15px}
+.tb{border:0;background:none;height:32px;min-width:32px;padding:0 8px;border-radius:6px;display:inline-flex;align-items:center;gap:6px;color:var(--fg)}
+.tb:hover{background:var(--hov)}
+.tb svg{width:18px;height:18px;flex:none}
+.tb .lb{font-size:13px}
+.sp{flex:1}
+.chip-ag{flex:0 1 auto;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mu);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0}
+.top select{height:30px;border:1px solid var(--bd);border-radius:6px;background:var(--panel);padding:0 6px;font-size:13px}
+.body{display:grid;grid-template-columns:270px 1fr;min-height:0}
+/* sidebar */
+.side{background:var(--side);border-right:1px solid var(--bd);display:flex;flex-direction:column;min-height:0}
+.side .sbtop{padding:10px 10px 6px;display:flex;flex-direction:column;gap:8px}
+.newb{display:flex;align-items:center;gap:8px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--panel);padding:0 12px;font-weight:600;box-shadow:var(--shadow)}
+.newb:hover{border-color:var(--ac)}
+.newb svg{width:18px;height:18px;color:var(--ac)}
+.srch{height:32px;border-radius:7px;border:1px solid var(--bd);background:var(--panel);padding:0 10px;width:100%}
+.slist{overflow:auto;flex:1;padding:0 6px 12px}
+.sh{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);padding:12px 8px 4px;font-weight:650}
+.si{display:flex;align-items:center;gap:9px;width:100%;border:0;background:none;text-align:left;padding:6px 8px;border-radius:7px;min-height:34px}
+.si:hover{background:var(--hov)}
+.si.on{background:var(--soft);font-weight:600}
+.si .n{font-size:11px;color:var(--mu);width:16px;text-align:right;flex:none}
+.si .e{font-size:16px;width:22px;text-align:center;flex:none}
+.si .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.si .x{opacity:0;border:0;background:none;width:24px;height:24px;border-radius:5px;color:var(--mu);flex:none}
+.si:hover .x{opacity:1}
+.si .x:hover{background:var(--bd)}
+/* main */
+.main{display:flex;flex-direction:column;min-height:0;min-width:0;position:relative}
+.scroll{flex:1;overflow:auto;min-height:0}
+.wrap{max-width:860px;margin:0 auto;padding-block:18px 24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.banner{border-radius:10px;padding:10px 14px;background:linear-gradient(120deg,#ff8a3d 0%,#e2477c 45%,#3157d6 100%);color:#fff;box-shadow:var(--shadow)}
+.banner h1{margin:0;font-size:16px;line-height:1.25;text-wrap:balance;font-weight:700}
+.banner p{margin:1px 0 0;font-size:12.5px;opacity:.93;max-width:60ch}
+.banner .langs{font-size:13px;opacity:.9;margin-top:6px}
+.setup{margin-top:14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;border:1px solid var(--warnbd);background:var(--warn);color:var(--warnfg);border-radius:10px;padding:10px 12px}
+.setup p{margin:0;flex:1;min-width:200px}
+.btn{height:34px;border-radius:7px;border:1px solid var(--bd);background:var(--panel);padding:0 14px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--ac)}
+.btn.pri{background:var(--ac);border-color:var(--ac);color:var(--acfg)}
+.btn.pri:hover{filter:brightness(1.07)}
+.btn:disabled{opacity:.55;cursor:default}
+.cat{margin-top:18px}
+.cat h2{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin:0 0 8px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card{display:flex;gap:12px;align-items:flex-start;text-align:left;border:1px solid var(--bd);background:var(--panel);border-radius:11px;padding:12px;box-shadow:var(--shadow);position:relative;overflow:hidden;min-width:0}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.card:hover{border-color:var(--c)}
+.card .em{font-size:24px;line-height:1;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,transparent);flex:none}
+.card b{display:block;font-size:14px}
+.card small{display:block;color:var(--mu);font-size:12.5px;margin-top:2px;line-height:1.4}
+.card .num{position:absolute;right:10px;top:8px;font-size:11px;color:var(--mu);font-weight:700}
+.ctitle{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--mu);margin:20px 0 8px;font-weight:700}
+.ctabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ctab{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--bd);background:var(--panel);border-radius:11px;padding:10px 12px;box-shadow:var(--shadow);min-width:0;border-bottom:3px solid transparent}
+.ctab:hover{border-color:var(--c)}
+.ctab.on{border-color:var(--c);border-bottom-color:var(--c);background:color-mix(in srgb,var(--c) 9%,var(--panel))}
+.ctab .ce{font-size:22px;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 14%,transparent);flex:none}
+.ctab .ct{flex:1;min-width:0}
+.ctab b{display:block;font-size:13.5px;line-height:1.3}
+.ctab small{display:block;color:var(--mu);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ctab .chev,.scat .chev{color:var(--mu);font-size:15px;flex:none}
+#catPanel .cat{margin-top:10px}
+.cempty{margin:12px 2px 10px}
+.scat{font-weight:600}
+.sgrp{padding-left:10px;border-left:2px solid var(--bd);margin:0 0 4px 18px}
+@media (min-width:901px){.ctabs{grid-template-columns:repeat(5,minmax(0,1fr))}.ctab{flex-direction:column;text-align:center;padding:12px 8px;gap:6px;position:relative}.ctab .chev{position:absolute;right:8px;top:6px}.ctab small{white-space:normal}}
+@media (max-width:900px){.ctabs{grid-template-columns:repeat(2,minmax(0,1fr))}.ctab:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:420px){.ctab{padding:9px;gap:8px}.ctab .ce{width:32px;height:32px;font-size:18px}.ctab b{font-size:12.5px}}
+.hometip{display:block;width:100%;margin-top:12px;border:1px dashed var(--bd);background:var(--panel);border-radius:10px;padding:12px 14px;text-align:left;color:var(--mu);font-size:13.5px}
+.hometip:hover{border-color:var(--ac);color:var(--fg)}
+#bSet{position:relative}
+#bSet.need::after{content:"";position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:#e8742b;box-shadow:0 0 0 2px var(--panel)}
+.prompt-line{margin:18px 0 0;color:var(--mu);font-size:13px}
+/* chat */
+.ahead{display:flex;gap:12px;align-items:center;padding:6px 0 14px;border-bottom:1px solid var(--bd);margin-bottom:14px}
+.ahead .em{font-size:26px;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 15%,transparent);flex:none}
+.ahead h2{margin:0;font-size:17px}
+.ahead p{margin:2px 0 0;color:var(--mu);font-size:13px}
+.msgs{display:flex;flex-direction:column;gap:16px}
+.m{display:flex;gap:10px;min-width:0}
+.m.u{justify-content:flex-end}
+.m .av{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:16px;background:color-mix(in srgb,var(--c,#888) 15%,transparent);flex:none}
+.m .bub{min-width:0;max-width:100%}
+.m.u .bub{background:var(--user);color:var(--userfg);border-radius:14px 14px 4px 14px;padding:9px 13px;max-width:85%;white-space:pre-wrap;word-wrap:break-word}
+.m.u .bub img{max-width:160px;border-radius:8px;display:block;margin-bottom:6px}
+.m.a .bub{flex:1}
+.md{word-wrap:break-word;overflow-wrap:anywhere}
+.md>*:first-child{margin-top:0}
+.md>*:last-child{margin-bottom:0}
+.md p{margin:0 0 .7em}
+.md h1,.md h2,.md h3,.md h4{margin:1em 0 .45em;line-height:1.3;text-wrap:balance}
+.md h1{font-size:1.3em}.md h2{font-size:1.17em}.md h3{font-size:1.05em}.md h4{font-size:1em}
+.md ul,.md ol{margin:0 0 .7em;padding-left:1.4em}
+.md li{margin:.2em 0}
+.md blockquote{margin:0 0 .7em;padding:.4em .9em;border-left:3px solid var(--ac);background:var(--soft);border-radius:0 8px 8px 0}
+.md code{font-family:ui-monospace,"Cascadia Code",Consolas,monospace;font-size:.9em;background:var(--soft);padding:.1em .35em;border-radius:4px}
+.md pre{background:var(--code);color:var(--codefg);border-radius:10px;padding:0;margin:0 0 .8em;overflow:hidden}
+.md pre .ph{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 4px 12px;font-size:12px;opacity:.85;border-bottom:1px solid rgba(255,255,255,.08)}
+.md pre .ph button{border:0;background:rgba(255,255,255,.08);color:inherit;border-radius:5px;padding:2px 8px;font-size:12px}
+.md pre code{display:block;background:none;padding:10px 12px;overflow-x:auto;color:inherit;white-space:pre;font-size:12.8px}
+.md .tw{overflow-x:auto;margin:0 0 .8em}
+.md table{border-collapse:collapse;font-size:13.5px;min-width:60%}
+.md th,.md td{border:1px solid var(--bd);padding:6px 10px;text-align:left;vertical-align:top}
+.md th{background:var(--soft)}
+.md hr{border:0;border-top:1px solid var(--bd);margin:1em 0}
+.md a{color:var(--ac)}
+.disc{border:1px solid var(--warnbd);background:var(--warn);color:var(--warnfg);border-radius:9px;padding:8px 11px;margin:0 0 .8em;font-size:13px}
+.offtag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--soft);color:var(--ac);border-radius:5px;padding:1px 7px;margin-bottom:6px}
+.acts{display:flex;gap:2px;margin-top:6px;flex-wrap:wrap}
+.acts button{border:0;background:none;color:var(--mu);height:28px;padding:0 7px;border-radius:6px;font-size:12px;display:inline-flex;align-items:center;gap:4px}
+.acts button:hover{background:var(--hov);color:var(--fg)}
+.acts svg{width:15px;height:15px}
+.err{border:1px solid #e0a0a0;background:color-mix(in srgb,#d33 10%,var(--panel));border-radius:9px;padding:9px 12px;font-size:13px}
+.err .btn{margin-top:8px}
+.dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mu);margin-right:4px;animation:bl 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.pick{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+/* composer */
+.comp{border-top:1px solid var(--bd);background:var(--panel);padding-block:8px calc(8px + env(safe-area-inset-bottom,0px));padding-left:max(10px,env(safe-area-inset-left,0px));padding-right:max(10px,env(safe-area-inset-right,0px))}
+.comp .in{max-width:860px;margin:0 auto}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--bd);background:var(--bg);border-radius:16px;height:28px;padding:0 11px;font-size:12.5px;white-space:nowrap}
+.chip:hover{border-color:var(--ac);color:var(--ac)}
+.box{display:flex;align-items:flex-end;gap:4px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);padding:4px}
+.box:focus-within{border-color:var(--ac);box-shadow:0 0 0 2px color-mix(in srgb,var(--ac) 22%,transparent)}
+.box textarea{flex:1;border:0;background:none;resize:none;outline:0;max-height:180px;min-height:36px;padding:7px 6px;line-height:1.45;min-width:0}
+.ib{border:0;background:none;width:36px;height:36px;border-radius:9px;display:grid;place-items:center;color:var(--mu);flex:none}
+.ib:hover{background:var(--hov);color:var(--fg)}
+.ib svg{width:20px;height:20px}
+.ib.send{background:var(--ac);color:var(--acfg)}
+.ib.send:disabled{opacity:.4}
+.ib.rec{color:#d33}
+.att{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.att span{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--bd);border-radius:7px;padding:2px 4px 2px 8px;font-size:12px;max-width:220px}
+.att span em{font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.att button{border:0;background:none;width:20px;height:20px;border-radius:4px;color:var(--mu)}
+.hint{font-size:11.5px;color:var(--mu);text-align:center;margin-top:5px}
+/* dialog */
+.dlgbg{position:fixed;inset:0;background:rgba(10,15,30,.45);display:grid;place-items:center;z-index:50;padding:12px}
+.dlg{background:var(--panel);border:1px solid var(--bd);border-radius:12px;width:min(520px,100%);max-height:92vh;overflow:auto;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.dlg header{display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:var(--panel)}
+.dlg header b{flex:1;font-size:15px}
+.dlg .db{padding:14px;display:flex;flex-direction:column;gap:12px}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}
+.fld input,.fld select,.fld textarea{height:34px;border:1px solid var(--bd);border-radius:7px;background:var(--bg);padding:0 9px;font-weight:400;min-width:0}
+.fld textarea{height:80px;padding:7px 9px;resize:vertical}
+.fld small{font-weight:400;color:var(--mu)}
+.row{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
+.row>*{min-width:0}
+.dlg footer{display:flex;justify-content:flex-end;gap:8px;padding:12px 14px;border-top:1px solid var(--bd)}
+.note{font-size:12.5px;color:var(--mu);margin:0}
+.msg{font-size:13px;margin:0;min-height:1em}
+.msg.ok{color:#1d8a4a}.msg.bad{color:#c8322f}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:60;max-width:90%;box-shadow:var(--shadow)}
+.scrim{display:none}
+@media (max-width:760px){
+ .body{grid-template-columns:1fr}
+ .side{position:fixed;left:0;top:42px;bottom:0;width:min(290px,86vw);z-index:30;transform:translateX(-105%);transition:transform .2s;box-shadow:4px 0 20px rgba(0,0,0,.2);padding-left:env(safe-area-inset-left,0px)}
+ .side.open{transform:none}
+ .scrim.open{display:block;position:fixed;inset:42px 0 0 0;background:rgba(0,0,0,.3);z-index:25}
+ .tb .lb,.hide-s{display:none}
+ .banner{padding:9px 12px}
+ .top select{max-width:96px}
+ .top{gap:2px}
+}
+@media (max-width:400px){.logo span{font-size:14px}.top select{max-width:78px}}
+@media (min-width:761px){.menu-b{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+ <div class="top">
+  <button class="tb menu-b" id="bMenu" title="Agents" aria-label="Show agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <div class="logo"><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z"/></svg></i><span class="appname">BhartiX Agent</span></div>
+  <div class="chip-ag" id="curAg"></div>
+  <div class="sp"></div>
+  <button class="tb" id="bNew" title="New chat (Ctrl+Shift+O)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span class="lb">New chat</span></button>
+  <button class="tb" id="bSet" title="AI connection & settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span class="lb">Settings</span></button>
+ </div>
+ <div class="body">
+  <aside class="side" id="side">
+   <div class="sbtop">
+    <button class="newb" id="bHome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>Home · all agents</button>
+    <input class="srch" id="srch" placeholder="Search agents and chats" autocomplete="off">
+   </div>
+   <div class="slist" id="slist"></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <main class="main">
+   <div class="scroll" id="scroll"><div class="wrap" id="view"></div></div>
+   <div class="comp">
+    <div class="in">
+     <div class="chips" id="chips"></div>
+     <div class="att" id="att" hidden></div>
+     <div class="box">
+      <button class="ib" id="bAtt" title="Attach a photo or text file" aria-label="Attach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l8.6-8.6a3.7 3.7 0 0 1 5.2 5.2l-8.6 8.6a1.8 1.8 0 0 1-2.6-2.6l7.9-7.9"/></svg></button>
+      <textarea id="inp" rows="1" placeholder="Enter agent number (1-19) or name, then your task…"></textarea>
+      <button class="ib" id="bMic" title="Speak" aria-label="Voice input" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+      <button class="ib send" id="bSend" title="Send (Enter)" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+     </div>
+     <div class="hint" id="hint">AI can make mistakes — check important answers.</div>
+    </div>
+   </div>
+  </main>
+ </div>
+</div>
+<input type="file" id="fileIn" accept="image/*,.txt,.md,.csv,.json,.js,.py,.html,.css,.java,.c,.cpp,.ts,.xml,.log,.sql" multiple hidden>
+<input type="file" id="openFile" hidden>
+<script>
+/* ======================================================================
+   BhartiX Agent — The Universal Multi-Domain AI Ecosystem
+   11 specialised sub-agents, a router, streaming chat, offline helpers
+   ====================================================================== */
+'use strict';
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+const OSP=(()=>{try{return parent!==window&&typeof parent.bxSaveTo==='function'?parent:null}catch(e){return null}})();
+const ICON={
+ copy:'<path d="M8 8h12v12H8z"/><path d="M4 16V4h12"/>',speak:'<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>',
+ redo:'<path d="M20 12a8 8 0 1 1-2.4-5.7L20 8.5"/><path d="M20 3.5v5h-5"/>',writer:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+ save:'<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>',share:'<circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/>',
+ stop:'<rect x="7" y="7" width="10" height="10" rx="1.5" fill="currentColor"/>',send:'<path d="M12 19V5M5 12l7-7 7 7"/>'};
+const svg=(p,w)=>`<svg viewBox="0 0 24 24" ${w?`width="${w}" height="${w}"`:''} fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+
+/* ---------------- the 11 agents (from the BhartiX Agent roadmap) ---------------- */
+const AG=[
+ {id:1,e:'📱',n:'Social Media Manager',c:'#d9417a',d:'Viral hooks, captions, reel scripts, comment & DM replies',
+  wf:'Use official-API logic simulation (describe what you would post/schedule; never claim you actually posted). Create viral hooks (give 3-5 options), write captions and short-video/reel scripts with timestamps, add relevant hashtags, and format structured replies for comments and DMs. Adapt length and style to the platform (Instagram, YouTube Shorts, X, LinkedIn, Facebook, WhatsApp).',
+  tone:'Trendy, engaging and audience-centric.',
+  q:['Instagram reel के लिए 5 viral hooks दो — topic: morning routine','Write a LinkedIn post announcing my new job','इस comment का polite reply लिखो: "price बहुत ज़्यादा है"','30-second YouTube Shorts script on saving money']},
+ {id:2,e:'🎓',n:'Education & Research',c:'#7b4ce0',d:'Explain any concept simply, summarise papers, exam notes',
+  wf:'Act as a senior academic professor. Break complex STEM, coding or history concepts into simple layman terms with an everyday analogy, then the precise definition, then a tiny worked example. Summarise dense academic papers into atomic bullet points (Problem, Method, Key results, Limitations, Why it matters). Offer 3 quick self-check questions at the end when teaching.',
+  tone:'Encouraging, clear and highly educational.',
+  q:['Photosynthesis को आसान भाषा में समझाओ','Explain recursion with a real-life example','Class 10 के लिए Newton के 3 laws के short notes','Summarise this paper into bullet points (paste text)']},
+ {id:3,e:'💻',n:'Tech & Software Engineering',c:'#2563c9',d:'Production-ready code, debugging, explanations',
+  wf:'Write production-ready, well-commented code (Python, JavaScript, C++, Java, SQL, etc.) in fenced code blocks with the language name. When debugging, ALWAYS answer with a "Root Cause → Solution → Corrected Code" matrix: a short table of Root Cause and Solution, followed by the full corrected code. Mention edge cases and how to run/test it. Prefer simple, dependency-free solutions unless asked otherwise.',
+  tone:'Analytical, precise and objective.',
+  q:['Python में to-do list app बनाओ (file में save हो)','Fix: TypeError: Cannot read properties of undefined (reading \'map\')','SQL query: top 5 customers by total orders','Explain async/await in JavaScript with an example']},
+ {id:4,e:'🏢',n:'Business & Corporate Ops',c:'#0f766e',d:'Emails, meeting agendas, SOPs, HR interview rubrics',
+  wf:'Generate professional emails (with Subject line), meeting agendas (time-boxed table with owner), standard operating procedures (Purpose, Scope, Roles, Step-by-step procedure, Records, Review), and interview rubrics for HR (competency, questions, 1-5 scoring guide). Keep placeholders like [Name] where details are unknown.',
+  tone:'Formal, corporate and structured.',
+  q:['Leave के लिए manager को formal email लिखो','Weekly sales review meeting का 30 min agenda','SOP for handling customer returns in a shop','Interview rubric for a Sales Executive']},
+ {id:5,e:'🏥',n:'Healthcare & Wellness Advisor',c:'#dc2626',d:'Symptom check, diet & exercise plans (educational only)',
+  wf:'Provide primary symptom checking (possible common causes, home care, and clear red-flag signs that need a doctor or emergency care), dietary tracking and simple Indian-friendly diet suggestions, and personalised exercise blueprints by fitness level. Never give a definitive diagnosis or prescription doses; for medicines say to consult a doctor/pharmacist. If the user describes an emergency (chest pain, difficulty breathing, stroke signs, heavy bleeding, thoughts of self-harm) tell them first to contact emergency services (India: 112) immediately. The app automatically shows a medical disclaimer above every reply, so do not repeat a long disclaimer yourself.',
+  tone:'Empathetic, cautious and supportive.',
+  q:['2 दिन से हल्का बुखार और सिरदर्द है — क्या करूँ?','Beginner home workout plan, 20 min a day','शाकाहारी high-protein diet plan','How much water should I drink daily?']},
+ {id:6,e:'⚖️',n:'Finance & Legal Advisor',c:'#a16207',d:'Budgets, tax clauses simplified, contracts & NDAs',
+  wf:'Create budget frameworks (tables with categories, amounts and percentages, e.g. 50/30/20), simplify tax clauses and financial terms (use Indian context — ₹, GST, income-tax regimes — unless the user indicates another country), and draft foundational contracts or non-disclosure agreements (NDAs) with numbered clauses and [placeholders]. End with one short line saying this is general information, not professional legal/financial advice, and to verify high-stakes matters with a qualified CA or lawyer.',
+  tone:'Meticulous, secure and professional.',
+  q:['₹35,000 salary का monthly budget बनाओ','Simple NDA draft between two freelancers','Old vs New tax regime आसान भाषा में','EMI for ₹5 lakh loan at 10% for 3 years']},
+ {id:7,e:'🎨',n:'Creative Arts & Media',c:'#c2410c',d:'Poetry, stories, video treatments, image prompts',
+  wf:'Generate poetry (respect the requested form — shayari, ghazal, haiku, free verse), short stories with a strong opening line, video concept treatments (logline, mood, scenes/shot list, music), and structured prompts for image-generation engines (subject, style, lighting, camera/lens, colour palette, aspect ratio, negative prompt).',
+  tone:'Imaginative, descriptive and artistic.',
+  q:['बारिश पर 4 लाइन की कविता','A 200-word bedtime story about a brave sparrow','Image prompt: futuristic Indian village at sunset','Video concept for a tea brand ad']},
+ {id:8,e:'🛠️',n:'Customer Support Desk',c:'#0891b2',d:'Complaint resolution, refund tracking (mock CRM)',
+  wf:'Resolve user complaints with an empathetic resolution protocol: acknowledge → apologise → clarify → resolve → confirm next steps. Track refund and return scenarios using a mock CRM workflow: create a ticket table (Ticket ID like BX-#####, Status, Priority, Issue, Next action, ETA) and update it as the conversation goes. Draft ready-to-send replies for agents. Make clear that ticket IDs are simulated.',
+  tone:'Patient, polite and solution-oriented.',
+  q:['Customer angry: order 10 दिन से नहीं आया — reply draft','Track a refund for a damaged product (mock ticket)','Polite reply to a 1-star review','Return policy reply template']},
+ {id:9,e:'✈️',n:'Daily Life & Travel Planning',c:'#16a34a',d:'Itineraries, expense breakdowns, routines, recipes',
+  wf:'Curate day-by-day travel itineraries (table: Day, Morning, Afternoon, Evening, Stay/Food tips), construct expense breakdowns (table with ₹ estimates and a total; say prices are approximate), suggest lifestyle productivity workflows and daily routines, and give recipes (ingredients with quantities, numbered steps, time, servings).',
+  tone:'Energetic, organised and helpful.',
+  q:['3 दिन का Goa trip plan, budget ₹15,000','Paneer butter masala recipe for 4','Exam season daily routine banao','Weekend trip near Delhi under ₹5,000']},
+ {id:10,e:'🎮',n:'Entertainment & Gaming',c:'#9333ea',d:'Text adventures, riddles, movie & music picks',
+  wf:'Run interactive text-based adventure games (describe the scene vividly, then give numbered choices and keep score/inventory), ask riddles (wait for the answer before revealing it), run quick quizzes, and give curated movie/series/music recommendations based on the user\'s mood (title, year, language, why it fits, where to watch if commonly known).',
+  tone:'Witty, playful and interactive.',
+  q:['एक jungle adventure game शुरू करो','Ask me a tricky riddle','Feel-good Hindi movies for a rainy day','Bollywood quiz — 5 questions']},
+ {id:11,e:'🛒',n:'E-commerce & Shopping Assistant',c:'#ea580c',d:'Compare products by budget, best features, deal tips',
+  wf:'Analyse and compare products in a table (model, price range, key specs, pros, cons, best for), isolate the best features for the user\'s specified budget, give a clear pick, and highlight hidden deal factors (bank offers, exchange value, warranty, service network, total cost of ownership, fake-discount warning signs). Say that prices change and should be checked on the store at purchase time; your knowledge may be outdated.',
+  tone:'Unbiased, cost-conscious and practical.',
+  q:['₹20,000 के अंदर best phone camera के लिए','Laptop for coding under ₹50,000 — compare 3','Washing machine: front load vs top load','Online sale में fake discount कैसे पहचानें?']},
+ {id:12,e:'📝',n:'Language & Writing',c:'#0d9488',d:'Translate, fix grammar, applications & letters, Hindi ⇄ English',
+  wf:'Translate naturally between Hindi, English and other Indian languages (keep meaning and tone, not word-for-word). Correct grammar and spelling and show the corrected text first, then a short list of the main changes. Write applications, formal letters (school, bank, office, police complaint, landlord), essays and speeches in the correct Indian format (To, Date, Subject, Respected Sir/Madam, body, Yours faithfully). Teach vocabulary and spoken English with simple examples.',
+  tone:'Clear, precise and friendly — like a good language teacher.',
+  q:['Principal को 3 दिन की छुट्टी की application','Translate to English: "मुझे कल ऑफिस आने में देर होगी"','Fix grammar: "He don\'t knows the answer"','15 August पर 2 मिनट का भाषण']},
+ {id:13,e:'🧑‍💼',n:'Career & Jobs Coach',c:'#4f46e5',d:'Resume, interview prep, job search, govt exam roadmap',
+  wf:'Build ATS-friendly resumes and cover letters (with strong action verbs and measurable results), prepare users for interviews (likely questions with model answers in STAR format, mock interview one question at a time when asked), suggest career paths and skills roadmaps with free learning resources, and guide preparation for Indian competitive and government exams (SSC, Railway, Banking, UPSC, State PSC, Police) with syllabus overview and a weekly study plan. Remind users to check official notifications for dates and eligibility.',
+  tone:'Motivating, practical and honest.',
+  q:['Fresher के लिए resume बनाओ — B.Com','Top 10 interview questions with answers','SSC GD की 3 महीने की तैयारी plan','Mock interview लो — Data Entry job']},
+ {id:14,e:'🌾',n:'Agriculture & Farming',c:'#65a30d',d:'Crop advice, pests, soil, schemes for farmers',
+  wf:'Advise on crop selection by season (Kharif, Rabi, Zaid) and region, sowing, irrigation, fertiliser schedules (prefer soil-test based and organic options), identification and management of common pests and diseases (integrated pest management first; if chemicals are mentioned, give the generic name, stress label dosage and safety gear), animal husbandry basics, and farm income ideas. Explain farmer schemes (PM-KISAN, PMFBY crop insurance, Kisan Credit Card, Soil Health Card, e-NAM) in simple words. Suggest contacting the local Krishi Vigyan Kendra (KVK) or Kisan Call Centre 1800-180-1551 for local confirmation.',
+  tone:'Simple, respectful and practical — speak like a helpful village agriculture officer.',
+  q:['गेहूं में पीला रोग — क्या करें?','1 एकड़ में टमाटर की खेती का खर्च और मुनाफ़ा','PM-KISAN में नाम कैसे जोड़ें?','Organic खाद घर पर कैसे बनाएं']},
+ {id:15,e:'🏛️',n:'Government Services & Documents',c:'#1d4ed8',d:'Aadhaar, PAN, ration card, certificates, RTI — step by step',
+  wf:'Explain Indian government services and documents step by step: Aadhaar, PAN, voter ID, passport, driving licence, ration card, caste/income/domicile certificates, birth certificate, pension and welfare schemes. For each give: eligibility, documents needed (checklist), online steps (name the official portal), offline option, typical fees and time, and common mistakes. Draft RTI applications and grievance letters (CPGRAMS). Always say to use only official .gov.in portals, never share OTPs, and that rules and fees can change. Never ask the user for their ID numbers.',
+  tone:'Patient, clear and trustworthy.',
+  q:['PAN card online कैसे बनवाएं — पूरी process','Aadhaar में mobile number कैसे बदलें','RTI application लिखो — सड़क निर्माण की जानकारी','आय प्रमाण पत्र के लिए कौन से documents चाहिए']},
+ {id:16,e:'🚀',n:'Startup & Small Business',c:'#db2777',d:'Business ideas, plans, pricing, local marketing, GST basics',
+  wf:'Generate realistic business ideas for the user\'s budget and location, write lean business plans (problem, customer, offer, pricing, costs, break-even table, first 90 days), calculate pricing and profit margins, design low-cost local marketing (Google Business Profile, WhatsApp Business catalogue, offers, pamphlets, Instagram), and explain registrations simply (Udyam/MSME, GST basics, FSSAI for food, shop licence). Give numbers in ₹ with clear assumptions.',
+  tone:'Energetic, street-smart and numbers-driven.',
+  q:['₹50,000 में शुरू होने वाले 5 business ideas','Chai cafe का business plan + break-even','Local restaurant के लिए marketing plan','GST registration कब ज़रूरी है?']},
+ {id:17,e:'🙏',n:'Spirituality & Culture',c:'#b45309',d:'Festivals, mantras with meaning, stories, traditions',
+  wf:'Explain Indian festivals, rituals and traditions (why and how they are celebrated, puja steps and samagri lists), give meanings of mantras, shlokas, dohas and bhajans with word-by-word or line-by-line explanation, retell stories from the Ramayana, Mahabharata, Puranas, Jataka and saint traditions, and share moral lessons and daily spiritual practices (meditation, gratitude). Respect all religions and traditions equally. Do not make fearful predictions or present astrology/superstition as scientific fact; you may explain what traditions believe.',
+  tone:'Calm, respectful and warm.',
+  q:['Hanuman Chalisa की पहली चौपाई का अर्थ','दीवाली पूजा की सामग्री और विधि','गीता का कोई प्रेरक श्लोक अर्थ सहित','बच्चों के लिए एक छोटी पौराणिक कहानी']},
+ {id:18,e:'🌱',n:'Personal Coach & Motivation',c:'#059669',d:'Goals, habits, focus, confidence, time management',
+  wf:'Help users set SMART goals, build habits (start tiny, habit stacking, streak tracking table), manage time (weekly planner, Pomodoro, priority matrix), beat procrastination and phone addiction, improve confidence, communication and public speaking, and handle everyday stress with practical techniques (breathing, journaling prompts, walks, talking to someone they trust). Ask one reflective question at the end. You are not a therapist: if the user mentions hopelessness, self-harm or a crisis, respond with care and share India\'s Tele-MANAS helpline 14416 (or 1-800-891-4416) and emergency 112, and encourage reaching out to a trusted person.',
+  tone:'Warm, encouraging and practical — never preachy.',
+  q:['सुबह जल्दी उठने की आदत कैसे डालूं','Phone पर कम समय बिताने का 7-day plan','Job + YouTube दोनों के लिए time table','Public speaking का डर कैसे दूर करें']},
+ {id:19,e:'🔧',n:'Home, Repair & DIY',c:'#475569',d:'Fix common home, phone, bike & appliance problems',
+  wf:'Troubleshoot everyday problems step by step — home electrical basics, plumbing leaks, appliances (fan, cooler, fridge, washing machine, geyser, inverter), mobile phone and Wi-Fi issues, two-wheeler and car basic care — starting with the simplest, safest checks. Always state safety warnings first (switch off mains, unplug, never open gas or high-voltage parts) and say clearly when to call a professional. Also cover cleaning hacks, home organisation and simple DIY projects with a materials list and cost estimate in ₹.',
+  tone:'Practical, safety-first and reassuring.',
+  q:['Ceiling fan धीरे चल रहा है — क्या करें?','Phone जल्दी गर्म होता है और battery ख़त्म','Bike start नहीं हो रही — checks','बाथरूम नल से पानी टपक रहा है']}];
+const CATS=[['Work & Career',[3,4,13,16,6,8],'💼','#2563c9'],['Learning & Wellbeing',[2,12,5,18],'📚','#7b4ce0'],['Create & Grow',[1,7],'✨','#d9417a'],['Everyday Life',[9,19,11,10],'🏠','#16a34a'],['Bharat Special',[15,14,17],'🇮🇳','#ea580c']];
+let openCat=-1,sideCat=-1;
+const agById=id=>AG.find(a=>a.id===id);
+const DISC='⚠️ **Medical disclaimer:** This is for educational purposes only and is not medical advice, diagnosis or treatment. Always consult a qualified doctor. In an emergency call **112** (India) or your local emergency number.';
+
+/* ---------------- settings ---------------- */
+const PROV={
+ gemini:{n:'Google Gemini (free key)',m:'gemini-flash-latest',k:'https://aistudio.google.com/apikey',hint:'Get a free key at aistudio.google.com → "Get API key".'},
+ openai:{n:'OpenAI (ChatGPT)',m:'gpt-4o-mini',base:'https://api.openai.com/v1',k:'https://platform.openai.com/api-keys',hint:'Key from platform.openai.com → API keys (paid).'},
+ anthropic:{n:'Anthropic (Claude)',m:'claude-haiku-5-5',k:'https://console.anthropic.com/',hint:'Key from console.anthropic.com (paid).'},
+ groq:{n:'Groq (fast, free tier)',m:'llama-3.3-70b-versatile',base:'https://api.groq.com/openai/v1',k:'https://console.groq.com/keys',hint:'Free key from console.groq.com → API Keys.'},
+ openrouter:{n:'OpenRouter (many models)',m:'openrouter/auto',base:'https://openrouter.ai/api/v1',k:'https://openrouter.ai/keys',hint:'Key from openrouter.ai/keys.'},
+ custom:{n:'Custom (OpenAI-compatible URL)',m:'',base:'',hint:'Any server with /chat/completions, e.g. Ollama: http://192.168.1.5:11434/v1'}};
+let CFG=Object.assign({prov:'gemini',keys:{},models:{},base:'',lang:'auto',temp:0.7,theme:'auto'},LS.get('bxag_cfg',{}));
+CFG.keys=CFG.keys||{};CFG.models=CFG.models||{};
+const saveCfg=()=>LS.set('bxag_cfg',CFG);
+const curKey=()=>(CFG.keys[CFG.prov]||'').trim();
+const curModel=()=>(CFG.models[CFG.prov]||PROV[CFG.prov].m||'').trim();
+const curBase=()=>(CFG.prov==='custom'?CFG.base:PROV[CFG.prov].base||'').replace(/\/+$/,'');
+const ready=()=>CFG.prov==='custom'?!!curBase()&&!!curModel():!!curKey();
+function applyTheme(){const r=document.documentElement;if(CFG.theme==='auto')r.removeAttribute('data-theme');else r.setAttribute('data-theme',CFG.theme);}
+applyTheme();
+/* ---------------- languages ---------------- */
+const LANGS={
+ auto:{l:'🌐 Auto',sp:'hi-IN',p:'Reply in the same language and script the user writes in — Hindi, English, Hinglish (Hindi in Roman letters), Gujarati, Marathi, Punjabi, Tamil, Telugu, Bengali or any other language. If the user mixes languages, mirror their mix.'},
+ hi:{l:'हिन्दी',m:'☰ से एजेंट चुनें या नीचे सीधे अपना काम लिखें।',sh:n=>`${n} विशेषज्ञ एजेंट · किसी भी भाषा में`,sp:'hi-IN',name:'Hindi',script:'Devanagari',b:n=>`${n} विशेषज्ञ एजेंट एक ही जगह। नीचे कोई एजेंट चुनें या सीधे अपना काम लिखें — BhartiX Agent उसे सही विशेषज्ञ तक पहुँचा देगा।`,c:'कैटेगरी चुनें',ph:n=>`एजेंट नंबर (1-${n}) या नाम, फिर अपना काम लिखें…`},
+ en:{l:'English',m:'Tap ☰ to choose an agent, or just type your task below.',sh:n=>`${n} expert agents · any language`,sp:'en-IN',name:'English',script:'Latin',b:n=>`${n} specialist agents in one place. Pick one below, or just type your task — BhartiX Agent sends it to the right expert.`,c:'Choose a category',ph:n=>`Agent number (1-${n}) or name, then your task…`},
+ hinglish:{l:'Hinglish',m:'☰ se agent chuniye ya neeche seedha apna kaam likhiye.',sh:n=>`${n} expert agents · kisi bhi bhasha mein`,sp:'hi-IN',p:'Always reply in natural Hinglish (Hindi written in Roman/English letters, mixed with English words as Indians normally speak).',b:n=>`${n} expert agents ek hi jagah. Neeche koi agent chuniye ya seedha apna kaam likhiye — BhartiX Agent use sahi expert tak pahuncha dega.`,c:'Category chuniye',ph:n=>`Agent number (1-${n}) ya naam, phir apna kaam likhiye…`},
+ gu:{l:'ગુજરાતી',m:'☰ માંથી એજન્ટ પસંદ કરો અથવા નીચે સીધું તમારું કામ લખો.',sh:n=>`${n} નિષ્ણાત એજન્ટ · કોઈપણ ભાષામાં`,sp:'gu-IN',name:'Gujarati',script:'Gujarati',b:n=>`${n} નિષ્ણાત એજન્ટ એક જ જગ્યાએ. નીચે કોઈ એજન્ટ પસંદ કરો અથવા સીધું તમારું કામ લખો — BhartiX Agent તેને યોગ્ય નિષ્ણાત સુધી પહોંચાડશે.`,c:'કેટેગરી પસંદ કરો',ph:n=>`એજન્ટ નંબર (1-${n}) અથવા નામ, પછી તમારું કામ લખો…`},
+ mr:{l:'मराठी',m:'☰ मधून एजंट निवडा किंवा खाली थेट तुमचे काम लिहा.',sh:n=>`${n} तज्ज्ञ एजंट · कोणत्याही भाषेत`,sp:'mr-IN',name:'Marathi',script:'Devanagari',b:n=>`${n} तज्ज्ञ एजंट एकाच ठिकाणी. खाली एखादा एजंट निवडा किंवा थेट तुमचे काम लिहा — BhartiX Agent ते योग्य तज्ज्ञापर्यंत पोहोचवेल.`,c:'श्रेणी निवडा',ph:n=>`एजंट क्रमांक (1-${n}) किंवा नाव, नंतर तुमचे काम लिहा…`},
+ pa:{l:'ਪੰਜਾਬੀ',m:'☰ ਤੋਂ ਏਜੰਟ ਚੁਣੋ ਜਾਂ ਹੇਠਾਂ ਸਿੱਧਾ ਆਪਣਾ ਕੰਮ ਲਿਖੋ।',sh:n=>`${n} ਮਾਹਿਰ ਏਜੰਟ · ਕਿਸੇ ਵੀ ਭਾਸ਼ਾ ਵਿੱਚ`,sp:'pa-IN',name:'Punjabi',script:'Gurmukhi',b:n=>`${n} ਮਾਹਿਰ ਏਜੰਟ ਇੱਕੋ ਥਾਂ ’ਤੇ। ਹੇਠਾਂ ਕੋਈ ਏਜੰਟ ਚੁਣੋ ਜਾਂ ਸਿੱਧਾ ਆਪਣਾ ਕੰਮ ਲਿਖੋ — BhartiX Agent ਉਸਨੂੰ ਸਹੀ ਮਾਹਿਰ ਤੱਕ ਪਹੁੰਚਾ ਦੇਵੇਗਾ।`,c:'ਸ਼੍ਰੇਣੀ ਚੁਣੋ',ph:n=>`ਏਜੰਟ ਨੰਬਰ (1-${n}) ਜਾਂ ਨਾਂ, ਫਿਰ ਆਪਣਾ ਕੰਮ ਲਿਖੋ…`},
+ ta:{l:'தமிழ்',m:'☰ இல் ஏஜென்டைத் தேர்ந்தெடுக்கவும் அல்லது கீழே உங்கள் வேலையை நேரடியாக எழுதவும்.',sh:n=>`${n} நிபுணர் ஏஜென்ட்கள் · எந்த மொழியிலும்`,sp:'ta-IN',name:'Tamil',script:'Tamil',b:n=>`${n} நிபுணர் ஏஜென்ட்கள் ஒரே இடத்தில். கீழே ஒரு ஏஜென்டைத் தேர்ந்தெடுக்கவும் அல்லது உங்கள் வேலையை நேரடியாக எழுதவும் — BhartiX Agent அதைச் சரியான நிபுணரிடம் அனுப்பும்.`,c:'வகையைத் தேர்ந்தெடுக்கவும்',ph:n=>`ஏஜென்ட் எண் (1-${n}) அல்லது பெயர், பிறகு உங்கள் வேலையை எழுதவும்…`},
+ te:{l:'తెలుగు',m:'☰ నుండి ఏజెంట్‌ను ఎంచుకోండి లేదా కింద మీ పనిని నేరుగా రాయండి.',sh:n=>`${n} నిపుణ ఏజెంట్లు · ఏ భాషలోనైనా`,sp:'te-IN',name:'Telugu',script:'Telugu',b:n=>`${n} నిపుణ ఏజెంట్లు ఒకే చోట. కింద ఒక ఏజెంట్‌ను ఎంచుకోండి లేదా మీ పనిని నేరుగా రాయండి — BhartiX Agent దాన్ని సరైన నిపుణుడికి పంపుతుంది.`,c:'వర్గాన్ని ఎంచుకోండి',ph:n=>`ఏజెంట్ నంబర్ (1-${n}) లేదా పేరు, తర్వాత మీ పనిని రాయండి…`},
+ bn:{l:'বাংলা',m:'☰ থেকে এজেন্ট বেছে নিন অথবা নিচে সরাসরি আপনার কাজ লিখুন।',sh:n=>`${n}টি বিশেষজ্ঞ এজেন্ট · যেকোনো ভাষায়`,sp:'bn-IN',name:'Bengali',script:'Bengali',b:n=>`${n}টি বিশেষজ্ঞ এজেন্ট এক জায়গায়। নিচে একটি এজেন্ট বেছে নিন অথবা সরাসরি আপনার কাজ লিখুন — BhartiX Agent সেটি সঠিক বিশেষজ্ঞের কাছে পৌঁছে দেবে।`,c:'বিভাগ বেছে নিন',ph:n=>`এজেন্ট নম্বর (1-${n}) বা নাম, তারপর আপনার কাজ লিখুন…`}};
+if(!LANGS[CFG.lang])CFG.lang='auto';
+const LX=()=>LANGS[CFG.lang].b?LANGS[CFG.lang]:LANGS.en;
+const ALL_LANGS='हिन्दी · English · ગુજરાતી · मराठी · ਪੰਜਾਬੀ · தமிழ் · తెలుగు · বাংলা';
+function langPrompt(){const x=LANGS[CFG.lang];if(x.p)return x.p;if(CFG.lang==='en')return'Always reply in clear, simple English (Indian English conventions are fine), even if the user writes in another language.';
+ return`Always reply in natural, everyday ${x.name} written in the ${x.script} script, even if the user writes in another language. Keep widely used technical/English words (app, email, resume, GST…) as people normally say them. Never sound like a mechanical translation.`}
+/* native digits (०-९, ૦-૯, ੦-੯, ০-৯, ௦-௯, ౦-౯) → 0-9 for agent numbers */
+const normDigits=t=>String(t).replace(/[\u0966-\u096F\u0AE6-\u0AEF\u0A66-\u0A6F\u09E6-\u09EF\u0BE6-\u0BEF\u0C66-\u0C6F]/g,c=>String((c.charCodeAt(0)-6)%16));
+function speechLang(t){if(/[\u0A80-\u0AFF]/.test(t))return'gu-IN';if(/[\u0A00-\u0A7F]/.test(t))return'pa-IN';if(/[\u0980-\u09FF]/.test(t))return'bn-IN';if(/[\u0B80-\u0BFF]/.test(t))return'ta-IN';if(/[\u0C00-\u0C7F]/.test(t))return'te-IN';
+ if(/[\u0900-\u097F]/.test(t))return CFG.lang==='mr'?'mr-IN':'hi-IN';return'en-IN'}
+
+/* ---------------- chats ---------------- */
+let CHATS=LS.get('bxag_chats',[]);if(!Array.isArray(CHATS))CHATS=[];
+let cur=null;   /* current chat object, or null on home */
+let busy=null;  /* AbortController while generating */
+let pending=[]; /* attachments for the next message */
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function persist(){const slim=CHATS.slice(0,80).map(c=>({...c,msgs:c.msgs.map(m=>{const o={...m};if(o.imgs)o.imgs=o.imgs.map(()=>null);delete o.err;return o})}));
+ if(!LS.set('bxag_chats',slim)){slim.splice(40);LS.set('bxag_chats',slim)}}
+function newChat(agent){const c={id:uid(),agent,title:'New chat',msgs:[],t:Date.now()};CHATS.unshift(c);return c}
+
+/* ---------------- router (the "conductor") ---------------- */
+const KW={
+ 1:['instagram','insta','reel','reels','youtube','shorts','caption','hashtag','viral','followers','tweet','linkedin post','facebook post','social media','thumbnail','hook','dm','influencer','कैप्शन','रील'],
+ 2:['explain','समझाओ','samjhao','samjha','padhai','पढ़ाई','exam','study','research','paper','thesis','concept','theory','physics','chemistry','biology','math','maths','गणित','history','इतिहास','science','notes','class 10','class 12','formula','definition','teach'],
+ 3:['code','coding','bug','error','python','javascript','java','c++','html','css','sql','api','function','exception','debug','program','script','react','node','android','kotlin','typescript','compile','regex','algorithm','git'],
+ 4:['email','e-mail','mail','meeting','agenda','sop','interview','hr','client','proposal','memo','office','company','resignation','letter','manager','boss','corporate','minutes','job description','appraisal','pitch'],
+ 5:['symptom','fever','बुखार','pain','दर्द','diet','exercise','workout','gym','weight','sleep','bp','blood pressure','sugar','diabetes','doctor','health','सेहत','yoga','cough','खांसी','headache','सिरदर्द','protein','calorie','bmi','stomach','पेट'],
+ 6:['budget','tax','gst','itr','loan','emi','invest','investment','sip','mutual fund','contract','nda','agreement','legal','कानून','rent agreement','salary','saving','बचत','insurance','fd','stock','will','notice','court','affidavit','partnership'],
+ 7:['poem','poetry','kavita','कविता','story','कहानी','kahani','shayari','शायरी','ghazal','lyrics','image prompt','midjourney','dall','stable diffusion','art','video concept','screenplay','creative','haiku','slogan','tagline'],
+ 8:['complaint','शिकायत','refund','customer','ticket','order not','not delivered','return','replacement','damaged','review reply','support','helpdesk','angry customer','crm'],
+ 9:['trip','travel','itinerary','यात्रा','ghumne','hotel','tour','vacation','holiday','recipe','रेसिपी','cook','banane ka tarika','routine','daily plan','goa','manali','shimla','kerala','packing','expense split','khana'],
+ 10:['game','riddle','पहेली','paheli','movie','film','फिल्म','song','music','gaana','गाना','joke','चुटकुला','quiz','bored','adventure','series','web series','anime','play a game','puzzle'],
+ 12:['translate','translation','अनुवाद','grammar','application','प्रार्थना पत्र','letter to','essay','निबंध','speech','भाषण','spelling','meaning of','spoken english','vocabulary','paragraph'],
+ 13:['resume','cv','biodata','interview','naukri','नौकरी','job','career','करियर','ssc','upsc','railway','bank exam','govt exam','sarkari','सरकारी नौकरी','linkedin profile','cover letter','fresher'],
+ 14:['crop','fasal','फसल','kheti','खेती','farmer','kisan','किसान','fertilizer','khad','खाद','pesticide','keet','कीट','wheat','गेहूं','dhan','धान','soil','मिट्टी','irrigation','sinchai','dairy','pashu','गाय','bhains'],
+ 15:['aadhaar','aadhar','आधार','pan card','ration card','राशन','voter id','passport','driving licence','certificate','प्रमाण पत्र','rti','scheme','yojana','योजना','pension','government office','gov.in','birth certificate','jati praman'],
+ 16:['business idea','startup','dukan','दुकान','shop','business plan','profit','margin','franchise','udyam','msme','marketing plan','customers kaise','restaurant business','cafe'],
+ 17:['puja','पूजा','mantra','मंत्र','shlok','श्लोक','gita','गीता','ramayan','रामायण','mahabharat','festival','त्योहार','diwali','दीवाली','holi','bhajan','भजन','chalisa','चालीसा','vrat','व्रत','katha','कथा','spiritual','dharma','धर्म'],
+ 18:['motivation','motivate','habit','आदत','procrastination','focus','confidence','आत्मविश्वास','time table','time management','goal','lakshya','लक्ष्य','stress','tension','discipline','productivity','morning routine','phone addiction'],
+ 19:['repair','fix my','kharab','ख़राब','खराब','not working','kaam nahi','fan','cooler','fridge','geyser','inverter','wifi','wi-fi','bike start','plumbing','leak','nal','नल','tap','switch','diy','cleaning','safai'],
+ 11:['buy','khareed','खरीद','best phone','under ₹','under rs','under','price','compare','laptop','deal','amazon','flipkart','product','new mobile','mobile under','mobile kharid','tv','washing machine','earbuds','headphones','fridge','ac ','discount','sale','which phone','kaunsa']};
+function route(text){text=normDigits(text);const t=' '+text.toLowerCase()+' ';
+ const m=text.match(/^\s*(?:agent\s*)?(1[0-9]|[1-9])(?=$|[\s.:)\-–,])(?![\s.:)\-–,]*(?:din|days?|दिन|minutes?|min|मिनट|hours?|ghante|घंटे|saal|years?|साल|mahine|months?|महीने|lakh|लाख|hazar|हज़ार|हजार|k\b|rs|₹|rupees?|रुपये|kg|किलो|%|log|लोग|people|bje|baje|बजे|class|कक्षा|th\b|st\b|nd\b|rd\b|august|अगस्त|january|जनवरी))[\s.:)\-–,]*/i);if(m)return{id:+m[1],rest:text.slice(m[0].length).trim(),sure:1};
+ for(const a of AG){const first=a.n.toLowerCase().split(/[\s&]+/)[0];const re=new RegExp('^\\s*'+first.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b[^:\\-–]*[:\\-–]\\s*','i');const mm=text.match(re);if(mm&&mm[0].length<40)return{id:a.id,rest:text.slice(mm[0].length).trim(),sure:1}}
+ let best=0,bid=0;for(const[id,ws]of Object.entries(KW)){let s=0;for(const w of ws)if(t.includes(w.length<4?' '+w+' ':w))s+=w.length>5?2:1;if(s>best){best=s;bid=+id}}
+ return best?{id:bid,rest:text.trim(),sure:best>=2?1:0}:null}
+
+/* ---------------- markdown → HTML (safe: escapes first) ---------------- */
+function inl(s){s=esc(s);const codes=[];s=s.replace(/`([^`]+)`/g,(_,c)=>{codes.push(c);return'\u0000'+(codes.length-1)+'\u0000'});
+ s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+  .replace(/\*\*\*([^*]+)\*\*\*/g,'<strong><em>$1</em></strong>').replace(/\*\*([^*]+?)\*\*/g,'<strong>$1</strong>').replace(/__([^_]+?)__/g,'<strong>$1</strong>')
+  .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\w)/g,'$1<em>$2</em>').replace(/(^|[^_\w])_([^_\n]+?)_(?!\w)/g,'$1<em>$2</em>').replace(/~~([^~]+)~~/g,'<del>$1</del>')
+  .replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+ return s.replace(/\u0000(\d+)\u0000/g,(_,i)=>'<code>'+codes[+i]+'</code>')}
+function md(src){const L=String(src).replace(/\r/g,'').split('\n');let h='',i=0;
+ const isTblSep=l=>/^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(l);
+ const cells=l=>l.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>x.trim());
+ const listRe=/^(\s*)([-*+•]|\d+[.)])\s+(.*)$/;
+ while(i<L.length){let l=L[i];
+  if(/^\s*```/.test(l)){const lang=l.trim().slice(3).trim();const b=[];i++;while(i<L.length&&!/^\s*```\s*$/.test(L[i]))b.push(L[i++]);i++;
+   h+=`<pre><div class="ph"><span>${esc(lang||'code')}</span><button data-copy>Copy</button></div><code>${esc(b.join('\n'))}</code></pre>`;continue}
+  if(!l.trim()){i++;continue}
+  let m;
+  if(m=l.match(/^\s*(#{1,6})\s+(.*?)\s*#*\s*$/)){const n=Math.min(4,m[1].length);h+=`<h${n}>${inl(m[2])}</h${n}>`;i++;continue}
+  if(/^\s*([-*_])\s*\1\s*\1[\s\-*_]*$/.test(l)){h+='<hr>';i++;continue}
+  if(l.includes('|')&&i+1<L.length&&isTblSep(L[i+1])){const hd=cells(l);i+=2;const rows=[];while(i<L.length&&L[i].includes('|')&&L[i].trim())rows.push(cells(L[i++]));
+   h+='<div class="tw"><table><thead><tr>'+hd.map(c=>`<th>${inl(c)}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+hd.map((_,k)=>`<td>${inl(r[k]||'')}</td>`).join('')+'</tr>').join('')+'</tbody></table></div>';continue}
+  if(/^\s*>/.test(l)){const b=[];while(i<L.length&&/^\s*>/.test(L[i]))b.push(L[i++].replace(/^\s*>\s?/,''));h+='<blockquote>'+md(b.join('\n'))+'</blockquote>';continue}
+  if(listRe.test(l)){const stack=[];let out='';
+   while(i<L.length){const x=L[i];const lm=x.match(listRe);
+    if(!lm){if(x.trim()&&/^\s{2,}/.test(x)&&stack.length){out=out.replace(/<\/li>$/,'')+'<br>'+inl(x.trim())+'</li>';i++;continue}
+     if(!x.trim()&&i+1<L.length&&listRe.test(L[i+1])){i++;continue}break}
+    const ind=lm[1].replace(/\t/g,'    ').length,tag=/\d/.test(lm[2])?'ol':'ul';
+    while(stack.length&&(ind<stack[stack.length-1].ind||ind===stack[stack.length-1].ind&&tag!==stack[stack.length-1].tag)){const s=stack.pop();out+=`</${s.tag}>`+(s.nested?'</li>':'');}
+    if(!stack.length||ind>stack[stack.length-1].ind){if(stack.length)out=out.replace(/<\/li>$/,'');const st=tag==='ol'&&parseInt(lm[2])>1?` start="${parseInt(lm[2])}"`:'';stack.push({ind,tag,nested:stack.length>0});out+=`<${tag}${st}>`}
+    out+=`<li>${inl(lm[3])}</li>`;i++}
+   while(stack.length){const s=stack.pop();out+=`</${s.tag}>`+(s.nested?'</li>':'')}h+=out;continue}
+  const p=[];while(i<L.length&&L[i].trim()&&!/^\s*(```|#{1,6}\s|>)/.test(L[i])&&!listRe.test(L[i])&&!(L[i].includes('|')&&i+1<L.length&&isTblSep(L[i+1])))p.push(L[i++]);
+  if(!p.length){p.push(L[i++])}
+  h+='<p>'+p.map(inl).join('<br>')+'</p>'}
+ return h}
+
+/* ---------------- UI: sidebar ---------------- */
+const side=$('#side'),scrim=$('#scrim');
+function closeSide(){side.classList.remove('open');scrim.classList.remove('open')}
+$('#bMenu').onclick=()=>{const o=!side.classList.contains('open');side.classList.toggle('open',o);scrim.classList.toggle('open',o)};
+scrim.onclick=closeSide;
+function renderSide(){const f=$('#srch').value.trim().toLowerCase();let h='';
+ const curAg=cur?cur.agent:0;
+ const ags=AG.filter(a=>!f||(a.id+' '+a.n+' '+a.d).toLowerCase().includes(f));
+ const item=a=>`<button class="si${cur&&cur.agent===a.id?' on':''}" data-ag="${a.id}" title="${esc(a.d)}"><span class="n">${a.id}</span><span class="e">${a.e}</span><span class="t">${esc(a.n)}</span></button>`;
+ if(f){if(ags.length)h+='<div class="sh">Agents</div>'+ags.map(item).join('')}
+ else{const auto=cur?CATS.findIndex(c=>c[1].includes(cur.agent)):-1;const op=sideCat===-2?-1:sideCat>=0?sideCat:auto;h+='<div class="sh">Categories</div>'+CATS.map(([cn,ids,em],k)=>`<button class="si scat${op===k?' open':''}" data-scat="${k}" aria-expanded="${op===k}"><span class="e">${em}</span><span class="t">${cn}</span><span class="chev">${op===k?'▴':'▾'}</span></button>${op===k?'<div class="sgrp">'+ids.map(id=>item(agById(id))).join('')+'</div>':''}`).join('')}
+ const cs=CHATS.filter(c=>c.msgs.length&&(!f||c.title.toLowerCase().includes(f)));
+ if(cs.length){h+='<div class="sh">Recent chats</div>'+cs.slice(0,60).map(c=>{const a=agById(c.agent)||AG[0];return`<div class="si${cur&&cur.id===c.id?' on':''}" data-chat="${c.id}" role="button" tabindex="0"><span class="e">${a.e}</span><span class="t">${esc(c.title)}</span><button class="x" data-del="${c.id}" title="Delete chat" aria-label="Delete chat">✕</button></div>`}).join('')}
+ if(!h)h='<p class="note" style="padding:12px">Nothing found</p>';
+ $('#slist').innerHTML=h}
+$('#srch').oninput=renderSide;
+$('#slist').onclick=e=>{const sc=e.target.closest('[data-scat]');if(sc){const k=+sc.dataset.scat;sideCat=sc.classList.contains('open')?-2:k;renderSide();return}const d=e.target.closest('[data-del]');if(d){e.stopPropagation();const i=CHATS.findIndex(c=>c.id===d.dataset.del);if(i>=0){const was=cur&&cur.id===CHATS[i].id;CHATS.splice(i,1);persist();if(was)goHome();else renderSide();toast('Chat deleted')}return}
+ const a=e.target.closest('[data-ag]');if(a){openAgent(+a.dataset.ag);closeSide();return}
+ const c=e.target.closest('[data-chat]');if(c){const ch=CHATS.find(x=>x.id===c.dataset.chat);if(ch){if(busy)busy.abort();cur=ch;renderChat();closeSide()}}};
+
+/* ---------------- home ---------------- */
+function goHome(){if(busy)busy.abort();cur=null;renderHome();renderSide();}
+function catPanel(){if(openCat<0)return'<p class="note cempty">👆 Tap a category to see its agents.</p>';const[cn,ids]=CATS[openCat];
+ return`<section class="cat"><div class="grid">${ids.map(id=>{const a=agById(id);return`<button class="card" style="--c:${a.c}" data-ag="${id}"><span class="num">${id}</span><span class="em">${a.e}</span><span><b>${esc(a.n)}</b><small>${esc(a.d)}</small></span></button>`}).join('')}</div></section>`}
+function setCat(k){openCat=openCat===k?-1:k;document.querySelectorAll('.ctab').forEach((b,i)=>{b.classList.toggle('on',i===openCat);b.setAttribute('aria-selected',i===openCat);b.querySelector('.chev').textContent=i===openCat?'▴':'▾'});$('#catPanel').innerHTML=catPanel();if(openCat>=0){const el=$('#catPanel');setTimeout(()=>el.scrollIntoView({block:'nearest',behavior:'smooth'}),30)}}
+function renderHome(){
+ $('#bSet').classList.toggle('need',!ready());
+ $('#curAg').innerHTML='';
+ $('#view').innerHTML=`<section class="banner"><h1>🚀 Welcome to BhartiX Agent</h1><p>${LX().sh(AG.length)}</p></section>
+ <button class="hometip" data-act="menu">${LX().m}</button>`;
+ $('#inp').placeholder=LX().ph(AG.length);
+ renderChips();$('#scroll').scrollTop=0}
+$('#view').addEventListener('click',e=>{const ct=e.target.closest('[data-cat]');if(ct){setCat(+ct.dataset.cat);return}const b=e.target.closest('[data-ag]');if(b&&!cur){openAgent(+b.dataset.ag);return}
+ const s=e.target.closest('[data-act]');if(s){const a=s.dataset.act;if(a==='settings')openSettings();else if(a==='menu'){if(matchMedia('(max-width:760px)').matches)$('#bMenu').click();else $('#srch').focus()}else if(a==='retry')regen();else if(a.startsWith('pick:'))pickAgent(+a.slice(5),s.dataset.txt||'')}
+ const cp=e.target.closest('[data-copy]');if(cp){copyText(cp.closest('pre').querySelector('code').textContent);cp.textContent='Copied';setTimeout(()=>cp.textContent='Copy',1200)}
+ const ma=e.target.closest('[data-ma]');if(ma)msgAction(ma.dataset.ma,+ma.dataset.i)});
+
+/* ---------------- chat view ---------------- */
+function openAgent(id){if(busy)busy.abort();const ex=CHATS.find(c=>c.agent===id&&!c.msgs.length);cur=ex||newChat(id);renderChat();renderSide();setTimeout(()=>$('#inp').focus(),50)}
+function agentHead(a){return`<div class="ahead" style="--c:${a.c}"><span class="em">${a.e}</span><div><h2>${a.id}. ${esc(a.n)} Agent</h2><p>${esc(a.d)} · <i>${esc(a.tone)}</i></p></div></div>`}
+function renderChat(){const a=agById(cur.agent);
+ $('#curAg').innerHTML=`<span>${a.e}</span><span class="hide-s">${esc(a.n)}</span>`;
+ const ms=cur.msgs.map((m,i)=>msgHTML(m,i,a)).join('');
+ $('#view').innerHTML=agentHead(a)+`<div class="msgs" id="msgs">${ms||`<p class="note">Describe your task — the ${esc(a.n)} agent will execute it directly. Try one of the suggestions below.</p>`}</div>`;
+ $('#inp').placeholder=`Message ${a.n}…`;
+ renderChips();renderSide();scrollEnd(true)}
+function msgHTML(m,i,a){
+ if(m.r==='u')return`<div class="m u"><div class="bub">${(m.imgs||[]).filter(Boolean).map(s=>`<img src="${s}" alt="Attached photo">`).join('')}${m.files&&m.files.length?`<div style="opacity:.85;font-size:12px">📎 ${m.files.map(esc).join(', ')}</div>`:''}${esc(m.c)}</div></div>`;
+ const body=m.err?`<div class="err">${esc(m.err)}<br>${m.errSet?'<button class="btn pri" data-act="settings">Open Settings</button> ':''}<button class="btn" data-act="retry">Try again</button></div>`
+  :m.c?`${m.off?'<span class="offtag">Offline helper</span>':''}<div class="md">${md(m.c)}</div>`:`<div class="dots"><span></span><span></span><span></span></div>`;
+ const acts=m.c&&!m.err&&!m.live?`<div class="acts">${[['copy','Copy',ICON.copy],['speak','Read aloud',ICON.speak],['regen','Regenerate',ICON.redo],OSP&&OSP.openBxApp?['writer','Open in Writer',ICON.writer]:null,['save',OSP?'Save to Files':'Save',ICON.save],['share','Share',ICON.share]].filter(Boolean).map(([k,t,ic])=>`<button data-ma="${k}" data-i="${i}" title="${t}">${svg(ic)}<span class="hide-s">${t}</span></button>`).join('')}</div>`:'';
+ return`<div class="m a" style="--c:${a.c}" data-i="${i}"><span class="av">${a.e}</span><div class="bub">${body}${acts}</div></div>`}
+function updateMsg(i){const el=document.querySelector(`.m.a[data-i="${i}"]`);const a=agById(cur.agent);if(!el){renderChat();return}
+ const t=document.createElement('div');t.innerHTML=msgHTML(cur.msgs[i],i,a);el.replaceWith(t.firstChild)}
+let stick=true;$('#scroll').addEventListener('scroll',()=>{const s=$('#scroll');stick=s.scrollHeight-s.scrollTop-s.clientHeight<80});
+function scrollEnd(force){const s=$('#scroll');if(force||stick)s.scrollTop=s.scrollHeight}
+function renderChips(){const a=cur?agById(cur.agent):null;let list;
+ if(a&&!cur.msgs.length)list=a.q;else if(a)list=[];else list=['3 Fix my JavaScript error','13 Resume for a fresher','15 PAN card online process','6 ₹40,000 salary budget','12 Leave application to principal','9 Manali 4-day itinerary','10 Ask me a riddle','18 Daily study time table','1 Caption for a sunset photo'];
+ $('#chips').innerHTML=list.map(q=>`<button class="chip">${esc(q)}</button>`).join('');$('#chips').hidden=!list.length}
+$('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;$('#inp').value=b.textContent;autosize();send()};
+
+/* ---------------- composer ---------------- */
+const inp=$('#inp');
+function autosize(){inp.style.height='auto';inp.style.height=Math.min(180,inp.scrollHeight)+'px'}
+inp.addEventListener('input',autosize);
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&!(matchMedia('(pointer:coarse)').matches)){e.preventDefault();send()}});
+$('#bSend').onclick=()=>{if(busy){busy.abort();return}send()};
+function setBusy(b){busy=b;$('#bSend').innerHTML=svg(b?ICON.stop:ICON.send);$('#bSend').title=b?'Stop':'Send (Enter)';$('#bSend').setAttribute('aria-label',b?'Stop':'Send')}
+$('#bAtt').onclick=()=>$('#fileIn').click();
+$('#fileIn').onchange=async e=>{for(const f of e.target.files)await addAttachment(f);e.target.value=''};
+async function addAttachment(f){
+ if(/^image\//.test(f.type)){const url=await shrinkImage(f);pending.push({kind:'img',name:f.name,url})}
+ else{if(f.size>400000){toast('File too large (max 400 KB of text)');return}const t=await f.text();pending.push({kind:'txt',name:f.name,text:t})}
+ renderAtt()}
+function shrinkImage(f){return new Promise(res=>{const u=URL.createObjectURL(f),im=new Image();im.onload=()=>{const k=Math.min(1,1280/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',.85))};im.onerror=()=>{URL.revokeObjectURL(u);res('')};im.src=u})}
+function renderAtt(){const a=$('#att');a.hidden=!pending.length;a.innerHTML=pending.map((p,i)=>`<span>${p.kind==='img'?'🖼️':'📄'}<em>${esc(p.name)}</em><button data-rm="${i}" aria-label="Remove">✕</button></span>`).join('')}
+$('#att').onclick=e=>{const b=e.target.closest('[data-rm]');if(b){pending.splice(+b.dataset.rm,1);renderAtt()}};
+/* paste images */
+inp.addEventListener('paste',e=>{const fs=[...(e.clipboardData||{}).files||[]];if(fs.length){e.preventDefault();fs.forEach(addAttachment)}});
+/* voice input */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null;
+if(SR){$('#bMic').hidden=false;$('#bMic').onclick=()=>{if(rec){rec.stop();return}try{rec=new SR();rec.lang=LANGS[CFG.lang].sp;rec.interimResults=true;const base=inp.value;
+ rec.onresult=ev=>{let t='';for(const r of ev.results)t+=r[0].transcript;inp.value=(base?base+' ':'')+t;autosize()};
+ rec.onend=()=>{rec=null;$('#bMic').classList.remove('rec')};rec.onerror=()=>{toast('Voice input not available');};rec.start();$('#bMic').classList.add('rec')}catch(err){rec=null;toast('Voice input not available')}}}
+
+function send(){const text=inp.value.trim();if(!text&&!pending.length)return;if(busy)return;
+ if(!cur){const r=route(text);
+  if(!r){if(ready()&&navigator.onLine!==false)aiRoute(text);else showPicker(text);return}
+  cur=newChat(r.id);if(!r.rest&&!pending.length){inp.value='';renderChat();return}
+  inp.value=r.rest||text}
+ else{const r=route(text);if(r&&r.sure&&/^\s*(?:agent\s*)?(1[0-9]|[1-9])(?=$|[\s.:)\-–,])(?![\s.:)\-–,]*(?:din|days?|दिन|minutes?|min|मिनट|hours?|ghante|घंटे|saal|years?|साल|mahine|months?|महीने|lakh|लाख|hazar|हज़ार|हजार|k\b|rs|₹|rupees?|रुपये|kg|किलो|%|log|लोग|people|bje|baje|बजे|class|कक्षा|th\b|st\b|nd\b|rd\b|august|अगस्त|january|जनवरी))/i.test(normDigits(text))&&r.id!==cur.agent){cur=newChat(r.id);inp.value=r.rest;if(!r.rest&&!pending.length){inp.value='';renderChat();return}}}
+ const t=inp.value.trim();inp.value='';autosize();
+ const m={r:'u',c:t,t:Date.now()};
+ const imgs=pending.filter(p=>p.kind==='img');const txts=pending.filter(p=>p.kind==='txt');
+ if(imgs.length)m.imgs=imgs.map(p=>p.url);
+ if(txts.length){m.files=txts.map(p=>p.name);m.ctx=txts.map(p=>`\n\n--- Attached file: ${p.name} ---\n${p.text.slice(0,60000)}`).join('')}
+ if(imgs.length||txts.length)m.files=[...(m.files||[]),...imgs.map(p=>p.name)].filter((v,i,s)=>s.indexOf(v)===i);
+ pending=[];renderAtt();
+ cur.msgs.push(m);if(cur.title==='New chat')cur.title=(t||m.files&&m.files[0]||'Chat').slice(0,60);cur.t=Date.now();
+ CHATS.splice(CHATS.indexOf(cur),1);CHATS.unshift(cur);
+ renderChat();reply()}
+function showPicker(text){
+ const h=`<div class="m a"><span class="av">🚀</span><div class="bub"><div class="md"><p>Which agent should handle this?</p></div><div class="pick">${AG.map(a=>`<button class="chip" data-act="pick:${a.id}" data-txt="${esc(text)}">${a.e} ${a.id}. ${esc(a.n)}</button>`).join('')}</div></div></div>`;
+ const old=$('#pickBox');if(old)old.remove();const d=document.createElement('div');d.id='pickBox';d.style.marginTop='16px';d.innerHTML=h;$('#view').appendChild(d);scrollEnd(true)}
+async function aiRoute(text){inp.value='';autosize();
+ const old=$('#pickBox');if(old)old.remove();const d=document.createElement('div');d.id='pickBox';d.style.marginTop='16px';d.innerHTML=`<div class="m a"><span class="av">🚀</span><div class="bub"><div class="md"><p>Finding the right agent…</p></div><div class="dots"><span></span><span></span><span></span></div></div></div>`;$('#view').appendChild(d);scrollEnd(true);
+ const sys=`You are the router of BhartiX Agent. Choose the single best agent for the user's request, which may be written in any language (Hindi, English, Gujarati, Marathi, Punjabi, Tamil, Telugu, Bengali, Hinglish…). Agents:\n${AG.map(a=>a.id+'. '+a.n+' — '+a.d).join('\n')}\nReply with ONLY the agent number, nothing else.`;
+ let id=0;try{await autoModel();const t=await Promise.race([callAI({sys},[{role:'user',text}],()=>{},undefined),new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),12000))]);const m=String(t).match(/\d+/);id=m?+m[0]:0}catch(e){}
+ if(cur)return;if(agById(id)){d.remove();pickAgent(id,text)}else{inp.value='';showPicker(text)}}
+function pickAgent(id,txt){cur=newChat(id);inp.value=txt||inp.value;send()}
+
+/* ---------------- prompts ---------------- */
+function sysPrompt(a){const L=langPrompt();
+ const d=new Date();
+ return`You are the ${a.n} Agent (agent #${a.id} of ${AG.length}) inside BhartiX Agent — "The Universal Multi-Domain AI Ecosystem", the AI co-pilot of BhartiX OS. You have fully adopted this persona.
+
+## Your workflow
+${a.wf}
+
+## Your tone
+${a.tone}
+
+## Operational rules
+- **Direct execution:** perform the task immediately. No long theoretical preambles — give the solution first, then brief notes if useful.
+- **Language:** ${L}
+- **Scannability:** use Markdown. Bold the core entities, bullet points for non-sequential information, numbered steps for sequences, tables for comparisons. Keep paragraphs short.
+- If key details are missing, make sensible assumptions, state them in one line, and still deliver a complete first version (then offer to adjust).
+- If a request clearly belongs to another BhartiX agent, still help briefly and mention the better agent by number and name (${AG.map(x=>x.id+' '+x.n).join(', ')}).
+- You cannot browse the internet or take real-world actions (posting, sending, paying, booking, refunding); prepare drafts, plans and simulations instead, and say when information such as prices may be out of date.
+- Today's date is ${d.toDateString()}. The user is most likely in India unless they say otherwise (use ₹ and Indian context by default).`}
+function histFor(a){const out=[];const ms=cur.msgs.filter(m=>!m.err&&(m.r==='u'||m.c));const last=ms.slice(-24);
+ last.forEach((m,i)=>{if(m.r==='u'){out.push({role:'user',text:(m.c||'(see attachment)')+(m.ctx||''),imgs:i>=last.length-2?(m.imgs||[]).filter(Boolean):[]})}else out.push({role:'assistant',text:a.id===5?m.c.replace(DISC,'').trim():m.c})});
+ while(out.length&&out[0].role!=='user')out.shift();return out}
+
+/* ---------------- providers ---------------- */
+function b64(url){const m=String(url).match(/^data:([^;]+);base64,(.*)$/);return m?{mime:m[1],data:m[2]}:null}
+function buildReq(a,hist,stream){const sys=a.sys||sysPrompt(a),model=curModel(),key=curKey(),temp=+CFG.temp||0.7;
+ if(CFG.prov==='gemini'){const contents=hist.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.text},...(m.imgs||[]).map(b64).filter(Boolean).map(x=>({inline_data:{mime_type:x.mime,data:x.data}}))]}));
+  return{url:`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model.replace(/^models\//,''))}:${stream?'streamGenerateContent?alt=sse&':'generateContent?'}key=${encodeURIComponent(key)}`,headers:{'content-type':'application/json'},body:{systemInstruction:{parts:[{text:sys}]},contents,generationConfig:{temperature:temp}}}}
+ if(CFG.prov==='anthropic'){const messages=hist.map(m=>({role:m.role,content:[...(m.imgs||[]).map(b64).filter(Boolean).map(x=>({type:'image',source:{type:'base64',media_type:x.mime,data:x.data}})),{type:'text',text:m.text}]}));
+  return{url:'https://api.anthropic.com/v1/messages',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:{model,max_tokens:4096,system:sys,messages,temperature:Math.min(1,temp),stream}}}
+ const messages=[{role:'system',content:sys},...hist.map(m=>m.imgs&&m.imgs.length?{role:m.role,content:[{type:'text',text:m.text},...m.imgs.map(u=>({type:'image_url',image_url:{url:u}}))]}:{role:m.role,content:m.text})];
+ const headers={'content-type':'application/json'};if(key)headers.authorization='Bearer '+key;
+ if(CFG.prov==='openrouter'){headers['HTTP-Referer']='https://bhartix.app';headers['X-Title']='BhartiX Agent'}
+ return{url:curBase()+'/chat/completions',headers,body:{model,messages,temperature:temp,stream}}}
+function pickText(j){try{
+ if(CFG.prov==='gemini')return(j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts||[]).map(p=>p.text||'').join('');
+ if(CFG.prov==='anthropic'){if(j.type==='content_block_delta')return j.delta&&j.delta.text||'';if(j.content)return j.content.map(c=>c.text||'').join('');return''}
+ const c=j.choices&&j.choices[0];if(!c)return'';return(c.delta&&c.delta.content)||(c.message&&c.message.content)||''}catch(e){return''}}
+function nativeHttp(){try{const C=window.Capacitor||(parent!==window&&parent.Capacitor);return C&&C.Plugins&&C.Plugins.CapacitorHttp}catch(e){return null}}
+class ApiErr extends Error{constructor(msg,set){super(msg);this.set=set}}
+function explain(status,body){let det='';try{const j=JSON.parse(body);det=(j.error&&(j.error.message||j.error))||j.message||'';if(typeof det!=='string')det=JSON.stringify(det)}catch(e){det=String(body||'').slice(0,200)}
+ if(status===401||status===403||/api key|apikey|invalid.*key|unauthori/i.test(det))return new ApiErr('The AI key was not accepted. Check the key in Settings. '+(det?'('+det.slice(0,160)+')':''),1);
+ if(status===404||/not found|does not exist|model/i.test(det)&&status===400)return new ApiErr(`Model “${curModel()}” not found. Open Settings → “Find models” and choose one. ${det?'('+det.slice(0,140)+')':''}`,1);
+ if(status===429)return new ApiErr('Free limit for this model reached (free plans allow only a limited number of messages per minute/day). Wait a while, choose another model in Settings → Find models, or switch provider (e.g. Groq). '+(det?'('+det.slice(0,140)+')':''));
+ if(status>=500)return new ApiErr('The AI service is busy right now ('+status+'). Try again in a moment.');
+ return new ApiErr('AI error '+status+(det?': '+det.slice(0,220):''))}
+async function callAI(a,hist,onText,signal){
+ const r=buildReq(a,hist,true);let res;
+ try{res=await fetch(r.url,{method:'POST',headers:r.headers,body:JSON.stringify(r.body),signal})}
+ catch(e){if(e.name==='AbortError')throw e;
+  const H=nativeHttp();if(H){const r2=buildReq(a,hist,false);const x=await H.request({url:r2.url,method:'POST',headers:r2.headers,data:r2.body});
+   const body=typeof x.data==='string'?x.data:JSON.stringify(x.data);if(x.status>=400)throw explain(x.status,body);const t=pickText(typeof x.data==='string'?JSON.parse(x.data):x.data);onText(t);return t}
+  throw new ApiErr(navigator.onLine===false?'You are offline. Connect to the internet to use the AI (offline helpers still work for some tasks).':'Could not reach the AI service. Check the internet connection'+(CFG.prov==='custom'?' and the server URL':'')+'.')}
+ if(!res.ok)throw explain(res.status,await res.text());
+ let full='';const ct=res.headers.get('content-type')||'';
+ if(!res.body||!/event-stream|stream/.test(ct)&&!/alt=sse/.test(r.url)){const j=await res.json().catch(()=>null);full=j?pickText(j):'';onText(full);return full}
+ const rd=res.body.getReader(),dec=new TextDecoder();let buf='';
+ for(;;){const{done,value}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});const lines=buf.split('\n');buf=lines.pop();
+  for(const ln of lines){const s=ln.trim();if(!s.startsWith('data:'))continue;const d=s.slice(5).trim();if(!d||d==='[DONE]')continue;
+   try{const j=JSON.parse(d);if(j.error)throw explain(400,JSON.stringify(j));const t=pickText(j);if(t){full+=t;onText(full)}}catch(e){if(e instanceof ApiErr)throw e}}}
+ return full}
+async function listModels(){const key=curKey();let url,headers={};
+ if(CFG.prov==='gemini'){url='https://generativelanguage.googleapis.com/v1beta/models?pageSize=200&key='+encodeURIComponent(key)}
+ else if(CFG.prov==='anthropic'){url='https://api.anthropic.com/v1/models?limit=100';headers={'x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'}}
+ else{url=curBase()+'/models';if(key)headers.authorization='Bearer '+key}
+ let j;try{const r=await fetch(url,{headers});if(!r.ok)throw explain(r.status,await r.text());j=await r.json()}
+ catch(e){if(e instanceof ApiErr)throw e;const H=nativeHttp();if(!H)throw new ApiErr('Could not reach the service.');const x=await H.request({url,method:'GET',headers});if(x.status>=400)throw explain(x.status,JSON.stringify(x.data));j=typeof x.data==='string'?JSON.parse(x.data):x.data}
+ if(CFG.prov==='gemini')return(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace(/^models\//,'')).filter(n=>!/embed|aqa|tts|image|veo|imagen/i.test(n));
+ return(j.data||j.models||[]).map(m=>m.id||m.name).filter(Boolean)}
+
+/* ---------------- offline helpers (work with no key / no internet) ---------------- */
+const RIDDLES=[['ऐसी कौन सी चीज़ है जो जितनी ज़्यादा सूखती है, उतनी ज़्यादा गीली होती है?','तौलिया (towel)'],['What has keys but can\'t open locks?','A piano (or a keyboard)'],['काली है पर काग नहीं, लंबी है पर नाग नहीं, बल खाती है पर डोर नहीं, बांधते हैं पर ढोर नहीं।','चोटी (बालों की)'],['The more of this there is, the less you see. What is it?','Darkness'],['एक थाल मोतियों से भरा, सबके सिर पर औंधा धरा।','आसमान और तारे'],['What can travel around the world while staying in a corner?','A postage stamp'],['हरी थी मन भरी थी, लाख मोती जड़ी थी, राजा जी के बाग में दुशाला ओढ़े खड़ी थी।','भुट्टा (मक्का)'],['I have hands but cannot clap. What am I?','A clock'],['बिना पैर के चलती है, बिना मुँह के बोलती है।','चिट्ठी (letter)'],['What gets bigger the more you take away?','A hole'],['पानी में पैदा हुआ, पानी में रहता है, पानी में डालो तो मर जाता है।','नमक'],['What has one eye but can\'t see?','A needle']];
+const num=s=>{const m=String(s).replace(/,/g,'').match(/(\d+(?:\.\d+)?)\s*(k|thousand|हज़ार|हजार|hazar|lakh|lac|लाख|cr|crore|करोड़)?/i);if(!m)return null;let v=+m[1];const u=(m[2]||'').toLowerCase();if(/^k|thousand|हज़ार|हजार|hazar/.test(u))v*=1e3;else if(/lakh|lac|लाख/.test(u))v*=1e5;else if(/cr|करोड़/.test(u))v*=1e7;return v};
+const inr=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+function offline(a,text,chat){const t=text.toLowerCase();const st=chat.off||(chat.off={});
+ const notes='\n\n> 💡 Connect an AI key in **Settings** for full answers on any topic.';
+ if(a.id===10){
+  if(st.riddle!=null){const r=RIDDLES[st.riddle];st.riddle=null;const ok=r[1].toLowerCase().split(/[\s(),/]+/).filter(w=>w.length>2).some(w=>t.includes(w));return`${ok?'🎉 **सही जवाब! Correct!**':'😄 **Nice try!**'}\n\nAnswer: **${r[1]}**\n\nType **riddle** for another one, or **game** to play number-guess.`}
+  if(st.guess!=null){const g=num(t);if(g==null)return'Type a number between **1 and 100** 🎯';st.tries=(st.tries||0)+1;if(g===st.guess){const n=st.tries;st.guess=null;st.tries=0;return`🏆 **Correct! ${g}** — you got it in **${n}** ${n===1?'try':'tries'}!\n\nType **game** to play again or **riddle** for a riddle.`}return g<st.guess?`⬆️ **Higher!** (try ${st.tries})`:`⬇️ **Lower!** (try ${st.tries})`}
+  if(/game|खेल|khel|guess|number/.test(t)){st.guess=1+Math.floor(Math.random()*100);st.tries=0;return'🎮 **Number Guess** — I\'m thinking of a number between **1 and 100**. Type your guess!'}
+  st.riddle=Math.floor(Math.random()*RIDDLES.length);return`🧩 **Riddle / पहेली:**\n\n${RIDDLES[st.riddle][0]}\n\n_Type your answer…_`}
+ if(a.id===6&&/emi|loan|लोन/.test(t)){const ns=String(text).replace(/,/g,'').match(/\d+(?:\.\d+)?\s*(?:k|lakh|lac|लाख|cr|crore)?/gi)||[];const P=num(ns[0]||''),R=ns[1]?parseFloat(ns[1]):null,Y=ns[2]?parseFloat(ns[2]):null;
+  if(P&&R&&Y){const r=R/12/100,n=Math.round(Y*(/month|महीने/.test(t)?1:12));const e=r?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n;return`## EMI calculation\n\n| Item | Value |\n|---|---|\n| Loan amount | **${inr(P)}** |\n| Interest rate | ${R}% per year |\n| Tenure | ${n} months |\n| **Monthly EMI** | **${inr(e)}** |\n| Total interest | ${inr(e*n-P)} |\n| Total payment | ${inr(e*n)} |\n\n_General information, not financial advice — confirm with your bank._`}
+  return'To calculate EMI, type: **EMI 500000 10 3** (loan amount, interest % per year, years).'+notes}
+ if(a.id===6&&/budget|बजट|salary|income|सैलरी|kamai|कमाई/.test(t)){const v=num(t);if(v){return`## Monthly budget for ${inr(v)} (50 / 30 / 20 rule)\n\n| Bucket | % | Amount | Covers |\n|---|---|---|---|\n| **Needs** | 50% | **${inr(v*.5)}** | Rent, groceries, bills, EMI, travel to work |\n| **Wants** | 30% | **${inr(v*.3)}** | Eating out, shopping, OTT, trips |\n| **Savings & investing** | 20% | **${inr(v*.2)}** | Emergency fund, SIP, PPF/FD |\n\n**Tips**\n- Build an emergency fund of **${inr(v*.5*6)}** (6 months of needs) first.\n- Automate the savings on salary day.\n- If rent is above ${inr(v*.3)}, cut from *Wants* first.\n\n_General information, not financial advice._`}return'Type your monthly income, e.g. **budget 35000**.'+notes}
+ if(a.id===6&&/nda|non.?disclosure|गोपनीयता/.test(t))return`# MUTUAL NON-DISCLOSURE AGREEMENT\n\nThis Agreement is made on **[Date]** between **[Party A name, address]** and **[Party B name, address]** (each a "Party").\n\n1. **Purpose.** The Parties wish to discuss **[project/purpose]** and may share confidential information.\n2. **Confidential Information.** All business, technical and financial information shared in any form and marked or reasonably understood as confidential.\n3. **Obligations.** The receiving Party shall (a) use it only for the Purpose, (b) not disclose it to third parties, (c) protect it with reasonable care.\n4. **Exclusions.** Information that is public, already known, independently developed, or required to be disclosed by law.\n5. **Term.** This Agreement lasts **[2] years** from the date above; confidentiality survives for **[3] years** after.\n6. **Return of material.** On request, all confidential material shall be returned or destroyed.\n7. **No licence.** No rights or licence are granted except as stated.\n8. **Governing law.** Laws of **India**; courts at **[City]** have jurisdiction.\n\n| | Party A | Party B |\n|---|---|---|\n| Signature | | |\n| Name | | |\n| Date | | |\n\n_Template only — not legal advice. Have a lawyer review before signing._`;
+ if(a.id===5){const h=t.match(/(\d{2,3}(?:\.\d+)?)\s*(cm|सेमी)/),w=t.match(/(\d{2,3}(?:\.\d+)?)\s*(kg|किलो)/);
+  if(h&&w){const m=+h[1]/100,b=+w[1]/(m*m);const cat=b<18.5?'Underweight':b<23?'Normal (Asian cut-off)':b<25?'Overweight (Asian cut-off)':'Obese range (Asian cut-off)';return`${DISC}\n\n## BMI result\n\n| Height | Weight | **BMI** | Category |\n|---|---|---|---|\n| ${h[1]} cm | ${w[1]} kg | **${b.toFixed(1)}** | ${cat} |\n\nHealthy weight for your height: **${(18.5*m*m).toFixed(0)}–${(22.9*m*m).toFixed(0)} kg** (Asian BMI 18.5–22.9).\n\nBMI does not measure muscle or fat directly — discuss with a doctor.`}
+  return`${DISC}\n\nOffline I can calculate **BMI** — type e.g. **165 cm 62 kg**.\n\n**Everyday basics:** sleep 7–9 h · 30 min activity most days · water through the day · more vegetables, dal, fruit; less sugar and fried food.${notes}`}
+ if(a.id===4){
+  if(/agenda|meeting|मीटिंग/.test(t))return`## Meeting agenda — [Meeting name]\n**Date:** [Date] · **Time:** [Start–End] · **Place/Link:** [ ]\n\n| # | Item | Owner | Time |\n|---|---|---|---|\n| 1 | Welcome & objective | [Chair] | 3 min |\n| 2 | Review of last actions | [Owner] | 5 min |\n| 3 | [Main topic 1] | [Owner] | 10 min |\n| 4 | [Main topic 2] | [Owner] | 7 min |\n| 5 | Decisions & next actions | [Chair] | 5 min |\n\n**Pre-read:** [link] · **Outcome expected:** [decision/approval]`;
+  if(/sop|procedure|प्रक्रिया/.test(t))return`## Standard Operating Procedure — [Process name]\n\n| Field | Detail |\n|---|---|\n| SOP No. | SOP-[001] |\n| Version / Date | 1.0 / [Date] |\n| Owner | [Department] |\n\n1. **Purpose** — why this procedure exists.\n2. **Scope** — where and to whom it applies.\n3. **Roles** — who does what.\n4. **Procedure**\n   1. [Step 1]\n   2. [Step 2]\n   3. [Step 3]\n5. **Records** — what is logged and where.\n6. **Review** — every [6] months by [Owner].`;
+  return`**Subject:** [Clear subject line]\n\nDear [Name],\n\nI hope you are well. I am writing to **[purpose in one line]**.\n\n- [Key point 1]\n- [Key point 2]\n\nCould you please **[the action you need]** by **[date]**?\n\nThank you for your time.\n\nBest regards,\n[Your name]\n[Designation] · [Phone]${notes}`}
+ if(a.id===9){const m=t.match(/(\d[\d,]*)\s*(?:rs|₹|rupees|रुपये)?\s*(?:among|between|in|\/|÷|me|में|mein)\s*(\d+)/);if(m){const v=+m[1].replace(/,/g,''),n=+m[2];if(n)return`## Expense split\n\n| Total | People | **Each pays** |\n|---|---|---|\n| ${inr(v)} | ${n} | **${inr(v/n)}** |`}}
+ if(a.id===1){const words=(text.match(/[A-Za-zऀ-ॿ]{3,}/g)||[]).filter(w=>!/^(the|and|for|with|caption|hashtag|hashtags|write|post|about|make|instagram|give|please)$/i.test(w)).slice(0,6);
+  if(words.length)return`## Hook formulas you can fill in\n1. **"Stop scrolling if you ${words[0]}…"**\n2. **"I tried ${words[0]} for 7 days — here's what happened"**\n3. **"3 ${words[0]} mistakes everyone makes (No. 2 hurts)"**\n4. **"Nobody tells you this about ${words[0]}"**\n\n**Caption template:** Hook line ➜ 2-line value ➜ question to the audience ➜ CTA (save / share / follow)\n\n**Hashtags:** ${words.map(w=>'#'+w.replace(/\s/g,'')).join(' ')} #trending #reels #india #explorepage`+notes}
+ return null}
+
+/* ---------------- reply ---------------- */
+function bestGemini(ms){const ver=n=>{const m=n.match(/gemini-(\d+(?:\.\d+)?)/);return m?+m[1]:0};
+ const ok=ms.filter(n=>/flash/.test(n)&&!/image|live|tts|audio|thinking|exp|omni|embed/.test(n));
+ const score=n=>ver(n)*10-(/lite/.test(n)?3:0)-(/preview/.test(n)?1:0);
+ return ok.sort((a,b)=>score(b)-score(a))[0]||null}
+async function autoModel(){if(CFG.prov!=='gemini'||CFG.models.gemini||CFG._auto>Date.now()-864e5)return;
+ try{const ms=await listModels();const m=bestGemini(ms);CFG._auto=Date.now();if(m){CFG.models.gemini=m;}saveCfg()}catch(e){}}
+async function reply(){const chat=cur,a=agById(chat.agent);const userMsg=[...chat.msgs].reverse().find(m=>m.r==='u');
+ const m={r:'a',c:'',t:Date.now(),live:1};chat.msgs.push(m);const i=chat.msgs.length-1;
+ if(cur===chat){const box=$('#msgs');if(box&&box.querySelector('.note'))box.innerHTML='';const d=document.createElement('div');d.innerHTML=msgHTML(m,i,a);box&&box.appendChild(d.firstChild);scrollEnd(true)}
+ const offTry=()=>{const o=offline(a,userMsg?userMsg.c:'',chat);if(o){m.c=o;m.off=1;return true}return false};
+ if(!ready()||navigator.onLine===false){if(!offTry()){m.err=navigator.onLine===false&&ready()?'You are offline. Connect to the internet to use the AI.':'BhartiX Agent needs an AI connection for this task. Add a free Google Gemini key (or another provider) in Settings.';m.errSet=!ready()}
+  delete m.live;persist();if(cur===chat)updateMsg(i);renderSide();return}
+ const ac=new AbortController();setBusy(ac);let raf=0;
+ await autoModel();
+ const pre=a.id===5?DISC+'\n\n':'';
+ try{const full=await callAI(a,histFor(a),t=>{m.c=pre+t;if(!raf)raf=requestAnimationFrame(()=>{raf=0;if(cur===chat){updateMsg(i);scrollEnd()}})},ac.signal);
+  if(!full.trim()){m.c='';m.err='The AI returned an empty answer (it may have been blocked by the provider\'s safety filter). Try rephrasing.'}}
+ catch(e){if(e.name==='AbortError'){if(!m.c.trim()||m.c===pre)m.err='Stopped.';else m.c+='\n\n_(stopped)_'}
+  else{if(!m.c&&offTry()){}else{m.err=e.message||String(e);m.errSet=!!e.set}}}
+ finally{cancelAnimationFrame(raf);delete m.live;if(m.err)m.c=m.c&&m.c!==pre?m.c:'';setBusy(null);persist();if(cur===chat){updateMsg(i);scrollEnd()}renderSide()}}
+function regen(){if(!cur||busy)return;while(cur.msgs.length&&cur.msgs[cur.msgs.length-1].r==='a')cur.msgs.pop();if(!cur.msgs.length)return;renderChat();reply()}
+
+/* ---------------- message actions ---------------- */
+function plain(s){return String(s).replace(/\*\*([^*]+)\*\*/g,'$1').replace(/`([^`]+)`/g,'$1')}
+function copyText(t){const done=()=>toast('Copied');try{navigator.clipboard.writeText(t).then(done,()=>fb())}catch(e){fb()}
+ function fb(){const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done()}catch(e){toast('Select the text to copy')}ta.remove()}}
+let speaking=null;
+function speak(t){if(!('speechSynthesis'in window)){toast('Read aloud is not available here');return}
+ if(speechSynthesis.speaking){speechSynthesis.cancel();if(speaking===t){speaking=null;return}}
+ const u=new SpeechSynthesisUtterance(plain(t).replace(/[#>|*_~-]{1,}/g,' ').replace(/\s+/g,' ').slice(0,6000));u.lang=speechLang(t);const vv=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.replace('_','-').toLowerCase().startsWith(u.lang.slice(0,2)));if(vv)u.voice=vv;u.onend=()=>speaking=null;speaking=t;speechSynthesis.speak(u)}
+function docHTML(m,a){return`<!doctype html><html><head><meta charset="utf-8"><title>${esc(cur.title)}</title></head><body><h1>${esc(cur.title)}</h1><p><i>${a.e} ${esc(a.n)} Agent · BhartiX Agent · ${new Date(m.t).toLocaleString()}</i></p>${md(m.c).replace(/<div class="ph">.*?<\/div>/g,'')}</body></html>`}
+function fname(ext){return(cur.title||'BhartiX Agent').replace(/[\\/:*?"<>|\n]+/g,' ').trim().slice(0,50)+ext}
+async function msgAction(k,i){const m=cur.msgs[i];if(!m)return;const a=agById(cur.agent);
+ if(k==='copy')return copyText(m.c);
+ if(k==='speak')return speak(m.c);
+ if(k==='regen'){cur.msgs.splice(i);renderChat();return reply()}
+ if(k==='writer'){try{OSP.openBxApp('writer',new File([docHTML(m,a)],fname('.html'),{type:'text/html'}));}catch(e){toast('Could not open Writer')}return}
+ if(k==='save'){const blob=new Blob([m.c],{type:'text/markdown'});const nm=fname('.md');
+  if(OSP){try{await OSP.bxSaveTo(nm,blob,'documents');toast('Saved in Files › Documents › '+nm)}catch(e){toast('Could not save')}return}
+  const u=URL.createObjectURL(blob),l=document.createElement('a');l.href=u;l.download=nm;document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);return}
+ if(k==='share'){const text=plain(m.c);try{if(OSP&&typeof OSP.bxShare==='function'){const ok=await OSP.bxShare({title:cur.title,text,name:fname('.txt'),blob:new Blob([m.c],{type:'text/plain'})});if(!ok)copyText(text);return}
+   if(navigator.share){await navigator.share({title:cur.title,text});return}}catch(e){if(e&&e.name==='AbortError')return}copyText(text);toast('Copied — paste it anywhere to share')}}
+
+/* ---------------- settings dialog ---------------- */
+function openSettings(){const bg=document.createElement('div');bg.className='dlgbg';
+ bg.innerHTML=`<div class="dlg" role="dialog" aria-label="Settings"><header><b>AI connection & settings</b><button class="ib" data-x aria-label="Close">✕</button></header><div class="db">
+  <label class="fld">🗣️ Language / भाषा<select id="sL">${Object.entries(LANGS).map(([k,x])=>`<option value="${k}">${x.l}</option>`).join('')}</select><small>Auto = reply in the language you write. Or choose one language for all replies.</small></label>
+  <label class="fld">AI provider<select id="sP">${Object.entries(PROV).map(([k,p])=>`<option value="${k}">${p.n}</option>`).join('')}</select><small id="sHint"></small></label>
+  <label class="fld" id="sBaseL">Server URL<input id="sBase" placeholder="http://192.168.1.5:11434/v1" autocomplete="off" spellcheck="false"></label>
+  <label class="fld">API key<input id="sK" type="password" placeholder="Paste your key" autocomplete="off" spellcheck="false"><small>Stored only on this device. Never shared except with the provider you choose.</small></label>
+  <div class="row"><label class="fld" style="flex:1">Model<input id="sM" list="sML" autocomplete="off" spellcheck="false"><datalist id="sML"></datalist></label><button class="btn" id="sFind">Find models</button></div>
+  <div class="row"><button class="btn pri" id="sTest">Test connection</button><p class="msg" id="sMsg" style="flex:1"></p></div>
+  <div class="row"><label class="fld" style="flex:1">Creativity<input id="sT" type="range" min="0" max="1.2" step="0.1"></label><label class="fld" style="flex:1">Theme<select id="sTh"><option value="auto">Same as device</option><option value="light">Light</option><option value="dark">Dark</option></select></label></div>
+  <p class="note">Tip: a free <b>Google Gemini</b> key is the easiest start — open <b>aistudio.google.com</b>, sign in, tap <b>Get API key</b>, copy it and paste it here.</p>
+  <div class="row"><button class="btn" id="sClr">Delete all chats</button></div>
+ </div><footer><button class="btn" data-x>Cancel</button><button class="btn pri" id="sOk">Save</button></footer></div>`;
+ document.body.appendChild(bg);const g=s=>bg.querySelector(s);const tmp={prov:CFG.prov,keys:{...CFG.keys},models:{...CFG.models},base:CFG.base};
+ const fill=()=>{const p=PROV[tmp.prov];g('#sP').value=tmp.prov;g('#sHint').textContent=p.hint;g('#sBaseL').hidden=tmp.prov!=='custom';g('#sBase').value=tmp.base||'';g('#sK').value=tmp.keys[tmp.prov]||'';g('#sK').placeholder=tmp.prov==='custom'?'Optional for local servers':'Paste your key';g('#sM').value=tmp.models[tmp.prov]||p.m;g('#sML').innerHTML='';g('#sMsg').textContent='';g('#sMsg').className='msg'};
+ const take=()=>{tmp.keys[tmp.prov]=g('#sK').value.trim();tmp.models[tmp.prov]=g('#sM').value.trim();tmp.base=g('#sBase').value.trim()};
+ const withTmp=async f=>{const keep={prov:CFG.prov,keys:CFG.keys,models:CFG.models,base:CFG.base};take();Object.assign(CFG,{prov:tmp.prov,keys:tmp.keys,models:tmp.models,base:tmp.base});try{return await f()}finally{Object.assign(CFG,keep)}};
+ g('#sT').value=CFG.temp;g('#sTh').value=CFG.theme;g('#sL').value=CFG.lang;fill();
+ g('#sL').onchange=()=>{CFG.lang=g('#sL').value;saveCfg();if(!cur)renderHome();else $('#inp').placeholder=LX().ph(AG.length);toast('🗣️ '+g('#sL').selectedOptions[0].text)};
+ g('#sP').onchange=()=>{take();tmp.prov=g('#sP').value;fill()};
+ g('#sTh').onchange=()=>{CFG.theme=g('#sTh').value;applyTheme();saveCfg()};
+ const say=(t,c)=>{g('#sMsg').textContent=t;g('#sMsg').className='msg '+(c||'')};
+ g('#sFind').onclick=async()=>{say('Finding models…');try{const ms=await withTmp(listModels);g('#sML').innerHTML=ms.map(m=>`<option value="${esc(m)}">`).join('');
+   if(ms.length&&!ms.includes(g('#sM').value)){const pref=(tmp.prov==='gemini'&&bestGemini(ms))||ms.find(m=>/flash/.test(m)&&!/lite|thinking|exp|preview/.test(m))||ms.find(m=>/flash|mini|haiku|instant|8b/.test(m))||ms[0];g('#sM').value=pref}
+   say(ms.length?`${ms.length} models found — tap the Model box to choose. Selected: ${g('#sM').value}`:'No models found.',ms.length?'ok':'bad')}catch(e){say(e.message||'Could not list models','bad')}};
+ g('#sTest').onclick=async()=>{say('Testing…');g('#sTest').disabled=true;try{const t=await withTmp(()=>{if(!ready())throw new ApiErr(tmp.prov==='custom'?'Enter the server URL and model.':'Paste your API key first.');return callAI(AG[1],[{role:'user',text:'Reply with exactly: BhartiX Agent ready ✅'}],()=>{},undefined)});say('Connected ✓ — '+String(t).trim().slice(0,60),'ok')}catch(e){say(e.message||'Failed','bad')}finally{g('#sTest').disabled=false}};
+ g('#sClr').onclick=()=>{if(g('#sClr').dataset.sure){CHATS=[];persist();goHome();toast('All chats deleted');g('#sClr').textContent='Delete all chats';delete g('#sClr').dataset.sure}else{g('#sClr').dataset.sure=1;g('#sClr').textContent='Tap again to delete all chats'}};
+ bg.addEventListener('click',e=>{if(e.target===bg||e.target.closest('[data-x]'))bg.remove()});
+ bg.addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Escape')bg.remove()});
+ g('#sOk').onclick=()=>{take();Object.assign(CFG,{prov:tmp.prov,keys:tmp.keys,models:tmp.models,base:tmp.base,temp:+g('#sT').value});saveCfg();bg.remove();toast(ready()?'Saved — '+PROV[CFG.prov].n:'Saved');$('#bSet').classList.toggle('need',!ready());if(!cur)renderHome()};
+ setTimeout(()=>g(tmp.prov==='custom'?'#sBase':'#sK').focus(),50)}
+$('#bSet').onclick=openSettings;
+$('#bNew').onclick=()=>{if(cur&&cur.msgs.length){openAgent(cur.agent)}else goHome()};
+$('#bHome').onclick=()=>{goHome();closeSide()};
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.shiftKey&&(e.key==='O'||e.key==='o')){e.preventDefault();$('#bNew').click()}if(e.key==='Escape'&&busy)busy.abort()});
+let tt;function toast(t){let el=$('.toast');if(!el){el=document.createElement('div');el.className='toast';el.setAttribute('role','status');document.body.appendChild(el)}el.textContent=t;el.hidden=false;clearTimeout(tt);tt=setTimeout(()=>el.hidden=true,2400)}
+
+/* files sent from BhartiX OS (Files › Open with) become attachments */
+$('#openFile').addEventListener('change',async e=>{for(const f of e.target.files)await addAttachment(f);toast('File attached — describe what to do with it');inp.focus()});
+addEventListener('message',e=>{const d=e.data;if(!d||!d.bxOpen)return;addAttachment(d.bxOpen).then(()=>toast('File attached'))});
+window.addEventListener('online',()=>{if(!cur)renderHome()});window.addEventListener('offline',()=>toast('You are offline — offline helpers still work'));
+
+renderHome();renderSide();
+try{parent.postMessage({bxReady:1},'*');}catch(e){}
+<\/script>
+</body>
+</html>
+</script>
 <script>
 /* ===== New BhartiX programs (Writer, Notepad, Paint, Grid, Slides) ===== */
 (function(){
-const BXAPP={writer:['BhartiX Writer','#e8893a'],notepad:['BhartiX Notepad','#2f9e5b'],paint:['BhartiX Paint','#2563c9'],grid:['BhartiX Grid','#138a8a'],slides:['BhartiX Slides','#c2410c'],office:['BhartiX Writer','#1e3a8a']};
+const BXAPP={writer:['BhartiX Writer','#e8893a'],notepad:['BhartiX Notepad','#2f9e5b'],paint:['BhartiX Paint','#2563c9'],grid:['BhartiX Grid','#138a8a'],slides:['BhartiX Slides','#c2410c'],office:['BhartiX Writer','#1e3a8a'],agent:['BhartiX Agent','#d9417a']};
 const docCache={};
 function bxAppDoc(k){if(!docCache[k]){const el=document.getElementById('bxapp-'+(k==='office'?'writer':k));docCache[k]=el?el.textContent.replace(/<\\\/script/g,'</script').replace(/<\\!--/g,'<!--'):'<p>Program not found</p>';}return docCache[k];}
 let seq=0;
@@ -24503,6 +25318,12 @@ window.bxWinCmd=function(cmd,src){try{const vis=W.filter(o=>!o.min);const me=W.f
   if(cmd==='arrange'){const cw=OS.clientWidth,ch=OS.clientHeight-BAR;const n=vis.length||1;const cols=n<=3?n:Math.ceil(Math.sqrt(n)),rows=Math.ceil(n/cols);vis.forEach((o,i)=>{if(o.max){o._t0=0;toggleMax(o)}const s=o.el.style;s.left=Math.round((i%cols)*cw/cols)+'px';s.top=Math.round(Math.floor(i/cols)*ch/rows)+'px';s.width=Math.round(cw/cols)+'px';s.height=Math.round(ch/rows)+'px'});return true}}catch(e){}return null};
 /* Start menu: the six programs open the new versions */
 Object.assign(LAUNCH,{'BhartiX Writer':()=>openBxApp('writer'),'BhartiX Notepad':()=>openBxApp('notepad'),'BhartiX Paint':()=>openBxApp('paint'),'BhartiX Grid':()=>openBxApp('grid'),'BhartiX Sheets':()=>openBxApp('grid'),'BhartiX Slides':()=>openBxApp('slides'),'BhartiX Office':()=>openBxApp('office')});
+/* BhartiX Agent — universal AI co-pilot (11 agents) */
+LAUNCH['BhartiX Agent']=()=>openBxApp('agent');
+if(!PR.some(p=>p[0]==='BhartiX Agent'))PR.splice(1,0,['BhartiX Agent','linear-gradient(135deg,#ff8a3d,#e2477c 50%,#3157d6)']);
+if(!ST_PIN.includes('BhartiX Agent'))ST_PIN.splice(1,0,'BhartiX Agent');
+/* BhartiX Office and BhartiX Writer are the same program — keep only Writer in the Start menu */
+{const oi=PR.findIndex(p=>p[0]==='BhartiX Office');if(oi>=0)PR.splice(oi,1);const pi=ST_PIN.indexOf('BhartiX Office');if(pi>=0){if(ST_PIN.includes('BhartiX Writer'))ST_PIN.splice(pi,1);else ST_PIN[pi]='BhartiX Writer';}}
 /* the earlier versions stay available as "Classic" (BhartiX OS ▸ All programs search: classic) */
 window.BX_CLASSIC={office:openBhartiWord,writer:openWordPad,notepad:openNotepad,paint:openPaint,grid:openExcel,slides:openPowerPoint};
 /* Files ▸ Open with … */
@@ -24524,6 +25345,7 @@ if(typeof BXI!=='undefined'){
   BXI['BhartiX Grid']='<rect x="3.5" y="4" width="17" height="16" rx="2"/><path d="M3.5 9h17M3.5 14.5h17M9.5 4v16"/><rect x="3.5" y="4" width="17" height="5" rx="2" fill="#fff" stroke="none" opacity=".9"/>';
   BXI['BhartiX Slides']='<rect x="3" y="4" width="18" height="12.5" rx="1.8"/><path d="M12 16.5v3.5M8.5 20h7"/><path d="M7.5 13v-2.5M11 13V8.5M14.5 13v-3.5" stroke-width="2.4"/>';
   BXI['BhartiX Sheets']=BXI['BhartiX Grid'];
+  BXI['BhartiX Agent']='<path d="M12 2.8l2.3 5.9 5.9 2.3-5.9 2.3L12 19.2l-2.3-5.9L3.8 11l5.9-2.3z" fill="#fff" stroke="none"/><path d="M19 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="#fff" stroke="none"/>';
   try{renderPL();}catch(e){}try{if(typeof stRender==='function')stRender();}catch(e){}
   try{const st=document.getElementById('start');if(st){const mo=new MutationObserver(()=>{});mo.disconnect();}}catch(e){}}
 })();
@@ -24625,4 +25447,360 @@ try{let ch=0;(S.items||[]).forEach(i=>{if(i.id==='pc'&&i.name==='Computer'){i.na
 .fx .fx-vt button svg{width:14px;height:14px}.fx .fx-vt button.on{background:#e3eaf5;color:#1f2a3a}
 @media (max-width:760px){.fx .fx-c.l span{display:none}.fx .fx-c{padding:0 6px}.fx .fx-tab{min-width:90px}.fx .fx-search{flex-basis:130px}}
 </style>
+<style id="bx-copilot-css">
+/* ===== BhartiX Copilot (program agents) ===== */
+.win .tb .b.agb{display:inline-grid;place-items:center;color:#fff;background:linear-gradient(135deg,#ff8a3d,#e2477c 55%,#3157d6);border:1px solid rgba(255,255,255,.55);margin-right:4px}
+.win .tb .b.agb:hover{filter:brightness(1.1)}
+.win .tb .b.agb.on{box-shadow:0 0 0 2px rgba(255,255,255,.9) inset}
+.agp{position:absolute;right:0;bottom:0;width:min(360px,100%);z-index:30;display:flex;flex-direction:column;background:#fbfcfe;color:#1d2433;border-left:1px solid #c9d3e3;box-shadow:-6px 0 18px rgba(20,30,60,.16);font:13.5px/1.45 "Segoe UI",system-ui,"Noto Sans Devanagari",sans-serif}
+.agp[hidden]{display:none}
+.agp-h{display:flex;align-items:center;gap:8px;padding:7px 8px 7px 12px;border-bottom:1px solid #e2e7f0;background:linear-gradient(90deg,color-mix(in srgb,var(--ac) 12%,#fff),#fff)}
+.agp-e{font-size:18px}.agp-h b{font-size:14px}.agp-sp{flex:1}
+.agp-x{border:0;background:none;width:28px;height:28px;border-radius:6px;color:#5d6779;font-size:15px;cursor:pointer}
+.agp-x:hover{background:#e8edf5;color:#1d2433}
+.agp-m{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:12px;min-height:0}
+.agp-w{text-align:center;color:#5d6779;padding:14px 6px}
+.agp-wi{font-size:30px;width:54px;height:54px;border-radius:14px;margin:0 auto 6px;display:grid;place-items:center;background:color-mix(in srgb,var(--ac) 15%,#fff)}
+.agp-w b{color:#1d2433;font-size:15px}.agp-w p{margin:4px 0 0;font-size:12.5px}
+.agp-need{margin-top:12px;border:1px solid #f2b45c;background:#fff4e5;color:#7a4a06;border-radius:9px;padding:9px 10px;font-size:12.5px;text-align:left}
+.agp-btn{margin-top:7px;border:0;border-radius:7px;background:#2453c9;color:#fff;padding:6px 12px;font-weight:600;cursor:pointer}
+.agp-u{align-self:flex-end;max-width:88%;background:#2453c9;color:#fff;border-radius:12px 12px 3px 12px;padding:7px 11px;white-space:pre-wrap;word-wrap:break-word}
+.agp-u small{display:block;opacity:.8;font-size:11px;margin-bottom:2px}
+.agp-a{max-width:100%;min-width:0}
+.agp-md{word-wrap:break-word;overflow-wrap:anywhere}
+.agp-md>*:first-child{margin-top:0}.agp-md>*:last-child{margin-bottom:0}
+.agp-md p{margin:0 0 .6em}.agp-md ul,.agp-md ol{margin:0 0 .6em;padding-left:1.3em}
+.agp-md h1,.agp-md h2,.agp-md h3,.agp-md h4{font-size:1.02em;margin:.8em 0 .35em}
+.agp-md code{font-family:ui-monospace,Consolas,monospace;font-size:.9em;background:#eef2f9;padding:.05em .3em;border-radius:4px}
+.agp-md pre{background:#0f172a;color:#e2e8f0;border-radius:8px;margin:0 0 .7em;overflow:hidden}
+.agp-md pre .ph{display:flex;justify-content:space-between;padding:3px 8px;font-size:11px;opacity:.8}
+.agp-md pre .ph button{display:none}
+.agp-md pre code{display:block;background:none;color:inherit;padding:8px 10px;overflow-x:auto;white-space:pre;font-size:12px}
+.agp-md .tw{overflow-x:auto;margin:0 0 .7em}.agp-md table{border-collapse:collapse;font-size:12.5px}
+.agp-md th,.agp-md td{border:1px solid #d5dce8;padding:4px 7px;text-align:left}.agp-md th{background:#eef2f9}
+.agp-md blockquote{margin:0 0 .6em;padding:.3em .7em;border-left:3px solid var(--ac);background:#f2f5fa}
+.agp-acts{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+.agp-acts button{border:1px solid #cfd8e6;background:#fff;border-radius:14px;padding:4px 10px;font-size:12px;cursor:pointer;color:#1d2433}
+.agp-acts button:hover{border-color:var(--ac);color:var(--ac)}
+.agp-acts button:disabled{opacity:.55}
+.agp-note{margin-top:6px;font-size:12px;color:#1d8a4a}
+.agp-err{border:1px solid #e0a0a0;background:#fdf1f1;border-radius:8px;padding:8px 10px;font-size:12.5px}
+.agp-dots i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#8a94a6;margin-right:4px;animation:agpb 1.2s infinite}
+.agp-dots i:nth-child(2){animation-delay:.2s}.agp-dots i:nth-child(3){animation-delay:.4s}
+@keyframes agpb{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.agp-chips{display:flex;gap:5px;overflow-x:auto;padding:0 10px 6px;scrollbar-width:none;flex:none}
+.agp-chips::-webkit-scrollbar{display:none}
+.agp-chips button{flex:none;border:1px solid #d5dce8;background:#fff;border-radius:14px;padding:4px 10px;font-size:12px;white-space:nowrap;cursor:pointer;color:#1d2433}
+.agp-chips button:hover{border-color:var(--ac);color:var(--ac)}
+.agp-f{border-top:1px solid #e2e7f0;padding:6px 8px 8px;background:#fff;flex:none}
+.agp-ctx{display:flex;align-items:center;gap:5px;font-size:11.5px;color:#5d6779;margin:0 2px 5px;cursor:pointer;user-select:none}
+.agp-ctx input{margin:0}
+.agp-box{display:flex;align-items:flex-end;gap:4px;border:1px solid #cfd8e6;border-radius:10px;padding:3px;background:#f6f8fc}
+.agp-box:focus-within{border-color:var(--ac)}
+.agp-in{flex:1;border:0;background:none;resize:none;outline:0;font:inherit;color:inherit;padding:6px;min-height:32px;max-height:120px;min-width:0}
+.agp-send{width:32px;height:32px;border:0;border-radius:8px;background:var(--ac);color:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
+.agp-send.stop{background:#5d6779}
+@media (max-width:560px){.agp{width:100%;border-left:0}}
+</style>
+<script id="bx-copilot">
+/* ===== BhartiX Copilot — every program gets its own AI agent =====
+   Shares the AI connection (provider, key, model, language) saved by BhartiX Agent. */
+(function(){
+'use strict';
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function inl(s){s=esc(s);const codes=[];s=s.replace(/`([^`]+)`/g,(_,c)=>{codes.push(c);return'\u0000'+(codes.length-1)+'\u0000'});
+ s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+  .replace(/\*\*\*([^*]+)\*\*\*/g,'<strong><em>$1</em></strong>').replace(/\*\*([^*]+?)\*\*/g,'<strong>$1</strong>').replace(/__([^_]+?)__/g,'<strong>$1</strong>')
+  .replace(/(^|[^*\w])\*([^*\n]+?)\*(?!\w)/g,'$1<em>$2</em>').replace(/(^|[^_\w])_([^_\n]+?)_(?!\w)/g,'$1<em>$2</em>').replace(/~~([^~]+)~~/g,'<del>$1</del>')
+  .replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+ return s.replace(/\u0000(\d+)\u0000/g,(_,i)=>'<code>'+codes[+i]+'</code>')}
+function md(src){const L=String(src).replace(/\r/g,'').split('\n');let h='',i=0;
+ const isTblSep=l=>/^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(l);
+ const cells=l=>l.trim().replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>x.trim());
+ const listRe=/^(\s*)([-*+•]|\d+[.)])\s+(.*)$/;
+ while(i<L.length){let l=L[i];
+  if(/^\s*```/.test(l)){const lang=l.trim().slice(3).trim();const b=[];i++;while(i<L.length&&!/^\s*```\s*$/.test(L[i]))b.push(L[i++]);i++;
+   h+=`<pre><div class="ph"><span>${esc(lang||'code')}</span><button data-copy>Copy</button></div><code>${esc(b.join('\n'))}</code></pre>`;continue}
+  if(!l.trim()){i++;continue}
+  let m;
+  if(m=l.match(/^\s*(#{1,6})\s+(.*?)\s*#*\s*$/)){const n=Math.min(4,m[1].length);h+=`<h${n}>${inl(m[2])}</h${n}>`;i++;continue}
+  if(/^\s*([-*_])\s*\1\s*\1[\s\-*_]*$/.test(l)){h+='<hr>';i++;continue}
+  if(l.includes('|')&&i+1<L.length&&isTblSep(L[i+1])){const hd=cells(l);i+=2;const rows=[];while(i<L.length&&L[i].includes('|')&&L[i].trim())rows.push(cells(L[i++]));
+   h+='<div class="tw"><table><thead><tr>'+hd.map(c=>`<th>${inl(c)}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+hd.map((_,k)=>`<td>${inl(r[k]||'')}</td>`).join('')+'</tr>').join('')+'</tbody></table></div>';continue}
+  if(/^\s*>/.test(l)){const b=[];while(i<L.length&&/^\s*>/.test(L[i]))b.push(L[i++].replace(/^\s*>\s?/,''));h+='<blockquote>'+md(b.join('\n'))+'</blockquote>';continue}
+  if(listRe.test(l)){const stack=[];let out='';
+   while(i<L.length){const x=L[i];const lm=x.match(listRe);
+    if(!lm){if(x.trim()&&/^\s{2,}/.test(x)&&stack.length){out=out.replace(/<\/li>$/,'')+'<br>'+inl(x.trim())+'</li>';i++;continue}
+     if(!x.trim()&&i+1<L.length&&listRe.test(L[i+1])){i++;continue}break}
+    const ind=lm[1].replace(/\t/g,'    ').length,tag=/\d/.test(lm[2])?'ol':'ul';
+    while(stack.length&&(ind<stack[stack.length-1].ind||ind===stack[stack.length-1].ind&&tag!==stack[stack.length-1].tag)){const s=stack.pop();out+=`</${s.tag}>`+(s.nested?'</li>':'');}
+    if(!stack.length||ind>stack[stack.length-1].ind){if(stack.length)out=out.replace(/<\/li>$/,'');const st=tag==='ol'&&parseInt(lm[2])>1?` start="${parseInt(lm[2])}"`:'';stack.push({ind,tag,nested:stack.length>0});out+=`<${tag}${st}>`}
+    out+=`<li>${inl(lm[3])}</li>`;i++}
+   while(stack.length){const s=stack.pop();out+=`</${s.tag}>`+(s.nested?'</li>':'')}h+=out;continue}
+  const p=[];while(i<L.length&&L[i].trim()&&!/^\s*(```|#{1,6}\s|>)/.test(L[i])&&!listRe.test(L[i])&&!(L[i].includes('|')&&i+1<L.length&&isTblSep(L[i+1])))p.push(L[i++]);
+  if(!p.length){p.push(L[i++])}
+  h+='<p>'+p.map(inl).join('<br>')+'</p>'}
+ return h}
+
+const mdIns=s=>md(s).replace(/<div class="ph">.*?<\/div>/g,'');
+const plain=s=>String(s).replace(/```[a-z]*\n?/gi,'').replace(/\*\*([^*]+)\*\*/g,'$1').replace(/__([^_]+)__/g,'$1').replace(/(^|\s)\*([^*\n]+)\*/g,'$1$2').replace(/`([^`]+)`/g,'$1').replace(/^#{1,6}\s+/gm,'').replace(/^\s*[-*+•]\s+/gm,'• ').trim();
+
+/* ---------------- AI connection (same settings as BhartiX Agent) ---------------- */
+const AGK='bxag_cfg';
+const PROV={gemini:{m:'gemini-flash-latest'},openai:{m:'gpt-4o-mini',base:'https://api.openai.com/v1'},anthropic:{m:'claude-haiku-5-5'},groq:{m:'llama-3.3-70b-versatile',base:'https://api.groq.com/openai/v1'},openrouter:{m:'openrouter/auto',base:'https://openrouter.ai/api/v1'},custom:{m:'',base:''}};
+const LN={hi:['Hindi','Devanagari'],en:['English','Latin'],gu:['Gujarati','Gujarati'],mr:['Marathi','Devanagari'],pa:['Punjabi','Gurmukhi'],ta:['Tamil','Tamil'],te:['Telugu','Telugu'],bn:['Bengali','Bengali']};
+function cfg(){let c={};try{c=JSON.parse(localStorage.getItem(AGK)||'{}')||{}}catch(e){}c.prov=PROV[c.prov]?c.prov:'gemini';c.keys=c.keys||{};c.models=c.models||{};c.lang=c.lang||'auto';return c}
+const kOf=c=>(c.keys[c.prov]||'').trim(),mOf=c=>(c.models[c.prov]||PROV[c.prov].m||'').trim(),bOf=c=>(c.prov==='custom'?c.base||'':PROV[c.prov].base||'').replace(/\/+$/,'');
+const ready=()=>{const c=cfg();return c.prov==='custom'?!!bOf(c)&&!!mOf(c):!!kOf(c)};
+function langRule(c){if(c.lang==='auto')return'Reply in the same language and script the user writes in (Hindi, English, Hinglish, Gujarati, Marathi, Punjabi, Tamil, Telugu, Bengali…). If the user asks for content in a particular language, write that content in that language.';
+ if(c.lang==='hinglish')return'Reply in natural Hinglish (Hindi written in Roman letters) unless the user asks for another language.';const l=LN[c.lang];return l?`Reply in natural ${l[0]} (${l[1]} script) unless the user asks for another language.`:''}
+function b64(u){const m=String(u).match(/^data:([^;]+);base64,(.*)$/);return m?{mime:m[1],data:m[2]}:null}
+function buildReq(c,sys,hist,stream){const model=mOf(c),key=kOf(c);
+ if(c.prov==='gemini')return{url:`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model.replace(/^models\//,''))}:${stream?'streamGenerateContent?alt=sse&':'generateContent?'}key=${encodeURIComponent(key)}`,headers:{'content-type':'application/json'},
+  body:{systemInstruction:{parts:[{text:sys}]},contents:hist.map(m=>({role:m.role==='assistant'?'model':'user',parts:[{text:m.text},...(m.imgs||[]).map(b64).filter(Boolean).map(x=>({inline_data:{mime_type:x.mime,data:x.data}}))]})),generationConfig:{temperature:.6}}};
+ if(c.prov==='anthropic')return{url:'https://api.anthropic.com/v1/messages',headers:{'content-type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+  body:{model,max_tokens:4096,system:sys,stream,messages:hist.map(m=>({role:m.role,content:[...(m.imgs||[]).map(b64).filter(Boolean).map(x=>({type:'image',source:{type:'base64',media_type:x.mime,data:x.data}})),{type:'text',text:m.text}]}))}};
+ const headers={'content-type':'application/json'};if(key)headers.authorization='Bearer '+key;if(c.prov==='openrouter'){headers['HTTP-Referer']='https://bhartix.app';headers['X-Title']='BhartiX OS'}
+ return{url:bOf(c)+'/chat/completions',headers,body:{model,stream,temperature:.6,messages:[{role:'system',content:sys},...hist.map(m=>m.imgs&&m.imgs.length?{role:m.role,content:[{type:'text',text:m.text},...m.imgs.map(u=>({type:'image_url',image_url:{url:u}}))]}:{role:m.role,content:m.text})]}}}
+function pick(c,j){try{if(c.prov==='gemini')return((j.candidates&&j.candidates[0]&&j.candidates[0].content&&j.candidates[0].content.parts)||[]).map(p=>p.text||'').join('');
+ if(c.prov==='anthropic'){if(j.type==='content_block_delta')return(j.delta&&j.delta.text)||'';return j.content?j.content.map(x=>x.text||'').join(''):''}
+ const ch=j.choices&&j.choices[0];return ch?(ch.delta&&ch.delta.content)||(ch.message&&ch.message.content)||'':''}catch(e){return''}}
+class AErr extends Error{constructor(m,set){super(m);this.set=set}}
+function explain(st,body){let d='';try{const j=JSON.parse(body);d=(j.error&&(j.error.message||j.error))||j.message||'';if(typeof d!=='string')d=JSON.stringify(d)}catch(e){d=String(body||'').slice(0,200)}
+ if(st===401||st===403||/api key|invalid.*key|unauthori/i.test(d))return new AErr('The AI key was not accepted. Check it in BhartiX Agent › Settings.',1);
+ if(st===404)return new AErr('AI model not found. Open BhartiX Agent › Settings › Find models.',1);
+ if(st===429)return new AErr('Free limit reached for now. Wait a little, or switch provider in BhartiX Agent › Settings.');
+ if(st>=500)return new AErr('The AI service is busy ('+st+'). Try again in a moment.');
+ return new AErr('AI error '+st+(d?': '+d.slice(0,180):''))}
+function nativeHttp(){try{const C=window.Capacitor;return C&&C.Plugins&&C.Plugins.CapacitorHttp}catch(e){return null}}
+async function callAI(sys,hist,onText,signal){const c=cfg();const r=buildReq(c,sys,hist,true);let res;
+ try{res=await fetch(r.url,{method:'POST',headers:r.headers,body:JSON.stringify(r.body),signal})}
+ catch(e){if(e.name==='AbortError')throw e;const H=nativeHttp();
+  if(H){const r2=buildReq(c,sys,hist,false);const x=await H.request({url:r2.url,method:'POST',headers:r2.headers,data:r2.body});const body=typeof x.data==='string'?x.data:JSON.stringify(x.data);if(x.status>=400)throw explain(x.status,body);const t=pick(c,typeof x.data==='string'?JSON.parse(x.data):x.data);onText(t);return t}
+  throw new AErr(navigator.onLine===false?'You are offline. Connect to the internet to use the agent.':'Could not reach the AI service. Check the internet connection.')}
+ if(!res.ok)throw explain(res.status,await res.text());
+ const ct=res.headers.get('content-type')||'';let full='';
+ if(!res.body||(!/event-stream|stream/.test(ct)&&!/alt=sse/.test(r.url))){const j=await res.json().catch(()=>null);full=j?pick(c,j):'';onText(full);return full}
+ const rd=res.body.getReader(),dec=new TextDecoder();let buf='';
+ for(;;){const{done,value}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});const ls=buf.split('\n');buf=ls.pop();
+  for(const ln of ls){const s=ln.trim();if(!s.startsWith('data:'))continue;const d=s.slice(5).trim();if(!d||d==='[DONE]')continue;try{const j=JSON.parse(d);if(j.error)throw explain(400,JSON.stringify(j));const t=pick(c,j);if(t){full+=t;onText(full)}}catch(e){if(e instanceof AErr)throw e}}}
+ return full}
+window.BXAI={ready,callAI,md,plain};
+
+/* ---------------- helpers for reaching into programs ---------------- */
+const frameOf=o=>o.wb.querySelector('iframe.bxapp');
+const appWin=o=>{const f=frameOf(o);return f&&f.contentWindow};
+function ag(o,code,data){const w=appWin(o);if(!w||!w.__ag)throw new Error('Program is still opening — try again in a moment');w.__agData=data;return w.__ag(code)}
+function oe(o,code,data){if(!o.agEval)throw new Error('Not available in this program');window.__agData=data;return o.agEval(code)}
+const clip=(s,n)=>{s=String(s||'');return s.length>n?s.slice(0,n)+'\n…(more text not shown)':s};
+function visText(o){return clip((o.wb.innerText||'').replace(/\n{3,}/g,'\n\n').trim(),6000)}
+function shrink(canvas,max){try{const k=Math.min(1,(max||1024)/Math.max(canvas.width,canvas.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(canvas.width*k));c.height=Math.max(1,Math.round(canvas.height*k));const g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(canvas,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.85)}catch(e){return''}}
+function bigCanvas(o){let best=null,a=0;o.wb.querySelectorAll('canvas').forEach(c=>{const s=c.width*c.height;if(s>a&&c.offsetParent!==null){a=s;best=c}});return best}
+const words=s=>(String(s).trim().match(/\S+/g)||[]).length;
+function mdTable(t){const L=String(t).split('\n').map(x=>x.trim());for(let i=0;i<L.length-1;i++){if(L[i].includes('|')&&/^\|?\s*:?-{2,}/.test(L[i+1])){const rows=[];const cells=l=>l.replace(/^\|/,'').replace(/\|$/,'').split('|').map(x=>plain(x.trim()));rows.push(cells(L[i]));let j=i+2;while(j<L.length&&L[j].includes('|'))rows.push(cells(L[j++]));return rows}}return null}
+function codeBlocks(t){const out=[];const re=/```([\w+-]*)\s*\n([\s\S]*?)```/g;let m;while((m=re.exec(t)))out.push({lang:(m[1]||'').toLowerCase(),code:m[2].replace(/\n$/,'')});return out}
+function qaLines(t){const out=[];String(t).split('\n').forEach(l=>{if(/^\s*\|/.test(l)||/\|\s*$/.test(l))return;l=l.replace(/^\s*(?:[-*•]|\d+[.)])\s*/,'').replace(/\*\*/g,'').trim();const i=l.indexOf(' | ');if(i>0){const q=l.slice(0,i).trim(),a=l.slice(i+3).trim();if(q&&a&&!/^-+$/.test(q)&&!/^question$/i.test(q))out.push({q,a})}});return out}
+function deckName(t){const m=String(t).match(/^\s*(?:\*\*)?Deck(?:\*\*)?\s*[:：]\s*(.+)$/mi);return m?plain(m[1]).slice(0,60):''}
+function eventsIn(t){for(const b of codeBlocks(t)){if(b.lang==='events'||b.lang==='json'){try{const a=JSON.parse(b.code);if(Array.isArray(a)&&a.length&&a[0].t&&a[0].d)return a}catch(e){}}}return null}
+const isoToday=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+
+/* text into the field the user was last typing in (textarea / input / editable) */
+function insertAtCursor(o,text,html){const t=o._agLast;if(!t||!t.isConnected)return false;
+ if(t.tagName==='TEXTAREA'||t.tagName==='INPUT'){const s=t.selectionStart!=null?t.selectionStart:t.value.length,e=t.selectionEnd!=null?t.selectionEnd:s;t.focus();t.setRangeText(text,s,e,'end');t.dispatchEvent(new Event('input',{bubbles:true}));return true}
+ if(t.isContentEditable){t.focus();if(o._agRange){const s=getSelection();s.removeAllRanges();s.addRange(o._agRange)}document.execCommand(html?'insertHTML':'insertText',false,html||text);return true}return false}
+document.addEventListener('focusin',e=>{const t=e.target;if(!t||!t.closest||t.closest('.agp'))return;if(t.matches('textarea,input[type=text],input:not([type]),input[type=search]')||t.isContentEditable){const w=t.closest('.win');if(!w)return;const o=W.find(x=>x.el===w);if(o){o._agLast=t;o._agRange=null}}},true);
+document.addEventListener('selectionchange',()=>{const a=document.activeElement;if(!a||!a.isContentEditable)return;const w=a.closest('.win');if(!w||a.closest('.agp'))return;const o=W.find(x=>x.el===w);const s=getSelection();if(o&&s.rangeCount)o._agRange=s.getRangeAt(0).cloneRange()});
+function selOS(o){const a=o._agLast;if(a&&a.isConnected&&(a.tagName==='TEXTAREA'||a.tagName==='INPUT')&&a.selectionEnd>a.selectionStart)return a.value.slice(a.selectionStart,a.selectionEnd);
+ if(o._agRange&&o.el.contains(o._agRange.commonAncestorContainer)){const t=o._agRange.toString();if(t.trim())return t}const s=getSelection();if(s.rangeCount&&o.el.contains(s.anchorNode)&&!s.isCollapsed)return s.toString();return''}
+function fieldText(o){const a=o._agLast;if(a&&a.isConnected){const v=a.tagName==='TEXTAREA'||a.tagName==='INPUT'?a.value:a.innerText;if(v&&v.trim().length>20)return v}return''}
+
+/* cross-program helpers */
+function openWriterWith(text,title){try{openWordPad({html:mdIns(text),name:(title||'Agent').replace(/[\\/:*?"<>|]+/g,' ').slice(0,40)});return'Opened in BhartiX Writer'}catch(e){return'Could not open Writer'}}
+async function addDeck(name,cards){let o=W.find(x=>x.id==='cards');if(!o){openCards();o=W.find(x=>x.id==='cards')}else focus(o);if(!o||!o.agEval)return'BhartiX Cards is not available';
+ oe(o,'(()=>{const X=window.__agData;const dd={id:fcUid(),name:X.name,lang:/[\\u0900-\\u097F]/.test(X.name)?"hi":"en",c:Math.floor(Math.random()*8),cards:[]};D.push(dd);X.cards.forEach(c=>dd.cards.push({id:fcUid(),q:c.q,a:c.a,b:0,d:0,ok:0,bad:0}));save();deckView(dd.id)})()',{name,cards});return`${cards.length} flashcards added to BhartiX Cards › “${name}”`}
+async function addEvents(evts){const st=CLS.get();const COL=['#1976d2','#e53935','#43a047','#fb8c00','#8e24aa'];let n=0;
+ evts.forEach(x=>{if(!x.t||!/^\d{4}-\d{2}-\d{2}$/.test(x.d||''))return;const k=['event','task','exam'].includes(x.k)?x.k:'event';st.events.push({id:Math.random().toString(36).slice(2,9),k,t:String(x.t).slice(0,120),d:x.d,s:/^\d\d:\d\d$/.test(x.s||'')?x.s:'',e:/^\d\d:\d\d$/.test(x.e||'')?x.e:'',c:k==='exam'?COL[1]:k==='task'?COL[2]:COL[0],rep:['daily','weekdays','weekly','monthly','yearly'].includes(x.rep)?x.rep:'',rem:k==='exam'?4:-1,note:String(x.note||'').slice(0,300),loc:String(x.loc||'').slice(0,80)});n++});
+ CLS.save();let o=W.find(x=>x.id==='cal');if(!o){openCalendar();o=W.find(x=>x.id==='cal')}else{focus(o);try{oe(o,'draw()')}catch(e){}}return`${n} item(s) added to BhartiX Calendar`}
+
+/* Writer: one paragraph goes in at the caret; several blocks go in after the current paragraph */
+const oneBlock=h=>{const m=h.match(/^<p>([\s\S]*)<\/p>$/);return m&&!/<p>/.test(m[1])?m[1]:h};
+const W_INS='(()=>{const h=__agData;const n=(h.match(/<(p|h[1-6]|ul|ol|div|table|pre|blockquote)[\\s>]/gi)||[]).length;if(n<=1||!saved||!doc.contains(saved.endContainer)){insertHTML(n<=1?(h.match(/^<p>([\\s\\S]*)<\\/p>$/)||[0,h])[1]:h);return}let b=saved.endContainer;while(b&&b.parentNode!==doc)b=b.parentNode;if(b){const r=document.createRange();r.setStartAfter(b);r.collapse(true);saved=r}insertHTML(h)})()';
+/* ---------------- the program agents ---------------- */
+const SEL_CTX=(label,sel,all,n)=>sel&&sel.trim()?{label:`Selected text · ${words(sel)} words`,text:'SELECTED TEXT:\n'+clip(sel,n||8000)}:all&&all.trim()?{label:`${label} · ${words(all)} words`,text:label.toUpperCase()+':\n'+clip(all,n||8000)}:null;
+const A_COPY={k:'copy',l:'📋 Copy',run:(o,r)=>{try{navigator.clipboard.writeText(plain(r)).catch(()=>{})}catch(e){}return'Copied'}};
+const A_WRITER={k:'writer',l:'📄 Open in Writer',run:(o,r,P)=>openWriterWith(r,P.n+' Agent')};
+const A_CARDS={k:'cards',l:'🃏 Save as flashcards',when:r=>qaLines(r).length>=3,run:(o,r,P)=>addDeck(deckName(r)||(P.n+' cards '+new Date().toLocaleDateString()),qaLines(r))};
+const A_CAL={k:'cal',l:'📅 Add to Calendar',when:r=>!!eventsIn(r),run:(o,r)=>addEvents(eventsIn(r))};
+const A_INS={k:'ins',l:'⤵️ Insert where I was typing',when:(r,o)=>!!(o._agLast&&o._agLast.isConnected),run:(o,r)=>insertAtCursor(o,plain(r),o._agLast&&o._agLast.isContentEditable?mdIns(r):null)?'Inserted':'Click inside a text box first, then try again'};
+const CARDS_FMT='When the user asks for flashcards, put a first line "Deck: <short name>" and then one card per line exactly as "Question | Answer".';
+const EVT_FMT=()=>`When the user wants to add something to the calendar, also include a fenced code block with language "events" holding a JSON array like [{"t":"Maths tuition","d":"YYYY-MM-DD","s":"17:00","e":"18:00","k":"event|task|exam","rep":"|daily|weekdays|weekly|monthly|yearly","note":""}]. Today is ${isoToday()} (${new Date().toLocaleDateString('en-IN',{weekday:'long'})}).`;
+
+const PA={
+ writer:{n:'Writer',e:'✍️',c:'#e8893a',match:id=>/^bxa-(writer|office)/.test(id),
+  role:'You help write and edit documents in BhartiX Writer: write, rewrite, shorten, expand, simplify, fix grammar and spelling, translate, summarise, and draft letters, applications, essays, notes and reports in proper Indian formats. When the user asks for text to put in the document, reply with ONLY that text (Markdown headings, bold, lists and tables are fine) — no preamble, no explanation.',
+  chips:['✅ Grammar ठीक करो','✂️ इसे छोटा करो','✨ और बेहतर लिखो','🌐 English में अनुवाद करो','📋 इसका सार (summary)','📝 Application लिखो: '],
+  ctx:o=>{const sel=ag(o,'(saved&&doc.contains(saved.startContainer)&&!saved.collapsed)?saved.toString():""');return SEL_CTX('Document',sel,ag(o,'doc.innerText'),9000)},
+  acts:[{k:'rep',l:'🔁 Replace selection',when:(r,o,c)=>c&&/^Selected/.test(c.label),run:(o,r)=>{ag(o,'insertHTML(__agData)',oneBlock(mdIns(r)));return'Replaced in the document'}},
+   {k:'ins',l:'⤵️ Insert at cursor',when:(r,o,c)=>!(c&&/^Selected/.test(c.label)),run:(o,r)=>{ag(o,W_INS,mdIns(r));return'Inserted in the document'}},
+   {k:'below',l:'⤵️ Insert below selection',when:(r,o,c)=>c&&/^Selected/.test(c.label),run:(o,r)=>{ag(o,'(()=>{if(saved)saved.collapse(false);'+W_INS+'})()',mdIns(r));return'Inserted below the selection'}}]},
+ notepad:{n:'Notepad',e:'📝',c:'#2f9e5b',match:id=>/^bxa-notepad/.test(id),
+  role:'You help with plain-text notes in BhartiX Notepad: clean up, summarise, make lists, fix spelling, translate, draft messages. When giving text for the note, reply with ONLY plain text (no Markdown symbols).',
+  chips:['🧹 इसे साफ़ और व्यवस्थित करो','✅ To-do list बनाओ','📋 सार बनाओ','🌐 हिन्दी में अनुवाद'],
+  ctx:o=>{const w=appWin(o),ta=w&&w.document.getElementById('ta');if(!ta)return null;return SEL_CTX('Note',ta.value.slice(ta.selectionStart,ta.selectionEnd),ta.value)},
+  acts:[{k:'ins',l:'⤵️ Insert / replace in note',run:o=>null,runT:(o,r)=>{const w=appWin(o),ta=w.document.getElementById('ta');const s=ta.selectionStart,e=ta.selectionEnd;ta.focus();ta.setRangeText(plain(r),s,e,'end');ta.dispatchEvent(new w.Event('input',{bubbles:true}));return s!==e?'Replaced the selected text':'Inserted at the cursor'}}]},
+ grid:{n:'Grid',e:'📊',c:'#138a8a',match:id=>/^bxa-grid/.test(id),
+  role:'You are a spreadsheet expert inside BhartiX Grid (Excel-like). Write formulas in standard Excel syntax with English function names. When giving a formula for the active cell, put the formula alone in a code block starting with "=". When giving data to insert, give it as a Markdown table with a header row. Explain briefly in simple words.',
+  chips:['🧮 Total और average का formula','📊 इस डेटा का सार बताओ','📋 Monthly budget की table बनाओ','🔍 डेटा में गलतियाँ ढूँढो','📈 कौन सा chart ठीक रहेगा?'],
+  ctx:o=>{const tsv=ag(o,'(()=>{const u=usedOf(S,SI);const R=Math.min(u.r1,79),C=Math.min(u.c1,25);const L=[];for(let r=0;r<=R;r++){const row=[];for(let c=0;c<=C;c++){const x=S.cells[K(c,r)];row.push(x?String(display(cellVal(SI,K(c,r)),x.s)):"")}L.push(row.join("\\t"))}return L.join("\\n")})()');
+   const act=ag(o,'colName(sel.ac)+(sel.ar+1)'),sr=ag(o,'selRef()');return{label:`Sheet · active cell ${act}`,text:`ACTIVE CELL: ${act}\nSELECTED RANGE: ${sr}\nSHEET DATA (tab-separated, row 1 first):\n${clip(tsv,9000)||'(empty sheet)'}`}},
+  acts:[{k:'fx',l:'🧮 Put formula in active cell',when:r=>/(^|\n)\s*=[A-Z]/i.test(r),run:(o,r)=>{const b=codeBlocks(r).map(x=>x.code.trim()).find(x=>/^=/.test(x))||(String(r).match(/(^|\n)\s*(=[^\n`]+)/)||[])[2];if(!b)return'No formula found';ag(o,'(()=>{pushUndo();setRaw(sel.ac,sel.ar,__agData,true);afterWrite()})()',b.trim());return'Formula put in the active cell'}},
+   {k:'tbl',l:'📋 Insert table at active cell',when:r=>!!mdTable(r),run:(o,r)=>{const t=mdTable(r);ag(o,'pasteText(__agData)',t.map(x=>x.join('\t')).join('\n'));return`Inserted ${t.length} rows`}}]},
+ slides:{n:'Slides',e:'📽️',c:'#c2410c',match:id=>/^bxa-slides/.test(id),
+  role:'You are a presentation expert inside BhartiX Slides. When the user asks for slides, reply ONLY in this format for each slide: a line "## Slide title", then 3-5 short bullet lines starting with "- ", then optionally a line "Notes: what to say". Keep bullets short (under 12 words). For other questions answer briefly.',
+  chips:['📽️ "जल चक्र" पर 6 slides बनाओ','🎤 Slides के लिए बोलने वाले notes','✨ Titles और बेहतर करो','❓ आख़िरी slide के लिए quiz सवाल'],
+  ctx:o=>{const j=ag(o,'JSON.stringify(P.slides.map(s=>s.els.filter(e=>e.t==="text").map(e=>(e.html||"").replace(/<[^>]+>/g," ").replace(/\\s+/g," ").trim()).filter(Boolean)))');const a=JSON.parse(j);return{label:`Presentation · ${a.length} slides`,text:'CURRENT SLIDES:\n'+clip(a.map((s,i)=>`${i+1}. ${s.join(' | ')}`).join('\n'),7000)}},
+  acts:[{k:'add',l:'➕ Add these slides',when:r=>/(^|\n)##\s+\S/.test(r),run:(o,r)=>{const S=[];let cur=null;String(r).split('\n').forEach(l=>{let m;if((m=l.match(/^\s*##\s+(.+)/))){cur={t:esc(plain(m[1])),b:[],n:''};S.push(cur)}else if(cur&&(m=l.match(/^\s*[-*•]\s+(.+)/)))cur.b.push(esc(plain(m[1])));else if(cur&&(m=l.match(/^\s*(?:\*\*)?(?:Notes?|Speaker notes?)(?:\*\*)?\s*[:：]\s*(.+)/i)))cur.n=plain(m[1])});
+    if(!S.length)return'No slides found';ag(o,'(()=>{commitEdit();pushUndo();const A=__agData;let at=cur;A.forEach(x=>{const s=newSlide("content");s.els[0].html=x.t;s.els[1].html=x.b.length?"<ul>"+x.b.map(b=>"<li>"+b+"</li>").join("")+"</ul>":"";s.notes=x.n;P.slides.splice(++at,0,s)});go(cur+1);changed()})()',S);return`${S.length} slides added`}}]},
+ paint:{n:'Paint',e:'🎨',c:'#2563c9',match:id=>/^bxa-paint/.test(id),img:1,
+  role:'You are a friendly art teacher inside BhartiX Paint. Give drawing ideas, easy step-by-step drawing guides, colour suggestions and kind, useful feedback on the drawing (an image of the canvas may be attached).',
+  chips:['👀 मेरी drawing पर राय दो','🎨 Drawing के 5 idea','✏️ पेड़ बनाने के आसान steps','🌈 कौन से रंग अच्छे लगेंगे?'],
+  ctx:o=>({label:'Your drawing (picture)',text:'An image of the current drawing is attached.',imgs:[shrink(ag(o,'flat()'),1024)]})},
+ scan:{n:'Scan',e:'📷',c:'#00acc1',match:id=>id==='scan',img:1,
+  role:'You are a study helper for scanned pages in BhartiX Scan. An image of the current page may be attached: read it carefully, extract text, summarise, make notes, questions and answers, or translate as asked. '+CARDS_FMT,
+  chips:['📝 इस पेज का सार','🔤 पूरा text निकालो','❓ 10 सवाल-जवाब बनाओ','🃏 फ़्लैशकार्ड बनाओ','🌐 हिन्दी में अनुवाद'],
+  ctx:o=>{let c=null;try{c=oe(o,'(()=>{const p=pages[cur];return p?(p.out||p.base||p.src):null})()')}catch(e){}if(!c||!(c.width>0))c=bigCanvas(o);if(!c)return null;return{label:'Scanned page (picture)',text:'An image of the current scanned page is attached.',imgs:[shrink(c,1400)]}},
+  acts:[A_CARDS]},
+ pdf:{n:'PDF',e:'📕',c:'#d32f2f',match:id=>id==='pdfr',
+  role:'You are a study assistant for the PDF open in BhartiX PDF. Answer from the PDF text given; mention page numbers like (p. 3). Summarise, list key points, make questions and notes when asked. '+CARDS_FMT,
+  chips:['📝 इस PDF का सार','🔍 मुख्य बातें (key points)','❓ इसमें से 10 सवाल','🃏 फ़्लैशकार्ड बनाओ'],
+  ctx:async o=>{const d=oe(o,'D');if(!d||!d.pdf)return null;const pt=oe(o,'pageText'),cp=oe(o,'curPage()');const n=d.n||d.pdf.numPages;let idx=[];if(n<=12)idx=[...Array(n).keys()];else{for(let i=Math.max(0,cp-2);i<Math.min(n,cp+3);i++)idx.push(i)}
+   let out='';for(const i of idx){try{out+=`\n[Page ${i+1}]\n`+(await pt(d,i))}catch(e){}if(out.length>14000)break}
+   if(out.replace(/\[Page \d+\]|\s/g,'').length<50){const c=bigCanvas(o);if(c)return{label:`${d.name||'PDF'} · page ${cp} (picture)`,text:'This PDF has no text layer (it is scanned). An image of the current page is attached.',imgs:[shrink(c,1400)]}}return{label:`${d.name||'PDF'} · ${n<=12?'all '+n+' pages':'pages '+(idx[0]+1)+'–'+(idx[idx.length-1]+1)}`,text:`PDF "${d.name}" (${n} pages, user is on page ${cp}):\n`+clip(out,14000)}},
+  acts:[A_CARDS]},
+ cards:{n:'Cards',e:'🃏',c:'#8e24aa',match:id=>id==='cards',
+  role:'You make flashcards in BhartiX Cards. '+CARDS_FMT+' Keep answers short (1–8 words when possible). For other questions answer briefly.',
+  chips:['🃏 "Photosynthesis" पर 15 कार्ड','🇮🇳 राज्य और उनकी राजधानियाँ','🔤 English के 20 कठिन शब्द और अर्थ','➗ 13 से 20 तक के पहाड़े'],
+  ctx:o=>{const s=oe(o,'D.map(d=>d.name+" ("+d.cards.length+" cards)").join(", ")');return s?{label:'Your decks',text:'EXISTING DECKS: '+s}:null},
+  acts:[{...A_CARDS,l:'➕ Add as a new deck',when:r=>qaLines(r).length>=1}]},
+ resume:{n:'Resume',e:'📄',c:'#546e7a',match:id=>id==='resume',
+  role:'You are an expert resume writer for Indian students and freshers inside BhartiX Resume. Write ATS-friendly content with strong action verbs and numbers. When asked for a summary or skills, reply with ONLY that text (no heading).',
+  chips:['✍️ मेरे लिए अच्छा Summary लिखो','🛠️ Skills की सूची सुझाओ','🎯 इस job के लिए सुधारो: ','💬 Interview के 5 सवाल-जवाब'],
+  ctx:o=>{const j=oe(o,'JSON.stringify(Object.assign({},R0(),{p:Object.assign({},R0().p,{photo:""})}))');return{label:'Your resume',text:'CURRENT RESUME DATA (JSON):\n'+clip(j,7000)}},
+  acts:[{k:'sum',l:'✍️ Use as Summary',run:(o,r)=>{oe(o,'(()=>{R0().sum=window.__agData;persist();all()})()',plain(r).replace(/^•\s*/gm,''));return'Summary updated'}},
+   {k:'sk',l:'🛠️ Use as Skills',run:(o,r)=>{oe(o,'(()=>{R0().skills=window.__agData;persist();all()})()',plain(r).replace(/^•\s*/gm,'').split('\n').map(s=>s.trim()).filter(Boolean).join(', '));return'Skills updated'}}]},
+ notes:{n:'Notes',e:'🗒️',c:'#fbc02d',match:id=>id==='notes',
+  role:'You help with notes, to-do lists and study plans in BhartiX Notes: clean up, summarise, turn notes into checklists, plan revision. When giving text for a note reply with ONLY that text. '+EVT_FMT(),
+  chips:['🧹 इस note को साफ़ करो','✅ To-do list बनाओ','📋 सार बनाओ','📅 Revision plan बनाओ'],
+  ctx:o=>SEL_CTX('Note',selOS(o),fieldText(o)||visText(o)),acts:[A_INS,A_CAL,A_CARDS]},
+ code:{n:'Code',e:'💻',c:'#37474f',match:id=>id==='bxcode',
+  role:'You are a patient web-development teacher inside BhartiX Code (HTML, CSS, JavaScript with live preview). When giving code for the project, give complete file contents in fenced code blocks labelled html, css or js. Find and fix bugs with a short "Root Cause → Fix" note. Keep code simple and well commented for students.',
+  chips:['🐞 मेरे code में गलती ढूँढो','🧮 एक calculator बनाओ','🎨 Page को सुंदर बनाओ (CSS)','📖 यह code समझाओ'],
+  ctx:o=>{const p=JSON.parse(oe(o,'JSON.stringify(P())'));return{label:`Project “${p.name||'page'}”`,text:`PROJECT FILES\n--- index.html ---\n${clip(p.h,6000)}\n--- style.css ---\n${clip(p.c,4000)}\n--- script.js ---\n${clip(p.j,6000)}`}},
+  acts:[{k:'use',l:'✅ Use this code',when:r=>codeBlocks(r).some(b=>/^(html|css|js|javascript)$/.test(b.lang)),run:(o,r)=>{const d={};codeBlocks(r).forEach(b=>{if(b.lang==='html')d.h=b.code;else if(b.lang==='css')d.c=b.code;else if(b.lang==='js'||b.lang==='javascript')d.j=b.code});
+    oe(o,'(()=>{const p=P(),d=window.__agData;Object.assign(p,d);p.t=Date.now();persist();const ta=root.querySelector(".ce-ta");if(ta){ta.value=p[file]||"";ta.dispatchEvent(new Event("input",{bubbles:true}))}const r=root.querySelector("#ce-run");if(r)r.click()})()',d);return'Code updated: '+Object.keys(d).map(k=>({h:'HTML',c:'CSS',j:'JS'})[k]).join(', ')}}]},
+ books:{n:'Books',e:'📒',c:'#15508a',match:id=>id==='tally',
+  role:'You are an accounting tutor for BhartiX Books (a Tally-like accounting app) for Indian small businesses and commerce students. Explain vouchers, ledgers, GST, reports (Trial Balance, P&L, Balance Sheet) in simple words with ₹ examples. This is general information, not professional tax advice.',
+  chips:['📖 यह screen/report समझाओ','🧾 Sales entry कैसे करें?','💰 GST का हिसाब समझाओ','📊 Profit & Loss पढ़ना सिखाओ'],ctx:o=>({label:'Current screen',text:'CURRENT SCREEN TEXT:\n'+visText(o)})},
+ calendar:{n:'Calendar',e:'📅',c:'#1976d2',match:id=>id==='cal',
+  role:'You are a planning assistant inside BhartiX Calendar for students: study plans, exam preparation schedules, timetables and reminders. '+EVT_FMT(),
+  chips:['📅 हर सोमवार शाम 5 बजे ट्यूशन जोड़ो','📝 अगले महीने की परीक्षा की तैयारी का plan','📋 इस हफ़्ते क्या-क्या है?','⏰ रोज़ सुबह 6 बजे पढ़ाई जोड़ो'],
+  ctx:o=>{const t=new Date();const L=[];for(let i=0;i<30;i++){const d=new Date(t.getFullYear(),t.getMonth(),t.getDate()+i);const ds=clYMD(d);clOn(ds).forEach(e=>L.push(`${ds} ${e.s||''} ${e.k}: ${e.t}`))}return{label:'Next 30 days',text:`TODAY: ${isoToday()}\nUPCOMING (next 30 days):\n`+(L.slice(0,120).join('\n')||'(nothing yet)')}},
+  acts:[A_CAL]},
+ focus:{n:'Focus',e:'⏱️',c:'#ef5350',match:id=>id==='sttimer',
+  role:'You are a friendly study coach inside BhartiX Focus (Pomodoro study timer). Look at the study log, praise progress honestly, and give practical plans and tips. '+EVT_FMT(),
+  chips:['📊 मेरी पढ़ाई का हिसाब बताओ','🗓️ कल का study plan','🎯 Exam से पहले 30 दिन का plan','💡 ध्यान भटकता है — क्या करूँ?'],
+  ctx:o=>{let j='';try{j=oe(o,'JSON.stringify({settings:S.set,todayMinutes:todayMin(),log:S.log.slice(-80)})')}catch(e){j=visText(o)}return{label:'Your study log',text:'STUDY DATA:\n'+clip(j,6000)}},acts:[A_CAL]},
+ type:{n:'Type',e:'⌨️',c:'#5c6bc0',match:id=>id==='typing',
+  role:'You are a typing coach inside BhartiX Type. When asked for practice text, reply with ONLY one paragraph of plain text (no quotes, no Markdown). Hindi practice text must use simple, common Devanagari words.',
+  chips:['⌨️ English practice का 1 पैराग्राफ़','🔤 हिन्दी typing practice text','🚀 Speed बढ़ाने के tips','🎯 Home row practice text'],ctx:o=>({label:'Current screen',text:visText(o)}),
+  acts:[{k:'prac',l:'⌨️ Practice this text',when:r=>plain(r).length>20,run:(o,r)=>{oe(o,'(()=>{const t=window.__agData;ST.lang=/[\\u0900-\\u097F]/.test(t)?"hi":"en";TS.src="custom";TS.custom=t;startTest()})()',plain(r).replace(/^•\s*/gm,'').replace(/\s+/g,' '));return'Typing test started with this text'}}]},
+ charts:{n:'Charts',e:'📈',c:'#00897b',match:id=>id==='graph',
+  role:'You are a maths teacher inside BhartiX Charts (a graphing calculator). To plot, put each equation alone on its own line inside a fenced code block labelled plot, using syntax like y=x^2, y=sin(x), y=2x+1, x^2+y^2=25. Explain the graph simply.',
+  chips:['📈 y = x² और y = 2x+1 का graph','⭕ वृत्त x²+y²=25 समझाओ','📉 Sin और cos में फ़र्क दिखाओ','🔍 Roots कैसे निकालें?'],
+  ctx:o=>({label:'Your equations',text:'CURRENT EQUATIONS: '+oe(o,'JSON.stringify(S.fns.map(f=>f.s).filter(Boolean))')}),
+  acts:[{k:'plot',l:'📈 Plot these',when:r=>codeBlocks(r).some(b=>b.lang==='plot'),run:(o,r)=>{const eq=[];codeBlocks(r).filter(b=>b.lang==='plot').forEach(b=>b.code.split('\n').forEach(l=>{l=l.trim();if(l)eq.push(l.replace(/²/g,'^2').replace(/³/g,'^3'))}));
+    oe(o,'(()=>{const A=window.__agData;S.fns=S.fns.filter(f=>f.s.trim());A.forEach(s=>S.fns.push({s,v:1}));S.sel=S.fns.length-1;recompile();drawFns();draw();save()})()',eq.slice(0,8));return`Plotted ${Math.min(8,eq.length)} equation(s)`}}]},
+ files:{n:'Files',e:'🗂️',c:'#f5b82e',match:id=>/^(files|fold-)/.test(id),
+  role:'You help find and organise files in BhartiX Files. You get the list of files (folder/name, size, date). Answer which file is where, suggest folders and better names. You cannot move or delete files yourself — tell the user the steps.',
+  chips:['🔍 मेरी Maths वाली फ़ाइलें कहाँ हैं?','🗂️ फ़ाइलों को कैसे organize करूँ?','🧹 सबसे बड़ी फ़ाइलें कौन सी हैं?','✏️ फ़ाइलों के अच्छे नाम सुझाओ'],
+  ctx:async o=>{await BXFS.ready();const all=await BXFS.all();const byId=Object.fromEntries(all.map(n=>[n.id,n]));const path=n=>{let p=[],x=n,g=0;while(x&&g++<12){p.unshift(x.n);x=byId[x.p]}return(n.p&&!byId[n.p]?n.p+'/':'')+p.join('/')};
+   const fs=all.filter(n=>n.t==='f'&&n.p!=='trash').sort((a,b)=>(b.mt||0)-(a.mt||0)).slice(0,300);return{label:`${fs.length} files`,text:'FILES (path · size · modified):\n'+fs.map(n=>`${path(n)} · ${Math.max(1,Math.round((n.s||0)/1024))} KB · ${n.mt?new Date(n.mt).toISOString().slice(0,10):''}`).join('\n')}}},
+ chitra:{n:'Chitra',e:'🖼️',c:'#31a8ff',match:id=>id==='chitra',img:1,
+  role:'You are a photo-editing guide inside BhartiX Chitra (a photo editor). An image of the photo may be attached. Describe it, suggest edits step by step (crop, brightness, contrast, filters), and write captions when asked.',
+  chips:['👀 इस फ़ोटो के बारे में बताओ','✨ फ़ोटो सुधारने के steps','📝 Instagram caption लिखो','🎨 कौन सा filter ठीक रहेगा?'],
+  ctx:o=>{const c=bigCanvas(o);return c?{label:'Your photo (picture)',text:'An image of the current photo is attached.',imgs:[shrink(c,1200)]}:null}},
+ voice:{n:'Voice',e:'🎙️',c:'#e53935',match:id=>id==='bxvoice',
+  role:'You help with speaking and recordings in BhartiX Voice: write speeches, podcast and video scripts, summarise transcripts the user pastes, and give speaking tips.',
+  chips:['🎤 2 मिनट का भाषण लिखो','🎙️ Podcast की script','📝 मेरे बोले हुए text का सार','🗣️ बोलने की practice tips'],ctx:o=>({label:'Current screen',text:visText(o)}),acts:[A_INS]},
+ web:{n:'Web',e:'🌐',c:'#1a73e8',match:id=>/^br\d/.test(id),
+  role:'You help while browsing in BhartiX Web. You cannot open or read web pages yourself; you get the address bar text. Explain topics, suggest good search words and trustworthy sites, and warn about unsafe sites or scams.',
+  chips:['🔍 इस विषय पर क्या खोजूँ?','🛡️ क्या यह साइट सुरक्षित है?','📖 यह website किस बारे में है?','📝 पढ़ाई के लिए अच्छी sites'],
+  ctx:o=>{const i=o.wb.querySelector('.bomni input');return{label:'Address bar',text:'ADDRESS BAR: '+(i?i.value:'')}}},
+ studio:{n:'Studio',e:'🎨',c:'#d81b60',match:id=>id==='srijan',img:1,
+  role:'You are a graphic-design helper inside BhartiX Studio (poster, card and post designer). Suggest headings, slogans, festival wishes, colour combinations and layout ideas; give honest feedback on the attached design image.',
+  chips:['📝 Poster के लिए heading और slogan','🎨 Color combination सुझाओ','👀 मेरे design पर राय दो','🎉 दीवाली की बधाई का text'],
+  ctx:o=>{const c=bigCanvas(o);return c?{label:'Your design (picture)',text:'An image of the current design is attached.',imgs:[shrink(c,1100)]}:null}},
+ play:{n:'Play',e:'🎬',c:'#ff8a00',match:id=>id==='media',
+  role:'You help with media in BhartiX Play: video titles, descriptions, scripts (including short shayari videos), song and video recommendations by mood, and simple editing ideas.',
+  chips:['🎬 YouTube video का title और description','📝 Shayari short की script','🎵 Mood के हिसाब से गाने','📚 पढ़ाई के लिए background music'],ctx:o=>({label:'Now playing',text:visText(o).slice(0,1500)})}};
+Object.values(PA).forEach(P=>{P.acts=P.acts||[];if(P!==PA.cards&&!P.acts.some(a=>a.k==='cards'))P.acts.push(A_CARDS)});
+const progFor=id=>{for(const[k,P]of Object.entries(PA))if(P.match(String(id)))return[k,P];return null};
+
+/* ---------------- the side panel ---------------- */
+const SPARK='<svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 2.5l2.4 6.1 6.1 2.4-6.1 2.4L12 19.5l-2.4-6.1L3.5 11l6.1-2.4z" fill="currentColor"/><path d="M19 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor"/></svg>';
+function attach(o){if(o._agBtn)return;const pr=progFor(o.id);if(!pr)return;const[k,P]=pr;o._agKey=k;
+ const b=document.createElement('button');b.className='b agb';b.title=P.n+' Agent (AI)';b.setAttribute('aria-label',P.n+' Agent');b.innerHTML=SPARK;
+ o.el.querySelector('.tb .mn').before(b);o._agBtn=b;b.onclick=e=>{e.stopPropagation();togglePanel(o)}}
+function togglePanel(o,force){let p=o._agP;if(p&&(force===undefined?!p.hidden:!force)){p.hidden=true;o._agBtn.classList.remove('on');return}
+ if(!p)p=buildPanel(o);p.hidden=false;o._agBtn.classList.add('on');p.style.top=o.el.querySelector('.tb').offsetHeight+'px';setTimeout(()=>p.querySelector('.agp-in').focus({preventScroll:true}),30)}
+function buildPanel(o){const P=PA[o._agKey];const p=document.createElement('div');p.className='agp';p.style.setProperty('--ac',P.c);o._agP=p;o._ag={msgs:[],busy:null,useCtx:true};
+ p.innerHTML=`<div class="agp-h"><span class="agp-e">${P.e}</span><b>${P.n} Agent</b><span class="agp-sp"></span><button class="agp-x" data-a="clear" title="New chat">↺</button><button class="agp-x" data-a="close" title="Close">✕</button></div>
+ <div class="agp-m"></div><div class="agp-chips">${P.chips.map(c=>`<button>${esc(c)}</button>`).join('')}</div>
+ <div class="agp-f"><label class="agp-ctx" title="Send what is open in ${P.n} to the agent"><input type="checkbox" checked> 📎 ${P.img?'Include picture':'Use what is open'}</label><div class="agp-box"><textarea class="agp-in" rows="1" placeholder="Ask the ${P.n} Agent…"></textarea><button class="agp-send" title="Send">${'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>'}</button></div></div>`;
+ o.el.appendChild(p);const m=p.querySelector('.agp-m'),inp=p.querySelector('.agp-in');
+ welcome(o);
+ p.addEventListener('pointerdown',e=>e.stopPropagation());p.addEventListener('keydown',e=>e.stopPropagation());p.addEventListener('keyup',e=>e.stopPropagation());
+ p.querySelector('.agp-h').onclick=e=>{const a=e.target.closest('[data-a]');if(!a)return;if(a.dataset.a==='close')togglePanel(o,false);else{if(o._ag.busy)o._ag.busy.abort();o._ag.msgs=[];welcome(o)}};
+ p.querySelector('.agp-chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;const t=b.textContent.replace(/^\S+\s/,'');if(/:\s*$/.test(t)){inp.value=t;inp.focus();size()}else send(o,t)};
+ p.querySelector('.agp-ctx input').onchange=e=>o._ag.useCtx=e.target.checked;
+ const size=()=>{inp.style.height='auto';inp.style.height=Math.min(120,inp.scrollHeight)+'px'};inp.oninput=size;
+ inp.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send(o,inp.value)}};
+ p.querySelector('.agp-send').onclick=()=>{if(o._ag.busy){o._ag.busy.abort();return}send(o,inp.value)};
+ m.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(a)runAct(o,a);const s=e.target.closest('[data-setup]');if(s)openSetup()});
+ return p}
+function welcome(o){const P=PA[o._agKey];const m=o._agP.querySelector('.agp-m');
+ m.innerHTML=`<div class="agp-w"><div class="agp-wi">${P.e}</div><b>${P.n} Agent</b><p>${esc((t=>t.charAt(0).toUpperCase()+t.slice(1))(P.role.split('. ')[0].replace(/^You (are|help)\s*/,'').replace(/^an? /,'')))}.</p>${ready()?'':`<div class="agp-need">AI needs a key first — add a free Google Gemini key once in BhartiX Agent › Settings.<br><button class="agp-btn" data-setup>🔑 Set up AI</button></div>`}</div>`;o._agP.querySelector('.agp-chips').hidden=false}
+async function openSetup(){try{const ow=openBxApp('agent');for(let i=0;i<40;i++){await new Promise(r=>setTimeout(r,150));const f=ow&&ow.wb.querySelector('iframe');const w=f&&f.contentWindow;if(w&&typeof w.openSettings==='function'){w.openSettings();return}}}catch(e){toast('Open BhartiX Agent › Settings')}}
+function sysFor(P){const c=cfg();return`You are the ${P.n} Agent, an AI helper built into BhartiX ${P.n} on BhartiX OS (a mobile "mini computer" for Indian students and families).
+${P.role}
+Rules: be direct — give the result first, no long preambles. Use Markdown for answers (bold, short lists, tables) unless told to reply with only plain text. You cannot click or change anything yourself: the user applies your output with the buttons shown under your reply. ${langRule(c)} Today is ${new Date().toDateString()}. Assume India (₹, Indian context) unless told otherwise.`}
+function bubble(o,m,i){const P=PA[o._agKey];if(m.r==='u')return`<div class="agp-u">${m.ctxLabel?`<small>📎 ${esc(m.ctxLabel)}</small>`:''}${esc(m.t)}</div>`;
+ if(m.err)return`<div class="agp-a"><div class="agp-err">${esc(m.err)}${m.set?'<br><button class="agp-btn" data-setup>🔑 Open AI settings</button>':''}</div></div>`;
+ if(!m.t)return`<div class="agp-a"><div class="agp-dots"><i></i><i></i><i></i></div></div>`;
+ const acts=m.live?[]:(P.acts||[]).filter(a=>!a.when||a.when(m.t,o,m.ctx)).concat([P===PA.writer?null:A_WRITER,A_CAL.when(m.t)&&!(P.acts||[]).includes(A_CAL)?A_CAL:null,A_COPY].filter(Boolean));
+ return`<div class="agp-a"><div class="agp-md">${md(m.t)}</div>${acts.length?`<div class="agp-acts">${acts.map(a=>`<button data-act="${a.k}" data-i="${i}">${esc(a.l)}</button>`).join('')}</div>`:''}${m.note?`<div class="agp-note">✔ ${esc(m.note)}</div>`:''}</div>`}
+function render(o){const m=o._agP.querySelector('.agp-m');const near=m.scrollHeight-m.scrollTop-m.clientHeight<90;m.innerHTML=o._ag.msgs.map((x,i)=>bubble(o,x,i)).join('');if(near||o._ag.stick)m.scrollTop=m.scrollHeight;o._ag.stick=false}
+async function runAct(o,btn){const P=PA[o._agKey];const i=+btn.dataset.i,m=o._ag.msgs[i];if(!m)return;
+ const a=[...(P.acts||[]),A_WRITER,A_CAL,A_COPY,A_CARDS].find(x=>x.k===btn.dataset.act);if(!a)return;btn.disabled=true;
+ let ok=false;try{const r=a.runT?await a.runT(o,m.t,P):await a.run(o,m.t,P);m.note=typeof r==='string'?r:'Done';ok=!/^(Could not|No |Click inside)/.test(m.note)}catch(e){m.note='Could not do that: '+(e.message||e)}render(o);
+ if(ok&&a.k!=='copy'&&o._agP.offsetWidth>=o.el.offsetWidth-4)setTimeout(()=>togglePanel(o,false),900)}
+async function send(o,text){text=String(text||'').trim();const S=o._ag;if(!text||S.busy)return;const P=PA[o._agKey];const inp=o._agP.querySelector('.agp-in');inp.value='';inp.style.height='auto';
+ o._agP.querySelector('.agp-chips').hidden=true;
+ if(!ready()){S.msgs.push({r:'u',t:text},{r:'a',err:'AI needs a key first. Add a free Google Gemini key once in BhartiX Agent › Settings — every program agent then uses it.',set:1});S.stick=true;render(o);return}
+ let ctx=null;if(S.useCtx&&P.ctx){try{ctx=await P.ctx(o)}catch(e){ctx=null}}
+ const um={r:'u',t:text,ctxLabel:ctx&&ctx.label};S.msgs.push(um);const am={r:'a',t:'',live:1,ctx};S.msgs.push(am);S.stick=true;render(o);
+ const hist=[];S.msgs.slice(0,-2).filter(x=>!x.err&&x.t).slice(-10).forEach(x=>hist.push({role:x.r==='u'?'user':'assistant',text:x.t}));
+ hist.push({role:'user',text:text+(ctx&&ctx.text?`\n\n-----\n[What is open in BhartiX ${P.n}]\n${ctx.text}`:''),imgs:ctx&&ctx.imgs?ctx.imgs.filter(Boolean):[]});
+ const ac=new AbortController();S.busy=ac;setSend(o,true);let raf=0;
+ try{const full=await callAI(sysFor(P),hist,t=>{am.t=t;if(!raf)raf=requestAnimationFrame(()=>{raf=0;render(o)})},ac.signal);if(!full.trim())am.err='The AI returned an empty answer. Try asking in a different way.'}
+ catch(e){if(e.name==='AbortError'){if(!am.t)am.err='Stopped.'}else{am.err=e.message||String(e);am.set=!!e.set}}
+ finally{cancelAnimationFrame(raf);delete am.live;S.busy=null;setSend(o,false);render(o)}}
+function setSend(o,b){const s=o._agP.querySelector('.agp-send');s.classList.toggle('stop',b);s.innerHTML=b?'<svg viewBox="0 0 24 24" width="16" height="16"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></svg>':'<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';s.title=b?'Stop':'Send'}
+
+/* every new window of a supported program gets the ✨ button */
+const _ow=openWin;openWin=function(id){const o=_ow.apply(this,arguments);try{if(o&&o.el)attach(o)}catch(e){console.error(e)}return o};
+W.forEach(o=>{try{attach(o)}catch(e){}});
+window.BXCopilot={PA,attach,togglePanel,send,progFor};
+})();
+</script>
 </body></html>
