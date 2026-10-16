@@ -12690,7 +12690,7 @@ function openChitra(init){
  o.chDbg=()=>({tool,tv,sel:sel?{...sel.b}:null,hist:HIST.map(h=>h.label),layers:DOC?DOC.layers.map(l=>l.name+(l.frame?'[F]':'')):[],w:DOC&&DOC.w,h:DOC&&DOC.h,paths:DOC&&DOC.paths?DOC.paths.map(p=>p.subs.map(s=>s.pts.length)):[],mk:DOC&&DOC.mk,qm:!!qm,view:{...view},scr:scrMode});o.chPick=pickTool;
  o.chOpenFile=async f=>{hfMode='doc';confirmDiscard(()=>openFile(f))};
  o.beforeClose=()=>{if(!DOC||!DOC.dirty||o.force)return true;dlg('Unsaved changes','<p>Save this image as a project before closing?</p>',[{t:'Cancel'},{t:"Don't save",f:()=>{o.force=1;closeWin(o)}},{t:'Save project',p:1,f:async()=>{await saveProject();o.force=1;closeWin(o)}}]);return false};
- side.hidden=cw0<900;if(ch0<700){const bb=q('[data-pb=b]');if(bb)bb.hidden=true}if(ch0<500){const ba=q('[data-pb=a]');if(ba)ba.hidden=true}setTool('brush');drawSide();recents();render();
+ side.hidden=cw0<900;setTool('brush');drawSide();recents();render();
  if(init.file)setTimeout(()=>openFile(init.file),50);
  return o}
 LAUNCH['BhartiX Chitra']=()=>openChitra();LAUNCH['BhartiX Pixel']=()=>openChitra();
@@ -18853,7 +18853,25 @@ addEventListener('resize',()=>{if(zoom<1)fitWidth();});
 addEventListener('message',e=>{const d=e.data;if(!d||!d.bxOpen)return;const inp=document.getElementById('openFile');if(!inp)return;try{const dt=new DataTransfer();dt.items.add(d.bxOpen);inp.files=dt.files;inp.dispatchEvent(new Event('change'));}catch(err){}});
 try{parent.postMessage({bxReady:1},'*');}catch(e){}
 <\/script></body></html></script>
-<script type="text/plain" id="bxapp-notepad"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>BhartiX Notepad</title>
+<script type="text/plain" id="bxapp-notepad"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style><style id="nt-css">
+/* notitle: like BhartiX Paint */
+.titlebar{display:none!important}
+.nt-right{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0;padding-left:6px;flex:0 1 auto}
+.nt-right .docname{color:var(--ink);font-size:13px;flex:0 1 190px;min-width:56px;height:26px;text-overflow:ellipsis}
+.nt-right .docname:hover{border-color:var(--line)}
+.nt-right .docname:focus{outline:none;border-color:var(--saffron);background:#fff}
+.nt-right .savestate{margin-left:0;cursor:default}
+.nt-right .savestate span{display:none}
+.nt-tb .lbl{font-size:12px}
+@media (max-width:520px){.nt-right .docname{flex-basis:96px}.nt-tb .lbl{display:none}}
+
+.menubar .nt-right{margin-left:auto}
+.nt-tools{display:flex;align-items:center;gap:2px;background:var(--panel);border-bottom:1px solid var(--line);padding:3px 8px;overflow-x:auto;scrollbar-width:none;flex:none}
+.nt-tools::-webkit-scrollbar{display:none}
+.nt-tools .ib{width:auto;min-width:32px;padding:0 6px;display:inline-flex;gap:4px;align-items:center;color:var(--ink)}
+.nt-tools .ib .i{width:17px;height:17px}
+.nt-sep{width:1px;height:20px;background:var(--line);margin:0 4px;flex:none}
+</style></head><body><title>BhartiX Notepad</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Noto+Sans:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Mukta:wght@400;700&family=Kalam:wght@400;700&display=swap">
 <style>
@@ -19315,6 +19333,20 @@ let tt;function toast(m){const el=$('#toast');el.textContent=m;el.classList.add(
 
 applyS();ta.setSelectionRange(0,0);ta.focus({preventScroll:true});ta.scrollTop=0;pos();
 })();
+<\/script>
+<script id="nt-js">
+(function(){const $=s=>document.querySelector(s);try{
+const mb=$('#menubar'),ta=$('#ta');
+const tools=document.createElement('div');tools.className='nt-tools';tools.setAttribute('role','toolbar');
+tools.innerHTML=`<button class="ib nt-tb" id="ntSave" title="Save to My Notes (Ctrl+S)"><svg class="i" viewBox="0 0 24 24"><path d="M12 3v11M7.5 9.5 12 14l4.5-4.5M5 20h14"/></svg><span class="lbl">Save</span></button><span id="ntShareSlot"></span><span class="nt-sep"></span><button class="ib" id="ntUndo" title="Undo (Ctrl+Z)"><svg class="i" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3"/></svg></button><button class="ib" id="ntRedo" title="Redo (Ctrl+Y)"><svg class="i" viewBox="0 0 24 24"><path d="m15 14 5-5-5-5M20 9H10a6 6 0 0 0 0 12h3"/></svg></button><span class="nt-sep"></span><span id="ntRightSlot" style="display:contents"></span>`;
+mb.after(tools);
+const sh=$('#shareBtn');if(sh){sh.className='ib nt-tb';sh.querySelector('span')&&sh.querySelector('span').classList.add('lbl');$('#ntShareSlot').replaceWith(sh)}
+const mr=mb.querySelector('.mbar-right');if(mr){[...mr.children].forEach(b=>tools.insertBefore(b,$('#ntRightSlot')));mr.remove()}
+$('#ntRightSlot').remove();
+$('#ntSave').onclick=()=>{try{window.__ag('saveToLibrary()')}catch(e){}};
+const ed=c=>{ta.focus();document.execCommand(c)};$('#ntUndo').onclick=()=>ed('undo');$('#ntRedo').onclick=()=>ed('redo');
+const r=document.createElement('div');r.className='nt-right';r.append($('#docName'),$('#saveState'));mb.appendChild(r);
+}catch(e){console.error("notitle",e)}})();
 <\/script>
 <script>
 /* BhartiX OS bridge: files sent from BhartiX Files arrive here */
@@ -20155,7 +20187,26 @@ syncUI();fit();addEventListener('resize',()=>{if(zoom<1)fit();});
 addEventListener('message',e=>{const d=e.data;if(!d||!d.bxOpen)return;const inp=document.getElementById('openFile');if(!inp)return;try{const dt=new DataTransfer();dt.items.add(d.bxOpen);inp.files=dt.files;inp.dispatchEvent(new Event('change'));}catch(err){}});
 try{parent.postMessage({bxReady:1},'*');}catch(e){}
 <\/script></body></html></script>
-<script type="text/plain" id="bxapp-grid"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>BhartiX Grid</title>
+<script type="text/plain" id="bxapp-grid"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style><style id="nt-css">
+/* notitle: like BhartiX Paint */
+.titlebar{display:none!important}
+.nt-right{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0;padding-left:6px;flex:0 1 auto}
+.nt-right .docname{color:var(--ink);font-size:13px;flex:0 1 190px;min-width:56px;height:26px;text-overflow:ellipsis}
+.nt-right .docname:hover{border-color:var(--line)}
+.nt-right .docname:focus{outline:none;border-color:var(--saffron);background:#fff}
+.nt-right .savestate{margin-left:0;cursor:default}
+.nt-right .savestate span{display:none}
+.nt-tb .lbl{font-size:12px}
+@media (max-width:520px){.nt-right .docname{flex-basis:96px}.nt-tb .lbl{display:none}}
+
+.nt-row{display:flex;align-items:flex-end;background:var(--panel);border-bottom:1px solid var(--line);flex:none;min-width:0;overflow:hidden}
+.nt-row .rtabs{flex:1 1 auto;min-width:0;border-bottom:0}
+.nt-row .nt-right{padding:0 8px 4px 6px;max-width:55%}
+.nt-right .tell{background:#eef2f7;color:var(--muted);flex:0 1 200px;min-width:80px}
+.nt-right .tell input{color:var(--ink)}
+#toolbar .nt-tb .i{width:17px;height:17px}
+@media (max-width:520px){.nt-right .tell{display:none}.nt-row .nt-right{max-width:44%}}
+</style></head><body><title>BhartiX Grid</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif:wght@400;700&family=Mukta:wght@400;700&family=Kalam:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap">
 <style>
@@ -23661,12 +23712,50 @@ normBook();if(book.sheets[SI].hidden)SI=firstVisible(0);calcManual=book.calc==='
 S=book.sheets[SI];normSheet(S);buildRibbon();if(LS.get('bxg.rib')){$('#ribbon').hidden=true;renderTabsBar();}build();setSel(0,0);syncNameList();showRec();
 })();
 <\/script>
+<script id="nt-js">
+(function(){const $=s=>document.querySelector(s);try{
+const rt=$('#rtabs'),tb=$('#toolbar');
+const row=document.createElement('div');row.className='nt-row';rt.before(row);row.appendChild(rt);
+const r=document.createElement('div');r.className='nt-right';r.append(...[$('#docName'),$('#saveState'),document.querySelector('.titlebar .tell')].filter(Boolean));row.appendChild(r);
+const q=[...document.querySelectorAll('#qat button')];const sv=q[0],un=q[1],re=q[2];
+[sv,un,re].forEach(b=>{if(b){b.className='tb';b.setAttribute('aria-label',b.title)}});
+if(sv){sv.classList.add('nt-tb');sv.insertAdjacentHTML('beforeend','<span class="lbl">Save</span>')}
+const sh=$('#shareBtn');sh.className='tb nt-tb';sh.querySelector('span')&&sh.querySelector('span').classList.add('lbl');
+const sep=()=>{const x=document.createElement('span');x.className='tsep';return x};
+tb.prepend(...[sv,sh,sep(),un,re,sep()].filter(Boolean));
+}catch(e){console.error("notitle",e)}})();
+<\/script>
 <script>
 /* BhartiX OS bridge: files sent from BhartiX Files arrive here */
 addEventListener('message',e=>{const d=e.data;if(!d||!d.bxOpen)return;const inp=document.getElementById('openFile');if(!inp)return;try{const dt=new DataTransfer();dt.items.add(d.bxOpen);inp.files=dt.files;inp.dispatchEvent(new Event('change'));}catch(err){}});
 try{parent.postMessage({bxReady:1},'*');}catch(e){}
 <\/script></body></html></script>
-<script type="text/plain" id="bxapp-slides"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>BhartiX Slides</title>
+<script type="text/plain" id="bxapp-slides"><!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>html,body{margin:0;height:100%}body{font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style><style id="nt-css">
+/* notitle: like BhartiX Paint */
+.titlebar{display:none!important}
+.nt-right{margin-left:auto;display:flex;align-items:center;gap:6px;min-width:0;padding-left:6px;flex:0 1 auto}
+.nt-right .docname{color:var(--ink);font-size:13px;flex:0 1 190px;min-width:56px;height:26px;text-overflow:ellipsis}
+.nt-right .docname:hover{border-color:var(--line)}
+.nt-right .docname:focus{outline:none;border-color:var(--saffron);background:#fff}
+.nt-right .savestate{margin-left:0;cursor:default}
+.nt-right .savestate span{display:none}
+.nt-tb .lbl{font-size:12px}
+@media (max-width:520px){.nt-right .docname{flex-basis:96px}.nt-tb .lbl{display:none}}
+
+.nt-row{display:flex;align-items:flex-end;background:var(--panel);border-bottom:1px solid var(--line);flex:none;min-width:0;overflow:hidden}
+.nt-row .tabs{flex:1 1 auto;min-width:0;border-bottom:0}
+.nt-row .nt-right{padding:0 8px 4px 6px;max-width:48%}
+.nt-tools{display:flex;align-items:stretch;background:var(--panel);border-bottom:1px solid var(--line);flex:none;min-width:0}
+.nt-tools .tools{flex:1 1 auto;min-width:0;border-bottom:0}
+.nt-q{display:flex;align-items:center;gap:2px;padding:3px 6px;border-right:1px solid var(--line);flex:none}
+.nt-q .col{display:flex;flex-direction:column;gap:1px}
+.nt-q .qbtn,.nt-q .tb{background:none;border:1px solid transparent;border-radius:6px;color:var(--ink);width:auto;min-width:28px;height:20px;padding:0 5px;display:inline-flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;font-size:12.5px;font-weight:400}
+.nt-q .qbtn:hover,.nt-q .tb:hover{background:var(--blue-soft,#e8eefb)}
+.nt-q .big{height:40px;flex-direction:column;gap:1px;font-size:11.5px;padding:0 6px}
+.nt-q .big svg{width:20px!important;height:20px!important}
+.nt-q .playbtn{color:var(--ink)}
+@media (max-width:520px){.nt-row .nt-right{max-width:44%}}
+</style></head><body><title>BhartiX Slides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Serif:wght@400;700&family=Mukta:wght@400;700;800&family=Kalam:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap">
 <style>
@@ -24534,6 +24623,22 @@ if(saved&&saved.deck&&saved.deck.slides&&saved.deck.slides.length){P=saved.deck;
 buildPanel();layoutStage();renderSlide();renderThumbs();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{renderThumbs();});
 })();
+<\/script>
+<script id="nt-js">
+(function(){const $=s=>document.querySelector(s);try{
+const nav=$('.tabs'),tools=$('#tools');
+const row=document.createElement('div');row.className='nt-row';nav.before(row);row.appendChild(nav);
+const r=document.createElement('div');r.className='nt-right';r.append($('#docName'),$('#saveState'));row.appendChild(r);
+const wrap=document.createElement('div');wrap.className='nt-tools';tools.before(wrap);
+const q=document.createElement('div');q.className='nt-q';
+const c1=document.createElement('div');c1.className='col';const c2=document.createElement('div');c2.className='col';
+const save=$('#qSave'),undo=$('#qUndo'),redo=$('#qRedo'),sh=$('#shareBtn'),play=$('#playBtn');
+[save,undo,redo].forEach(b=>{if(b)b.className='tb'});
+if(sh){sh.className='tb';const t=sh.querySelector('span');if(t)t.remove();sh.title='Save or share (Ctrl+Shift+S)'}
+if(play){play.className='tb big';play.querySelectorAll('span').forEach(x=>x.remove());play.insertAdjacentHTML('beforeend','<span>Play</span>')}
+c1.append(save,sh);c2.append(undo,redo);q.append(...[play,c1,c2].filter(Boolean));
+wrap.append(q,tools);
+}catch(e){console.error("notitle",e)}})();
 <\/script>
 <script>
 /* BhartiX OS bridge: files sent from BhartiX Files arrive here */
@@ -25446,6 +25551,28 @@ try{let ch=0;(S.items||[]).forEach(i=>{if(i.id==='pc'&&i.name==='Computer'){i.na
 .fx .fx-vt button{width:26px;height:20px;border:0;background:none;border-radius:4px;color:#5d6678;cursor:pointer;display:grid;place-items:center;padding:0}
 .fx .fx-vt button svg{width:14px;height:14px}.fx .fx-vt button.on{background:#e3eaf5;color:#1f2a3a}
 @media (max-width:760px){.fx .fx-c.l span{display:none}.fx .fx-c{padding:0 6px}.fx .fx-tab{min-width:90px}.fx .fx-search{flex-basis:130px}}
+</style>
+<style id="ch-fix">
+/* ===== BhartiX Chitra — short / landscape phone screens ===== */
+.ch .ch-empty{justify-content:flex-start!important}
+.ch .ch-empty>:first-child{margin-top:auto}
+.ch .ch-empty>:last-child{margin-bottom:auto}
+.ch .ch-side{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin}
+.ch .ch-side .chp-sec{flex:none}
+.ch .ch-side .chp-grow{flex:1 0 auto;min-height:190px}
+.ch .ch-side .chp-tabs{position:relative;padding-right:22px}
+.ch .ch-side .chp-sec .chp-tabs::after{content:none;position:absolute;right:7px;top:50%;transform:translateY(-50%);font-size:10px;color:#9a9a9a;pointer-events:none}
+.ch .ch-side .chp-sec:has(> .chp-body[hidden]) .chp-tabs::after{content:'▸';background:#2a2a2a;padding-left:4px}
+.ch .ch-side .chp-grow .chp-tabs::after{content:none}
+@media (max-height:560px){
+ .ch .ch-tools.two{grid-auto-flow:column!important;grid-template-columns:none!important;grid-template-rows:repeat(auto-fill,25px)!important;grid-auto-columns:28px!important;width:auto!important;gap:0 2px!important;padding:12px 4px 4px!important;overflow:hidden!important;align-content:start!important}
+ .ch .ch-tools.two .ch-col{grid-row:span 2!important;grid-column:auto!important;margin-top:2px!important;align-self:center}
+ .ch .ch-tools.two>*{grid-column:auto!important;order:0!important}
+ .ch .ch-tools.two .ch-tb{height:25px}
+ .ch .ch-empty .ch-hl{transform:scale(.8);margin-bottom:-6px}
+ .ch .ch-empty>p{display:none}
+ .ch .ch-empty{gap:8px!important;padding:10px!important}
+}
 </style>
 <style id="bx-copilot-css">
 /* ===== BhartiX Copilot (program agents) ===== */
