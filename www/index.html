@@ -10,7 +10,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}[hidden]{display:none!important}
 html,body{height:100%;margin:0;overflow:hidden;background:#07204a;font:12px "Segoe UI",Tahoma,Arial,sans-serif;-webkit-user-select:none;user-select:none;touch-action:none;-webkit-touch-callout:none}
 button{font:inherit;cursor:pointer}
-#os{position:relative;width:100%;height:100%;overflow:hidden;--isz:calc(clamp(26px,8vh,56px)*var(--k,1));--bar:clamp(24px,6.4vh,40px)}
+#os{position:relative;width:100%;height:100%;overflow:hidden;--isz:calc(clamp(26px,8vh,56px)*var(--k,1));--bar:clamp(24px,5vh,32px)}
 #wp{position:absolute;inset:0}
 #wp::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 52%),linear-gradient(62deg,transparent 60%,rgba(255,255,255,.09) 61%,transparent 63%)}
 #em{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);height:56%;aspect-ratio:1;opacity:.92;pointer-events:none;filter:drop-shadow(0 0 22px rgba(255,255,255,.4))}
@@ -26028,6 +26028,11 @@ try{let ch=0;(S.items||[]).forEach(i=>{if(i.id==='pc'&&i.name==='Computer'){i.na
 .sr .sr-prop{min-height:0!important;padding-top:3px!important;padding-bottom:3px!important}
 .sr .sr-prop[hidden]{display:none!important}
 .sr .sr-prop .sr-b,.sr .sr-prop .sr-sel,.sr .sr-prop .sr-num{height:28px}
+.sr .sr-top{padding:1px 6px!important}
+.sr .sr-top .sr-b,.sr .sr-top .sr-name{height:24px!important}
+.sr .sr-tabs{padding:1px 4px!important}
+.sr .sr-tab{flex-direction:row!important;gap:5px!important;padding:6px 8px!important;font-size:12px!important;min-width:0!important;line-height:1}
+.sr .sr-tab span{font-size:14px}
 </style>
 <style id="sr-fix3">
 .sr .sr-tin{height:28px;border:1px solid #cfd6e4;border-radius:6px;padding:0 8px;font:13px system-ui;min-width:90px;width:150px;background:#fff;color:#1f2430}
